@@ -1,7 +1,20 @@
 import React from 'react';
+import {Slider} from './slider';
+import {SliderButton} from './sliderButton';
 
-import {Container} from './styles';
+import {BottomWrapper, Container, TopWrapper} from './styles';
 
 export const Onboarding: React.FC = () => {
-  return <Container />;
+  return (
+    <Container>
+      <TopWrapper>
+        <SliderButton title="Pular" />
+      </TopWrapper>
+      <Slider />
+      <BottomWrapper>
+        <SliderButton title="Voltar" />
+        <SliderButton title="Avançar" />
+      </BottomWrapper>
+    </Container>
+  );
 };

@@ -3,12 +3,11 @@ import {SCREEN_WIDTH} from '../../../constants/dimensions';
 
 export const Container = styled.View`
   flex: 1;
-  background: ${({theme}) => theme.colors.secondary};
+  background: ${({theme}) => theme.colors.background};
 `;
 
 export const TopWrapper = styled.View`
   flex: 1;
-  background: yellow;
   justify-content: center;
   align-items: flex-end;
   padding-right: 20px;
@@ -16,17 +15,21 @@ export const TopWrapper = styled.View`
 
 export const BottomWrapper = styled.View`
   flex: 1;
-  background: green;
   flex-direction: row;
   align-items: center;
   padding: 0 30px;
   justify-content: space-between;
 `;
 
+interface StyledButtonProps {
+  isTransparent: boolean;
+}
+
 export const StyledButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
-})`
-  background: ${({theme}) => theme.colors.secondary};
+})<StyledButtonProps>`
+  background: ${({theme, isTransparent}) =>
+    !isTransparent ? theme.colors.secondary : 'transparent'};
   padding: 8px 20px;
   border-radius: 20px;
   max-width: 100px;
@@ -48,10 +51,10 @@ export const StyledScroll = styled.ScrollView.attrs({
   horizontal: true,
   pagingEnabled: true,
   showsVerticalScrollIndicator: false,
+  scrollEnabled: false,
 })``;
 
 export const SliderContent = styled.View`
-  background: blue;
   align-items: center;
   width: ${SCREEN_WIDTH}px;
 `;

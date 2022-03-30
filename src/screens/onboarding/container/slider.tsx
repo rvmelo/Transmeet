@@ -1,29 +1,21 @@
 import React from 'react';
-import {introData} from './introData';
 
-import {
-  IntroText,
-  ScrollWrapper,
-  SliderContent,
-  StyledImage,
-  StyledScroll,
-} from './styles';
+import {IntroText, SliderContent, StyledImage} from './styles';
 
-export const Slider: React.FC = () => {
+interface SliderDisplayProps {
+  uri: string;
+  text: string;
+}
+
+export const SliderDisplay: React.FC<SliderDisplayProps> = ({uri, text}) => {
   return (
-    <ScrollWrapper>
-      <StyledScroll>
-        {introData.map(data => (
-          <SliderContent>
-            <StyledImage
-              source={{
-                uri: data.uri,
-              }}
-            />
-            <IntroText>{data.text}</IntroText>
-          </SliderContent>
-        ))}
-      </StyledScroll>
-    </ScrollWrapper>
+    <SliderContent key={uri}>
+      <StyledImage
+        source={{
+          uri: uri,
+        }}
+      />
+      <IntroText>{text}</IntroText>
+    </SliderContent>
   );
 };

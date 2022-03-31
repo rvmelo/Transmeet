@@ -15,15 +15,15 @@ import {
 export const Onboarding: React.FC = () => {
   const {
     scrollRef,
-    onForwardNavigation,
-    onBackwardNavigation,
-    onScrollToEnd,
+    onScrollForward,
+    onScrollBackward,
+    onNavigation,
     scrollIndex,
   } = useOnBoarding();
   return (
     <Container>
       <TopWrapper>
-        <SliderButton title="Pular" onPress={onScrollToEnd} />
+        <SliderButton title="Pular" onPress={onNavigation} />
       </TopWrapper>
       <ScrollWrapper>
         <StyledScroll ref={scrollRef}>
@@ -35,10 +35,10 @@ export const Onboarding: React.FC = () => {
       <BottomWrapper>
         <SliderButton
           title="Voltar"
-          onPress={onBackwardNavigation}
+          onPress={onScrollBackward}
           isTransparent={scrollIndex === 0}
         />
-        <SliderButton title="Avançar" onPress={onForwardNavigation} />
+        <SliderButton title="Avançar" onPress={onScrollForward} />
       </BottomWrapper>
     </Container>
   );

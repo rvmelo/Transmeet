@@ -4,9 +4,9 @@ import {SCREEN_WIDTH} from '../../constants/dimensions';
 
 interface ReturnType {
   scrollRef: React.MutableRefObject<ScrollView | null | undefined>;
-  onForwardNavigation: () => void;
-  onBackwardNavigation: () => void;
-  onScrollToEnd: () => void;
+  onScrollForward: () => void;
+  onScrollBackward: () => void;
+  onNavigation: () => void;
   scrollIndex: number;
 }
 
@@ -15,18 +15,11 @@ export function useOnBoarding(): ReturnType {
   const [scrollIndex, setScrollIndex] = useState(0);
   const scrollRef = useRef<ScrollView | null>();
 
-  const onScrollToEnd = useCallback(() => {
-    scrollRef?.current?.scrollTo({
-      x: SCREEN_WIDTH * 3,
-      y: 0,
-      animated: true,
-    });
-
-    setScrollIndex(2);
-    setScrollMultiplyFactor(2);
+  const onNavigation = useCallback(() => {
+    // navigate to home screen
   }, []);
 
-  const onForwardNavigation = useCallback(() => {
+  const onScrollForward = useCallback(() => {
     scrollRef?.current?.scrollTo({
       x: SCREEN_WIDTH * scrollMultiplyFactor,
       y: 0,
@@ -44,7 +37,7 @@ export function useOnBoarding(): ReturnType {
     setScrollMultiplyFactor(prev => prev + 1);
   }, [scrollMultiplyFactor, scrollIndex]);
 
-  const onBackwardNavigation = useCallback(() => {
+  const onScrollBackward = useCallback(() => {
     scrollRef?.current?.scrollTo({
       x: SCREEN_WIDTH * (scrollMultiplyFactor - 1),
       y: 0,
@@ -64,9 +57,9 @@ export function useOnBoarding(): ReturnType {
 
   return {
     scrollRef,
-    onForwardNavigation,
-    onBackwardNavigation,
-    onScrollToEnd,
+    onScrollForward,
+    onScrollBackward,
+    onNavigation,
     scrollIndex,
   };
 }

@@ -13,7 +13,7 @@ export const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
   return (
     <ScrollIndicatorWrapper>
       {introData.map((_, index) => (
-        <ScrollDot isActive={scrollIndex === index} />
+        <ScrollDot key={index} isActive={scrollIndex === index} />
       ))}
     </ScrollIndicatorWrapper>
   );

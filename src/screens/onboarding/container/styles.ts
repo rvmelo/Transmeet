@@ -78,7 +78,7 @@ interface ScrollWrapperProps {
 }
 
 export const ScrollWrapper = styled.View<ScrollWrapperProps>`
-  margin-top: ${({isLastIndex}) => (isLastIndex ? SCREEN_WIDTH * 0.2 : 0)}px;
+  margin-top: ${({isLastIndex}) => (isLastIndex ? SCREEN_WIDTH * 0.13 : 0)}px;
   align-items: center;
 `;
 
@@ -86,6 +86,7 @@ export const StyledScroll = styled.ScrollView.attrs({
   horizontal: true,
   pagingEnabled: true,
   showsVerticalScrollIndicator: false,
+  showsHorizontalScrollIndicator: false,
   scrollEnabled: false,
 })``;
 
@@ -95,8 +96,8 @@ export const SliderContent = styled.View`
 `;
 
 export const StyledImage = styled.Image`
-  width: ${SCREEN_WIDTH / 1.3}px;
-  height: ${SCREEN_WIDTH / 1.3}px;
+  width: ${SCREEN_WIDTH / 2}px;
+  height: ${SCREEN_WIDTH / 2}px;
 `;
 
 export const IntroText = styled.Text`
@@ -111,6 +112,7 @@ export const IntroText = styled.Text`
 
 export const ScrollIndicatorWrapper = styled.View`
   flex-direction: row;
+  margin-bottom: 5px;
 `;
 
 interface ScrollDotProps {

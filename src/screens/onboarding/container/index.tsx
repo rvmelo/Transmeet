@@ -6,6 +6,7 @@ import {SliderDisplay} from './sliderDisplay';
 import {Container, ScrollWrapper, StyledScroll} from './styles';
 import {BottomSection} from './bottomSection';
 import {TopSection} from './topSection';
+import {ScrollIndicator} from './scrollIndicator';
 
 export const Onboarding: React.FC = () => {
   const {
@@ -27,6 +28,7 @@ export const Onboarding: React.FC = () => {
             <SliderDisplay key={data.uri} uri={data.uri} text={data.text} />
           ))}
         </StyledScroll>
+        <ScrollIndicator scrollIndex={scrollIndex} />
       </ScrollWrapper>
 
       <BottomSection

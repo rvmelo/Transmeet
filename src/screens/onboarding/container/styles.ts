@@ -73,13 +73,13 @@ export const AccountButtonText = styled.Text`
 `;
 
 //  slider
-
 interface ScrollWrapperProps {
   isLastIndex: boolean;
 }
 
 export const ScrollWrapper = styled.View<ScrollWrapperProps>`
   margin-top: ${({isLastIndex}) => (isLastIndex ? SCREEN_WIDTH * 0.2 : 0)}px;
+  align-items: center;
 `;
 
 export const StyledScroll = styled.ScrollView.attrs({
@@ -105,4 +105,25 @@ export const IntroText = styled.Text`
   margin-top: 20px;
   background: ${({theme}) => theme.colors.lightGray};
   margin: 20px;
+`;
+
+//  scroll indicator
+
+export const ScrollIndicatorWrapper = styled.View`
+  flex-direction: row;
+`;
+
+interface ScrollDotProps {
+  isActive: boolean;
+}
+
+export const ScrollDot = styled.View<ScrollDotProps>`
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: ${({theme}) => theme.colors.mediumGray};
+  background: ${({theme, isActive}) =>
+    isActive ? theme.colors.mediumGray : 'transparent'};
 `;

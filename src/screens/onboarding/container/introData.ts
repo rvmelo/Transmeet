@@ -11,4 +11,8 @@ export const introData = [
     uri: 'https://compass-ssl.xbox.com/assets/a2/c7/a2c721c9-aba4-4925-8026-c6c72b74dc16.jpg?n=Gears-5_GLP-Page-Hero-1084_2020_1920x1080_04.jpg',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.',
   },
+  {
+    uri: 'https://assets.nuuvem.com/image/upload/t_screenshot_full/v1/products/5c4b41602a1c6e1edeb03eb2/screenshots/wcv90rtqyzir1ubtqdf0.jpg',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.',
+  },
 ];

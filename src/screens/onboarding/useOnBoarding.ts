@@ -1,6 +1,7 @@
 import React, {useCallback, useRef, useState} from 'react';
 import {ScrollView} from 'react-native';
 import {SCREEN_WIDTH} from '../../constants/dimensions';
+import {introData} from './container/introData';
 
 interface ReturnType {
   scrollRef: React.MutableRefObject<ScrollView | null | undefined>;
@@ -8,12 +9,15 @@ interface ReturnType {
   onScrollBackward: () => void;
   onNavigation: () => void;
   scrollIndex: number;
+  slideAmount: number;
 }
 
 export function useOnBoarding(): ReturnType {
   const [scrollMultiplyFactor, setScrollMultiplyFactor] = useState(1);
   const [scrollIndex, setScrollIndex] = useState(0);
   const scrollRef = useRef<ScrollView | null>();
+
+  const slideAmount = introData.length;
 
   const onNavigation = useCallback(() => {
     // navigate to home screen
@@ -26,16 +30,16 @@ export function useOnBoarding(): ReturnType {
       animated: true,
     });
 
-    if (scrollIndex < 2) {
+    if (scrollIndex < slideAmount - 1) {
       setScrollIndex(prev => prev + 1);
     }
 
-    if (scrollMultiplyFactor >= 2) {
+    if (scrollMultiplyFactor >= slideAmount - 1) {
       return;
     }
 
     setScrollMultiplyFactor(prev => prev + 1);
-  }, [scrollMultiplyFactor, scrollIndex]);
+  }, [scrollMultiplyFactor, scrollIndex, slideAmount]);
 
   const onScrollBackward = useCallback(() => {
     scrollRef?.current?.scrollTo({
@@ -61,5 +65,6 @@ export function useOnBoarding(): ReturnType {
     onScrollBackward,
     onNavigation,
     scrollIndex,
+    slideAmount,
   };
 }

@@ -1,16 +1,11 @@
 import React from 'react';
 import {useOnBoarding} from '../useOnBoarding';
 import {introData} from './introData';
-import {SliderDisplay} from './slider';
-import {SliderButton} from './sliderButton';
+import {SliderDisplay} from './sliderDisplay';
 
-import {
-  BottomWrapper,
-  Container,
-  ScrollWrapper,
-  StyledScroll,
-  TopWrapper,
-} from './styles';
+import {Container, ScrollWrapper, StyledScroll} from './styles';
+import {BottomSection} from './bottomSection';
+import {TopSection} from './topSection';
 
 export const Onboarding: React.FC = () => {
   const {
@@ -19,27 +14,28 @@ export const Onboarding: React.FC = () => {
     onScrollBackward,
     onNavigation,
     scrollIndex,
+    slideAmount,
   } = useOnBoarding();
   return (
     <Container>
-      <TopWrapper>
-        <SliderButton title="Pular" onPress={onNavigation} />
-      </TopWrapper>
-      <ScrollWrapper>
+      {scrollIndex < slideAmount - 1 && (
+        <TopSection onNavigation={onNavigation} />
+      )}
+      <ScrollWrapper isLastIndex={scrollIndex === slideAmount - 1}>
         <StyledScroll ref={scrollRef}>
           {introData.map(data => (
             <SliderDisplay key={data.uri} uri={data.uri} text={data.text} />
           ))}
         </StyledScroll>
       </ScrollWrapper>
-      <BottomWrapper>
-        <SliderButton
-          title="Voltar"
-          onPress={onScrollBackward}
-          isTransparent={scrollIndex === 0}
-        />
-        <SliderButton title="Avançar" onPress={onScrollForward} />
-      </BottomWrapper>
+
+      <BottomSection
+        onScrollBackward={onScrollBackward}
+        onScrollForward={onScrollForward}
+        onNavigation={onNavigation}
+        scrollIndex={scrollIndex}
+        slideAmount={slideAmount}
+      />
     </Container>
   );
 };

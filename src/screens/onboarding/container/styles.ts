@@ -15,19 +15,24 @@ export const TopWrapper = styled.View`
 
 export const BottomWrapper = styled.View`
   flex: 1;
-  flex-direction: row;
-  align-items: center;
   padding: 0 30px;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 
-interface StyledButtonProps {
+interface ButtonProps {
   isTransparent: boolean;
 }
 
+// slider button
+
+export const SliderButtonWrapper = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 export const StyledButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
-})<StyledButtonProps>`
+})<ButtonProps>`
   background: ${({theme, isTransparent}) =>
     !isTransparent ? theme.colors.secondary : 'transparent'};
   padding: 8px 20px;
@@ -43,9 +48,39 @@ export const ButtonText = styled.Text`
   color: ${({theme}) => theme.colors.primary};
 `;
 
+// account button
+
+export const AccountButtonWrapper = styled.View``;
+
+export const StyledAccountButton = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})<ButtonProps>`
+  background: ${({theme, isTransparent}) =>
+    !isTransparent ? theme.colors.secondary : 'transparent'};
+  border-radius: 20px;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-width: 1px;
+  border-color: ${({theme}) => theme.colors.secondary};
+  margin-bottom: 10px;
+`;
+
+export const AccountButtonText = styled.Text`
+  font-size: ${({theme}) => theme.fonts.sizes.lg}px;
+  color: ${({theme}) => theme.colors.text};
+`;
+
 //  slider
 
-export const ScrollWrapper = styled.View``;
+interface ScrollWrapperProps {
+  isLastIndex: boolean;
+}
+
+export const ScrollWrapper = styled.View<ScrollWrapperProps>`
+  margin-top: ${({isLastIndex}) => (isLastIndex ? SCREEN_WIDTH * 0.2 : 0)}px;
+`;
 
 export const StyledScroll = styled.ScrollView.attrs({
   horizontal: true,

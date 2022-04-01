@@ -46,28 +46,29 @@ export const useFormValidation = ({inputType}: InputData) => {
     if (value.length === 0) {
       setError('Preencha um valor');
       return false;
-    } 
+    }
     if (
       inputTypes[inputType as keyof InputTypes] &&
       !inputTypes[inputType as keyof InputTypes].regex.test(value)
     ) {
       setError(inputTypes[inputType as keyof InputTypes].message);
       return false;
-    } 
-    
-      setError(null);
-      return true;
-    
+    }
+    setError(null);
+    return true;
   };
 
   const onChange = (text: string) => {
     if (error) {
-      setValue(text)
+      setValue(text);
     }
-    validate(e.target.value);
+    validate(text);
   };
 
   return {
+    value,
+    setValue,
+    onChange,
     error,
     validate: () => validate(value),
     onBlur: () => validate(value),

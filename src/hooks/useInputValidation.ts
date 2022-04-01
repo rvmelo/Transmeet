@@ -1,22 +1,19 @@
 import React from 'react';
 
+interface RegexType {
+  regex: RegExp;
+  message: string;
+}
+
 interface InputTypes {
-  email: {
-    regex: RegExp;
-    message: string;
-  };
-  password: {
-    regex: RegExp;
-    message: string;
-  };
-  phone: {
-    regex: RegExp;
-    message: string;
-  };
-  cpf: {
-    regex: RegExp;
-    message: string;
-  };
+  email: RegexType;
+  password: RegexType;
+  phone: RegexType;
+  cpf: RegexType;
+}
+
+interface InputData {
+  inputType: string | boolean;
 }
 
 const inputTypes: InputTypes = {
@@ -40,7 +37,7 @@ const inputTypes: InputTypes = {
   },
 };
 
-const useFormValidation = (inputType: string | boolean) => {
+export const useFormValidation = ({inputType}: InputData) => {
   const [value, setValue] = React.useState('');
   const [error, setError] = React.useState<string | null>('');
 
@@ -49,33 +46,30 @@ const useFormValidation = (inputType: string | boolean) => {
     if (value.length === 0) {
       setError('Preencha um valor');
       return false;
-    } else if (
+    } 
+    if (
       inputTypes[inputType as keyof InputTypes] &&
       !inputTypes[inputType as keyof InputTypes].regex.test(value)
     ) {
       setError(inputTypes[inputType as keyof InputTypes].message);
       return false;
-    } else {
+    } 
+    
       setError(null);
       return true;
-    }
+    
   };
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (text: string) => {
     if (error) {
-      validate(e.target.value);
+      setValue(text)
     }
-    setValue(e.target.value);
+    validate(e.target.value);
   };
 
   return {
-    value,
-    setValue,
-    onChange,
     error,
     validate: () => validate(value),
     onBlur: () => validate(value),
   };
 };
-
-export default useFormValidation;

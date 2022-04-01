@@ -9,7 +9,11 @@ interface InputTypes {
     regex: RegExp;
     message: string;
   };
-  number: {
+  phone: {
+    regex: RegExp;
+    message: string;
+  };
+  cpf: {
     regex: RegExp;
     message: string;
   };
@@ -26,9 +30,13 @@ const inputTypes: InputTypes = {
     message:
       'A senha precisa ter 1 caractere maiúsculo, 1 minúsculo e 1 dígito. Com no mínimo 8 caracteres.',
   },
-  number: {
-    regex: /^\d+$/,
-    message: 'Utilize números apenas.',
+  phone: {
+    regex: /^\(\d{2}\) \d{4,5}-\d{4}$/gi,
+    message: 'Ops... Insira um telefone válido.',
+  },
+  cpf: {
+    regex: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
+    message: 'Ops... Insira um CPF válido.',
   },
 };
 

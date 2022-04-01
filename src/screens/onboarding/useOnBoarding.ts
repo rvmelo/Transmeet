@@ -3,6 +3,11 @@ import {ScrollView} from 'react-native';
 import {SCREEN_WIDTH} from '../../constants/dimensions';
 import {introData} from './container/introData';
 
+//  navigation
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RegisterStackParamList} from '../../routes/types';
+
 interface ReturnType {
   scrollRef: React.MutableRefObject<ScrollView | null | undefined>;
   onScrollForward: () => void;
@@ -12,16 +17,20 @@ interface ReturnType {
   slideAmount: number;
 }
 
+type NavigationProps = NativeStackNavigationProp<RegisterStackParamList>;
+
 export function useOnBoarding(): ReturnType {
   const [scrollMultiplyFactor, setScrollMultiplyFactor] = useState(1);
   const [scrollIndex, setScrollIndex] = useState(0);
   const scrollRef = useRef<ScrollView | null>();
 
+  const navigation = useNavigation<NavigationProps>();
+
   const slideAmount = introData.length;
 
   const onNavigation = useCallback(() => {
-    // navigate to home screen
-  }, []);
+    navigation.navigate('LoginScreen');
+  }, [navigation]);
 
   const onScrollForward = useCallback(() => {
     scrollRef?.current?.scrollTo({

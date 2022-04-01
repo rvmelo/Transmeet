@@ -2,6 +2,11 @@ import React from 'react';
 import {AccountButton} from './accountButton';
 import {SliderButton} from './sliderButton';
 
+//  navigation
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RegisterStackParamList} from '../../../routes/types';
+
 import {
   AccountButtonWrapper,
   BottomWrapper,
@@ -16,6 +21,8 @@ interface BottomSectionProps {
   slideAmount: number;
 }
 
+type NavigationProps = NativeStackNavigationProp<RegisterStackParamList>;
+
 export const BottomSection: React.FC<BottomSectionProps> = ({
   onScrollBackward,
   onScrollForward,
@@ -23,12 +30,21 @@ export const BottomSection: React.FC<BottomSectionProps> = ({
   scrollIndex,
   slideAmount,
 }) => {
+  const navigation = useNavigation<NavigationProps>();
+
   return (
     <BottomWrapper>
       {scrollIndex === slideAmount - 1 && (
         <AccountButtonWrapper>
-          <AccountButton title="Fazer Login" />
-          <AccountButton title="Criar Conta" isTransparent />
+          <AccountButton
+            title="Fazer Login"
+            onPress={() => navigation.navigate('LoginScreen')}
+          />
+          <AccountButton
+            title="Criar Conta"
+            onPress={() => navigation.navigate('SignUpScreen')}
+            isTransparent
+          />
         </AccountButtonWrapper>
       )}
       <SliderButtonWrapper>

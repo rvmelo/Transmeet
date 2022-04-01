@@ -10,17 +10,20 @@
 
 import React from 'react';
 
+import {NavigationContainer} from '@react-navigation/native';
+
 import {ThemeProvider} from 'styled-components';
 
-import {Onboarding} from './src/screens/onboarding/container';
-
 import defaultTheme from './src/global/styles/themes/default';
+import RegisterRoutes from './src/routes/register.routes';
 
 const App = () => {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Onboarding />
-    </ThemeProvider>
+    <NavigationContainer>
+      <ThemeProvider theme={defaultTheme}>
+        <RegisterRoutes />
+      </ThemeProvider>
+    </NavigationContainer>
   );
 };
 

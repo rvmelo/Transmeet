@@ -6,8 +6,10 @@ interface ContainerProps {
 }
 
 export const Container = styled.View<ContainerProps>`
-  height: 40px;
+  height: 56px;
   width: 100%;
+  justify-content: center;
+  padding: 0 16px;
   background: ${({theme}) => theme.colors.background};
   border-width: 1px;
   border-color: ${({theme}) => theme.colors.secondary};
@@ -25,6 +27,6 @@ export const Label = styled.Text`
   color: ${({theme}) => theme.colors.text};
   font-size: ${({theme}) => theme.fonts.sizes.lg}px;
   position: absolute;
-  left: 41px;
-  bottom: 25px;
+  left: 15px;
+  bottom: 40px;
 `;

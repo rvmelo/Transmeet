@@ -8,6 +8,8 @@ export const StyledScroll = styled.ScrollView`
   padding: 0 40px;
 `;
 
+//  header
+
 export const Title = styled.Text`
   color: black;
   font-size: 24px;
@@ -47,4 +49,16 @@ export const OptionButtonText = styled.Text`
 export const StyledText = styled.Text`
   color: ${({theme}) => theme.colors.text};
   font-size: ${({theme}) => theme.fonts.sizes.xl}px;
+`;
+
+// sign up from
+
+export const SignUpWrapper = styled.View`
+  margin-top: 48px;
+`;
+
+export const PhoneWrapper = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
 `;

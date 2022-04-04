@@ -1,23 +1,32 @@
 import React from 'react';
 
-import {TextInputMask, TextInputMaskProps} from 'react-native-masked-text';
+import {TextInputMaskProps} from 'react-native-masked-text';
 
-import {Container, Label} from './styles';
+import {Container, Label, StyledMaskedInput} from './styles';
 
 interface FormInput extends TextInputMaskProps {
   label: string;
-  marginBottom?: number;
+  styles?: {
+    marginBottom?: number;
+    marginLeft?: number;
+    width?: number;
+  };
 }
 
 export const MaskedFormInput: React.FC<FormInput> = ({
   label,
-  marginBottom = 0,
+  styles = {},
   ...rest
 }) => {
+  const {marginBottom, marginLeft, width} = styles || {};
+
   return (
-    <Container marginBottom={marginBottom}>
+    <Container
+      marginBottom={marginBottom}
+      marginLeft={marginLeft}
+      width={width}>
       <Label>{label}</Label>
-      <TextInputMask {...rest} />
+      <StyledMaskedInput {...rest} />
     </Container>
   );
 };

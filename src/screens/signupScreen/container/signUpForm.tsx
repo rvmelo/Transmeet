@@ -4,7 +4,9 @@ import {FormInput} from '../../../components/formInput';
 import {MaskedFormInput} from '../../../components/maskedInput';
 import {useSignUpForm} from '../useSignUpForm';
 
-import {SignUpWrapper, PhoneWrapper} from './styles';
+import {SignUpWrapper, PhoneWrapper, LocationWrapper} from './styles';
+import {PickerInput} from './pickerInput';
+import {states} from './data';
 
 export const SignUpForm: React.FC = () => {
   const {user, setUser} = useSignUpForm();
@@ -40,7 +42,16 @@ export const SignUpForm: React.FC = () => {
           }}
         />
       </PhoneWrapper>
-      <FormInput label="Cidade" marginBottom={20} />
+
+      <LocationWrapper>
+        <FormInput label="Cidade" marginBottom={20} />
+        <PickerInput
+          label="Estado"
+          selectedValue={user?.state}
+          options={states}
+          setUser={setUser}
+        />
+      </LocationWrapper>
     </SignUpWrapper>
   );
 };

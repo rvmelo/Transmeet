@@ -62,3 +62,31 @@ export const PhoneWrapper = styled.View`
   justify-content: space-between;
   margin-bottom: 20px;
 `;
+
+export const LocationWrapper = styled.View`
+  flex-direction: row;
+  margin-bottom: 20px;
+  justify-content: space-between;
+`;
+
+// picker input
+
+export const PickerContainer = styled.View`
+  height: 56px;
+  border-width: 1px;
+  border-color: ${({theme}) => theme.colors.secondary};
+  border-radius: 5px;
+  padding: 0 19px 0 16px;
+  justify-content: center;
+  margin-left: 21px;
+`;
+
+export const Label = styled.Text`
+  background: ${({theme}) => theme.colors.background};
+  padding: 5px;
+  color: ${({theme}) => theme.colors.text};
+  font-size: ${({theme}) => theme.fonts.sizes.lg}px;
+  position: absolute;
+  left: 15px;
+  bottom: 40px;
+`;

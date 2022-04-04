@@ -1,13 +1,14 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 
-interface User {
+export interface User {
   ddd: string;
-  cellphone: 'string';
+  cellphone: string;
+  state: 'SP' | 'MG' | 'SE' | 'SC' | 'RJ';
 }
 
 interface ReturnType {
   user: User;
-  setUser: (user: User) => void;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
 }
 
 export function useSignUpForm(): ReturnType {

@@ -7,7 +7,7 @@ interface ContainerProps {
 
 export const Container = styled.View<ContainerProps>`
   height: 56px;
-  width: 100%;
+  flex: 1;
   justify-content: center;
   padding: 0 16px;
   background: ${({theme}) => theme.colors.background};

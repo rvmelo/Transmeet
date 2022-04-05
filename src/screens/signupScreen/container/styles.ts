@@ -34,10 +34,15 @@ export const OptionsWrapper = styled.View`
   margin-top: 20px;
 `;
 
+interface OptionButtonProps {
+  isActive: boolean;
+}
+
 export const OptionButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
-})`
-  background: ${({theme}) => theme.colors.secondary};
+})<OptionButtonProps>`
+  background: ${({theme, isActive}) =>
+    isActive ? theme.colors.secondary : '#CFD2D4'};
   border-radius: 24px;
   padding: 8px 14px;
   border-color: ${({theme}) => theme.colors.secondary};
@@ -102,7 +107,7 @@ export const DescriptionText = styled.Text`
 export const DescriptionInputWrapper = styled.View`
   height: 115px;
   width: 100%;
-  padding: 0 16px;
+  padding: 10px 16px;
   background: ${({theme}) => theme.colors.background};
   border-width: 1px;
   border-color: ${({theme}) => theme.colors.secondary};

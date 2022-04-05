@@ -17,7 +17,8 @@ export const DescriptionSection: React.FC<DescriptionSectionProps> = ({
     <DescriptionWrapper>
       <DescriptionText>Fale sobre seus interesses...</DescriptionText>
       <DescriptionInput
-        numberOfLines={5}
+        numberOfLines={10}
+        placeholder="Descreva aqui com o que gostaria de estudar e trabalhar, suas habilidades..."
         value={description}
         onChangeText={text => setUser(prev => ({...prev, description: text}))}
       />

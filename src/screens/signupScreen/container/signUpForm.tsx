@@ -4,6 +4,8 @@ import {FormInput} from '../../../components/formInput';
 import {MaskedFormInput} from '../../../components/maskedInput';
 import {useSignUpForm} from '../useSignUpForm';
 
+import {UserTypes} from '../useSignUpForm';
+
 import {
   SignUpWrapper,
   InputWrapper,
@@ -16,19 +18,25 @@ import {DescriptionSection} from './descriptionSection';
 import {RadioButton} from 'react-native-paper';
 import {AccountButton} from './accountButton';
 
-export const SignUpForm: React.FC = () => {
+interface SignUpFormProps {
+  userType: UserTypes;
+}
+
+export const SignUpForm: React.FC<SignUpFormProps> = ({userType}) => {
   const {user, setUser} = useSignUpForm();
 
   return (
     <SignUpWrapper>
       <FormInput
         label="Nome Social Completo"
+        placeholder="Nome Completo"
         value={user?.name}
         onChangeText={name => setUser(prev => ({...prev, name}))}
         marginBottom={20}
       />
       <FormInput
         label="Email"
+        placeholder="email@email.com.br"
         value={user?.email}
         onChangeText={email => setUser(prev => ({...prev, email}))}
         marginBottom={20}
@@ -37,6 +45,7 @@ export const SignUpForm: React.FC = () => {
         <MaskedFormInput
           label="DDD"
           type="custom"
+          placeholder="(00)"
           options={{
             mask: '(99)',
           }}
@@ -48,6 +57,7 @@ export const SignUpForm: React.FC = () => {
         <MaskedFormInput
           type="cel-phone"
           label="Telefone"
+          placeholder="00000-0000"
           options={{
             maskType: 'BRL',
             withDDD: false,
@@ -62,7 +72,7 @@ export const SignUpForm: React.FC = () => {
       </InputWrapper>
 
       <InputWrapper>
-        <FormInput label="Cidade" />
+        <FormInput label="Cidade" placeholder="Cidade" />
         <StatePicker selectedValue={user?.state} setUser={setUser} />
       </InputWrapper>
       <MaskedFormInput
@@ -75,30 +85,54 @@ export const SignUpForm: React.FC = () => {
         isCentered
       />
 
-      <MaskedFormInput
-        type="cpf"
-        label="CPF"
-        placeholder="123.456.789-00"
-        value={user?.cpf}
-        onChangeText={cpf => setUser(prev => ({...prev, cpf}))}
-        styles={{marginBottom: 20}}
-        isCentered
-      />
+      {userType === 'empresa' ? (
+        <MaskedFormInput
+          type="cnpj"
+          label="CNPJ"
+          placeholder="00.000.000/0001-00"
+          value={user?.cnpj}
+          onChangeText={cnpj => setUser(prev => ({...prev, cnpj}))}
+          styles={{marginBottom: 20}}
+        />
+      ) : (
+        <MaskedFormInput
+          type="cpf"
+          label="CPF"
+          placeholder="123.456.789-00"
+          value={user?.cpf}
+          onChangeText={cpf => setUser(prev => ({...prev, cpf}))}
+          styles={{marginBottom: 20}}
+        />
+      )}
+
+      {userType === 'empresa' && (
+        <FormInput
+          label="Site (opcional)"
+          value={user?.site}
+          placeholder="www.empresa.com.br"
+          onChangeText={site => setUser(prev => ({...prev, site}))}
+          marginBottom={20}
+        />
+      )}
 
       <InputWrapper>
         <GenderPicker selectedValue={user?.gender} setUser={setUser} />
         <FormInput label="Outro? Qual?" />
       </InputWrapper>
-      <DescriptionSection description={user?.description} setUser={setUser} />
+      {userType === 'trans' && (
+        <DescriptionSection description={user?.description} setUser={setUser} />
+      )}
       <PasswordWrapper>
         <FormInput
           label="Senha"
+          secureTextEntry
           value={user?.password}
           onChangeText={password => setUser(prev => ({...prev, password}))}
           marginBottom={20}
         />
         <FormInput
           label="Repita a senha"
+          secureTextEntry
           value={user?.passwordRepeat}
           onChangeText={passwordRepeat =>
             setUser(prev => ({...prev, passwordRepeat}))

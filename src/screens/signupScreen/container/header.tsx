@@ -1,4 +1,5 @@
 import React from 'react';
+import {UserTypes} from '../useSignUpForm';
 
 import {
   Title,
@@ -8,19 +9,30 @@ import {
   OptionButtonText,
 } from './styles';
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  userType: UserTypes;
+  setUserType: React.Dispatch<React.SetStateAction<UserTypes>>;
+}
+
+export const Header: React.FC<HeaderProps> = ({userType, setUserType}) => {
   return (
     <>
       <Title>Criar sua conta</Title>
       <StyledText>Desejo me registrar como:</StyledText>
       <OptionsWrapper>
-        <OptionButton>
+        <OptionButton
+          onPress={() => setUserType('trans')}
+          isActive={userType === 'trans'}>
           <OptionButtonText>Trans</OptionButtonText>
         </OptionButton>
-        <OptionButton>
+        <OptionButton
+          onPress={() => setUserType('nao-trans')}
+          isActive={userType === 'nao-trans'}>
           <OptionButtonText>Não Trans</OptionButtonText>
         </OptionButton>
-        <OptionButton>
+        <OptionButton
+          onPress={() => setUserType('empresa')}
+          isActive={userType === 'empresa'}>
           <OptionButtonText>Empresa</OptionButtonText>
         </OptionButton>
       </OptionsWrapper>

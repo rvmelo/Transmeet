@@ -18,7 +18,9 @@ export const Container = styled.View<ContainerProps>`
   margin-bottom: ${({marginBottom}) => marginBottom}px;
 `;
 
-export const StyledTextInput = styled(TextInput)`
+export const StyledTextInput = styled(TextInput).attrs({
+  placeholderTextColor: '#68717A',
+})`
   color: ${({theme}) => theme.colors.text};
 `;
 

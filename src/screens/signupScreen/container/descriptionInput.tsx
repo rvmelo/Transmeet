@@ -6,7 +6,13 @@ import {DescriptionInputWrapper, DescriptionTextInput} from './styles';
 export const DescriptionInput: React.FC<TextInputProps> = ({...rest}) => {
   return (
     <DescriptionInputWrapper>
-      <DescriptionTextInput {...rest} />
+      <DescriptionTextInput
+        placeholderTextColor="#68717A"
+        multiline
+        numberOfLines={5}
+        textAlignVertical="top"
+        {...rest}
+      />
     </DescriptionInputWrapper>
   );
 };

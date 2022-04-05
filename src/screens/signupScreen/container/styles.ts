@@ -129,12 +129,14 @@ export const RadioWrapper = styled.View`
   flex-direction: row;
   align-items: center;
   margin-bottom: 60px;
+  width: 100%;
 `;
 
 export const RadioText = styled.Text`
   color: #68717a;
   font-size: 10px;
   margin-left: 6px;
+  flex: 1;
 `;
 
 // account button

@@ -26,8 +26,8 @@ export const Header: React.FC<HeaderProps> = ({userType, setUserType}) => {
           <OptionButtonText>Trans</OptionButtonText>
         </OptionButton>
         <OptionButton
-          onPress={() => setUserType('nao-trans')}
-          isActive={userType === 'nao-trans'}>
+          onPress={() => setUserType('nTrans')}
+          isActive={userType === 'nTrans'}>
           <OptionButtonText>Não Trans</OptionButtonText>
         </OptionButton>
         <OptionButton

@@ -6,24 +6,19 @@ import {useSignUpForm} from '../useSignUpForm';
 
 import {UserTypes} from '../useSignUpForm';
 
-import {
-  SignUpWrapper,
-  InputWrapper,
-  PasswordWrapper,
-  RadioText,
-  RadioWrapper,
-} from './styles';
+import {SignUpWrapper, InputWrapper, PasswordWrapper} from './styles';
 import {StatePicker, GenderPicker} from './pickers';
 import {DescriptionSection} from './descriptionSection';
-import {RadioButton} from 'react-native-paper';
 import {AccountButton} from './accountButton';
+import {RadioSection} from './radioSection';
+import {contractTerms} from './data';
 
 interface SignUpFormProps {
   userType: UserTypes;
 }
 
 export const SignUpForm: React.FC<SignUpFormProps> = ({userType}) => {
-  const {user, setUser} = useSignUpForm();
+  const {user, setUser, onUserSignUp} = useSignUpForm();
 
   return (
     <SignUpWrapper>
@@ -140,19 +135,9 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({userType}) => {
           marginBottom={20}
         />
       </PasswordWrapper>
-      <RadioWrapper>
-        <RadioButton
-          value="first"
-          color="#68717A"
-          status="checked"
-          onPress={() => undefined}
-        />
-        <RadioText>
-          Ao criar a conta, eu afirmo que me defino como pessoa Trans e que
-          concordo com os termos.
-        </RadioText>
-      </RadioWrapper>
-      <AccountButton title="Criar Conta" onPress={() => undefined} />
+
+      <RadioSection contractText={contractTerms[userType]} />
+      <AccountButton title="Criar Conta" onPress={onUserSignUp} />
     </SignUpWrapper>
   );
 };

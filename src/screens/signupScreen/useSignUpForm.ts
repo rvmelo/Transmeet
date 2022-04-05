@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {States, Genders} from './container/data';
 
 export interface User {
@@ -17,23 +17,29 @@ export interface User {
   site: string;
 }
 
-export type UserTypes = 'trans' | 'nao-trans' | 'empresa';
+export type UserTypes = 'trans' | 'nTrans' | 'empresa';
 
 interface ReturnType {
   user: User;
   setUser: React.Dispatch<React.SetStateAction<User>>;
   userType: UserTypes;
   setUserType: React.Dispatch<React.SetStateAction<UserTypes>>;
+  onUserSignUp: () => void;
 }
 
 export function useSignUpForm(): ReturnType {
   const [user, setUser] = useState<User>({} as User);
   const [userType, setUserType] = useState<UserTypes>('trans');
 
+  const onUserSignUp = useCallback(() => {
+    console.log(user);
+  }, [user]);
+
   return {
     user,
     setUser,
     userType,
     setUserType,
+    onUserSignUp,
   };
 }

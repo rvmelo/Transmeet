@@ -1,9 +1,18 @@
 import React, {useState} from 'react';
+import {States, Genders} from './container/data';
 
 export interface User {
+  name: string;
+  email: string;
   ddd: string;
   cellphone: string;
-  state: 'SP' | 'MG' | 'SE' | 'SC' | 'RJ';
+  state: States;
+  birthDate: string;
+  cpf: string;
+  gender: Genders;
+  description: string;
+  password: string;
+  passwordRepeat: string;
 }
 
 interface ReturnType {

@@ -5,6 +5,7 @@ interface ContainerProps {
   marginBottom: number | undefined;
   marginLeft: number | undefined;
   width: number | undefined;
+  isCentered?: boolean;
 }
 
 export const Container = styled.View<ContainerProps>`
@@ -12,6 +13,7 @@ export const Container = styled.View<ContainerProps>`
   height: 56px;
   justify-content: center;
   padding: 0 16px;
+  align-items: ${({isCentered}) => (isCentered ? 'center' : 'flex-start')};
   background: ${({theme}) => theme.colors.background};
   border-width: 1px;
   border-color: ${({theme}) => theme.colors.secondary};
@@ -36,6 +38,8 @@ export const Label = styled.Text`
   bottom: 40px;
 `;
 
-export const StyledMaskedInput = styled(TextInputMask)`
+export const StyledMaskedInput = styled(TextInputMask).attrs({
+  placeholderTextColor: '#68717A',
+})`
   color: black;
 `;

@@ -6,6 +6,7 @@ import {Container, Label, StyledMaskedInput} from './styles';
 
 interface FormInput extends TextInputMaskProps {
   label: string;
+  isCentered?: boolean;
   styles?: {
     marginBottom?: number;
     marginLeft?: number;
@@ -16,12 +17,14 @@ interface FormInput extends TextInputMaskProps {
 export const MaskedFormInput: React.FC<FormInput> = ({
   label,
   styles = {},
+  isCentered = false,
   ...rest
 }) => {
   const {marginBottom, marginLeft, width} = styles || {};
 
   return (
     <Container
+      isCentered={isCentered}
       marginBottom={marginBottom}
       marginLeft={marginLeft}
       width={width}>

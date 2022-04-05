@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   Title,
-  SubTitle,
+  StyledText,
   OptionsWrapper,
   OptionButton,
   OptionButtonText,
@@ -12,7 +12,7 @@ export const Header: React.FC = () => {
   return (
     <>
       <Title>Criar sua conta</Title>
-      <SubTitle>Desejo me registrar como:</SubTitle>
+      <StyledText>Desejo me registrar como:</StyledText>
       <OptionsWrapper>
         <OptionButton>
           <OptionButtonText>Trans</OptionButtonText>

@@ -23,17 +23,23 @@ export const Header: React.FC<HeaderProps> = ({userType, setUserType}) => {
         <OptionButton
           onPress={() => setUserType('trans')}
           isActive={userType === 'trans'}>
-          <OptionButtonText>Trans</OptionButtonText>
+          <OptionButtonText isActive={userType === 'trans'}>
+            Trans
+          </OptionButtonText>
         </OptionButton>
         <OptionButton
           onPress={() => setUserType('nTrans')}
           isActive={userType === 'nTrans'}>
-          <OptionButtonText>Não Trans</OptionButtonText>
+          <OptionButtonText isActive={userType === 'nTrans'}>
+            Não Trans
+          </OptionButtonText>
         </OptionButton>
         <OptionButton
           onPress={() => setUserType('empresa')}
           isActive={userType === 'empresa'}>
-          <OptionButtonText>Empresa</OptionButtonText>
+          <OptionButtonText isActive={userType === 'empresa'}>
+            Empresa
+          </OptionButtonText>
         </OptionButton>
       </OptionsWrapper>
     </>

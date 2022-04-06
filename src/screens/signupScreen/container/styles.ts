@@ -13,16 +13,17 @@ export const StyledScroll = styled.ScrollView`
 //  header
 
 export const Title = styled.Text`
-  color: black;
-  font-size: 24px;
-  font-weight: bold;
+  color: ${({theme}) => theme.colors.textBlack};
+  font-size: ${({theme}) => theme.fonts.headings.h4}px;
+  font-family: ${({theme}) => theme.fonts.family.bold700};
   margin-top: 10px;
   align-self: center;
 `;
 
 export const StyledText = styled.Text`
-  color: #68717a;
-  font-size: 14px;
+  color: ${({theme}) => theme.colors.textGray};
+  font-size: ${({theme}) => theme.fonts.bodyText.mediumBase}px;
+  font-family: ${({theme}) => theme.fonts.family.regular400};
   margin-top: 10px;
   align-self: center;
 `;
@@ -42,15 +43,17 @@ export const OptionButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
 })<OptionButtonProps>`
   background: ${({theme, isActive}) =>
-    isActive ? theme.colors.secondary : '#CFD2D4'};
+    isActive ? theme.colors.secondary : theme.colors.gray};
   border-radius: 24px;
   padding: 8px 14px;
   border-color: ${({theme}) => theme.colors.secondary};
 `;
 
-export const OptionButtonText = styled.Text`
-  font-size: 12px;
-  color: white;
+export const OptionButtonText = styled.Text<OptionButtonProps>`
+  font-size: ${({theme}) => theme.fonts.bodyText.smallSemiBold}px;
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
+  color: ${({theme, isActive}) =>
+    isActive ? theme.colors.textWhite : theme.colors.grayDark}; ;
 `;
 
 // sign up from
@@ -75,7 +78,7 @@ interface PickerContainerProps {
 export const PickerContainer = styled.View<PickerContainerProps>`
   height: 56px;
   border-width: 1px;
-  border-color: ${({theme}) => theme.colors.secondary};
+  border-color: ${({theme}) => theme.colors.textGray};
   border-radius: 5px;
   padding: 0 19px 0 16px;
   justify-content: center;
@@ -86,8 +89,9 @@ export const PickerContainer = styled.View<PickerContainerProps>`
 export const Label = styled.Text`
   background: ${({theme}) => theme.colors.background};
   padding: 5px;
-  color: ${({theme}) => theme.colors.text};
-  font-size: ${({theme}) => theme.fonts.sizes.lg}px;
+  color: ${({theme}) => theme.colors.textGray};
+  font-size: ${({theme}) => theme.fonts.bodyText.smallSemiBold}px;
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
   position: absolute;
   left: 15px;
   bottom: 40px;
@@ -98,8 +102,9 @@ export const Label = styled.Text`
 export const DescriptionWrapper = styled.View``;
 
 export const DescriptionText = styled.Text`
-  color: #68717a;
-  font-size: 14px;
+  color: ${({theme}) => theme.colors.textGray};
+  font-family: ${({theme}) => theme.fonts.family.regular400};
+  font-size: ${({theme}) => theme.fonts.bodyText.mediumBase}px;
   margin-bottom: 20px;
   align-self: center;
 `;
@@ -110,17 +115,18 @@ export const DescriptionInputWrapper = styled.View`
   padding: 10px 16px;
   background: ${({theme}) => theme.colors.background};
   border-width: 1px;
-  border-color: ${({theme}) => theme.colors.secondary};
+  border-color: ${({theme}) => theme.colors.textGray};
   border-radius: 5px;
 `;
 
 export const DescriptionTextInput = styled(TextInput)`
-  color: ${({theme}) => theme.colors.text};
+  color: ${({theme}) => theme.colors.textGray};
+  font-family: ${({theme}) => theme.fonts.family.regular400};
+  font-size: ${({theme}) => theme.fonts.bodyText.smallText}px;
 `;
 
 export const PasswordWrapper = styled.View`
   margin-top: 60px;
-  margin-bottom: 23px;
 `;
 
 // radios section
@@ -133,7 +139,7 @@ export const RadioWrapper = styled.View`
 `;
 
 export const RadioText = styled.Text`
-  color: #68717a;
+  color: ${({theme}) => theme.colors.textGray};
   font-size: 10px;
   margin-left: 6px;
   flex: 1;
@@ -156,6 +162,7 @@ export const StyledAccountButton = styled.TouchableOpacity.attrs({
 `;
 
 export const AccountButtonText = styled.Text`
-  font-size: ${({theme}) => theme.fonts.sizes.lg}px;
-  color: ${({theme}) => theme.colors.text};
+  font-size: ${({theme}) => theme.fonts.bodyText.base}px;
+  font-family: ${({theme}) => theme.fonts.family.bold700};
+  color: ${({theme}) => theme.colors.textWhite};
 `;

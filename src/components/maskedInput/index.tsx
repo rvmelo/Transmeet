@@ -4,6 +4,8 @@ import {TextInputMaskProps} from 'react-native-masked-text';
 
 import {Container, Label, StyledMaskedInput} from './styles';
 
+import {useTheme} from 'styled-components';
+
 interface FormInput extends TextInputMaskProps {
   label: string;
   isCentered?: boolean;
@@ -22,6 +24,8 @@ export const MaskedFormInput: React.FC<FormInput> = ({
 }) => {
   const {marginBottom, marginLeft, width} = styles || {};
 
+  const theme = useTheme();
+
   return (
     <Container
       isCentered={isCentered}
@@ -29,7 +33,10 @@ export const MaskedFormInput: React.FC<FormInput> = ({
       marginLeft={marginLeft}
       width={width}>
       <Label>{label}</Label>
-      <StyledMaskedInput {...rest} />
+      <StyledMaskedInput
+        placeholderTextColor={theme.colors.textGray}
+        {...rest}
+      />
     </Container>
   );
 };

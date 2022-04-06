@@ -13,22 +13,23 @@ export const Container = styled.View<ContainerProps>`
   padding: 0 16px;
   background: ${({theme}) => theme.colors.background};
   border-width: 1px;
-  border-color: ${({theme}) => theme.colors.secondary};
+  border-color: ${({theme}) => theme.colors.textGray};
   border-radius: 5px;
   margin-bottom: ${({marginBottom}) => marginBottom}px;
 `;
 
-export const StyledTextInput = styled(TextInput).attrs({
-  placeholderTextColor: '#68717A',
-})`
-  color: ${({theme}) => theme.colors.text};
+export const StyledTextInput = styled(TextInput)`
+  color: ${({theme}) => theme.colors.textGray};
+  font-family: ${({theme}) => theme.fonts.family.regular400};
+  font-size: ${({theme}) => theme.fonts.bodyText.base}px;
 `;
 
 export const Label = styled.Text`
   background: ${({theme}) => theme.colors.background};
   padding: 5px;
-  color: ${({theme}) => theme.colors.text};
-  font-size: ${({theme}) => theme.fonts.sizes.lg}px;
+  color: ${({theme}) => theme.colors.textGray};
+  font-size: ${({theme}) => theme.fonts.bodyText.smallSemiBold}px;
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
   position: absolute;
   left: 15px;
   bottom: 35px;

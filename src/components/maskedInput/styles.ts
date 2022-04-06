@@ -16,7 +16,7 @@ export const Container = styled.View<ContainerProps>`
   align-items: ${({isCentered}) => (isCentered ? 'center' : 'flex-start')};
   background: ${({theme}) => theme.colors.background};
   border-width: 1px;
-  border-color: ${({theme}) => theme.colors.secondary};
+  border-color: ${({theme}) => theme.colors.textGray};
   border-radius: 5px;
   margin-bottom: ${({marginBottom}) => (marginBottom ? marginBottom : 0)}px;
   margin-left: ${({marginLeft}) => (marginLeft ? marginLeft : 0)}px;
@@ -31,15 +31,14 @@ export const Container = styled.View<ContainerProps>`
 export const Label = styled.Text`
   background: ${({theme}) => theme.colors.background};
   padding: 5px;
-  color: ${({theme}) => theme.colors.text};
-  font-size: ${({theme}) => theme.fonts.sizes.lg}px;
+  color: ${({theme}) => theme.colors.textGray};
+  font-size: ${({theme}) => theme.fonts.bodyText.smallSemiBold}px;
   position: absolute;
   left: 15px;
   bottom: 40px;
 `;
 
-export const StyledMaskedInput = styled(TextInputMask).attrs({
-  placeholderTextColor: '#68717A',
-})`
-  color: black;
+export const StyledMaskedInput = styled(TextInputMask)`
+  color: ${({theme}) => theme.colors.textGray};
+  font-size: ${({theme}) => theme.fonts.bodyText.base}px;
 `;

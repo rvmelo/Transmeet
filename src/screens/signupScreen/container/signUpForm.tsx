@@ -2,9 +2,9 @@
 import React from 'react';
 import {FormInput} from '../../../components/formInput';
 import {MaskedFormInput} from '../../../components/maskedInput';
-import {useSignUpForm} from '../useSignUpForm';
+import {User} from '../useSignUp';
 
-import {UserTypes} from '../useSignUpForm';
+import {UserTypes} from '../useSignUp';
 
 import {SignUpWrapper, InputWrapper, PasswordWrapper} from './styles';
 import {StatePicker, GenderPicker} from './pickers';
@@ -15,11 +15,17 @@ import {contractTerms} from './data';
 
 interface SignUpFormProps {
   userType: UserTypes;
+  onUserSignUp: () => Promise<void>;
+  user: User;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
 }
 
-export const SignUpForm: React.FC<SignUpFormProps> = ({userType}) => {
-  const {user, setUser, onUserSignUp} = useSignUpForm();
-
+export const SignUpForm: React.FC<SignUpFormProps> = ({
+  userType,
+  onUserSignUp,
+  user,
+  setUser,
+}) => {
   return (
     <SignUpWrapper>
       <FormInput
@@ -32,6 +38,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({userType}) => {
       <FormInput
         label="Email"
         placeholder="email@email.com.br"
+        autoCapitalize="none"
         value={user?.email}
         onChangeText={email => setUser(prev => ({...prev, email}))}
         marginBottom={20}
@@ -67,7 +74,12 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({userType}) => {
       </InputWrapper>
 
       <InputWrapper>
-        <FormInput label="Cidade" placeholder="Cidade" />
+        <FormInput
+          label="Cidade"
+          placeholder="Cidade"
+          value={user?.city}
+          onChangeText={city => setUser(prev => ({...prev, city}))}
+        />
         <StatePicker selectedValue={user?.state} setUser={setUser} />
       </InputWrapper>
       <MaskedFormInput

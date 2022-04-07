@@ -1,5 +1,5 @@
 import React from 'react';
-import {User} from '../useSignUpForm';
+import {User} from '../useSignUp';
 import {DescriptionInput} from './descriptionInput';
 
 import {DescriptionWrapper, DescriptionText} from './styles';

@@ -10,6 +10,18 @@ export const StyledScroll = styled.ScrollView`
   padding: 0 40px;
 `;
 
+//  loading screen
+
+export const SpinnerContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const StyledSpinner = styled.ActivityIndicator.attrs({
+  size: 'large',
+})``;
+
 //  header
 
 export const Title = styled.Text`

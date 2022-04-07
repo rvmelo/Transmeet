@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Picker} from '@react-native-picker/picker';
-import {User} from '../useSignUpForm';
+import {User} from '../useSignUp';
 import {Label, PickerContainer} from './styles';
 import {states, Genders, genders, States} from './data';
 

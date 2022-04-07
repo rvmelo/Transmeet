@@ -1,5 +1,5 @@
 import React from 'react';
-import {UserTypes} from '../useSignUpForm';
+import {UserTypes} from '../useSignUp';
 
 import {
   Title,

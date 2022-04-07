@@ -178,3 +178,64 @@ export const AccountButtonText = styled.Text`
   font-family: ${({theme}) => theme.fonts.family.bold700};
   color: ${({theme}) => theme.colors.textWhite};
 `;
+
+// modal
+
+export const ModalBackground = styled.View`
+  flex: 1;
+  background: rgba(21, 37, 54, 0.7);
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ModalWrapper = styled.View`
+  border-radius: 15px;
+  overflow: hidden;
+`;
+
+export const ModalTop = styled.View`
+  background: ${({theme}) => theme.colors.error};
+  padding: 30px 0;
+  align-items: center;
+`;
+
+export const ModalBottom = styled.View`
+  background: ${({theme}) => theme.colors.gray};
+  align-items: center;
+  padding: 0 60px;
+`;
+
+export const ModalTitle = styled.Text`
+  margin-top: 26px;
+  font-size: ${({theme}) => theme.fonts.headings.h5}px;
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
+  color: ${({theme}) => theme.colors.textGray};
+`;
+
+export const ModalMessage = styled.Text`
+  margin-top: 7px;
+  font-size: ${({theme}) => theme.fonts.headings.h6}px;
+  font-family: ${({theme}) => theme.fonts.family.bold700};
+  color: ${({theme}) => theme.colors.textGray};
+`;
+
+// modal button
+
+export const StyledModalButton = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
+  background: ${({theme}) => theme.colors.primary};
+  border-radius: 20px;
+  width: 87px;
+  height: 30px;
+  border-radius: 24px;
+  align-items: center;
+  justify-content: center;
+  margin: 25px 0 53px 0;
+`;
+
+export const ModalButtonText = styled.Text`
+  font-size: ${({theme}) => theme.fonts.bodyText.smallText}px;
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
+  color: ${({theme}) => theme.colors.textWhite};
+`;

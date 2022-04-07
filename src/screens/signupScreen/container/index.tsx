@@ -11,10 +11,14 @@ import {
   StyledScroll,
   StyledSpinner,
 } from './styles';
+import {ErrorModal} from './errorModal';
+import {useModal} from '../useModal';
 
 export const SignUpScreen: React.FC = () => {
+  const {modalVisible, setModalVisible} = useModal();
+
   const {userType, setUserType, onUserSignUp, isLoading, user, setUser} =
-    useSignUp();
+    useSignUp({setModalVisible});
 
   const theme = useTheme();
 
@@ -23,16 +27,22 @@ export const SignUpScreen: React.FC = () => {
       <StyledSpinner color={theme.colors.secondary} />
     </SpinnerContainer>
   ) : (
-    <Container>
-      <StyledScroll>
-        <Header userType={userType} setUserType={setUserType} />
-        <SignUpForm
-          user={user}
-          setUser={setUser}
-          userType={userType}
-          onUserSignUp={onUserSignUp}
-        />
-      </StyledScroll>
-    </Container>
+    <>
+      <Container>
+        <StyledScroll>
+          <Header userType={userType} setUserType={setUserType} />
+          <SignUpForm
+            user={user}
+            setUser={setUser}
+            userType={userType}
+            onUserSignUp={onUserSignUp}
+          />
+        </StyledScroll>
+      </Container>
+      <ErrorModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
+    </>
   );
 };

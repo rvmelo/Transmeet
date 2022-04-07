@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {Alert} from 'react-native';
 
 import {States, Genders} from './container/data';
 
@@ -34,7 +33,11 @@ interface ReturnType {
   isLoading: boolean;
 }
 
-export function useSignUp(): ReturnType {
+interface SignUpProps {
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
   const [user, setUser] = useState<User>({} as User);
   const [userType, setUserType] = useState<UserTypes>('trans');
 
@@ -64,11 +67,10 @@ export function useSignUp(): ReturnType {
 
       isMounted.current && setIsLoading(false);
     } catch (err) {
-      Alert.alert('Erro ao cadastrar usuário');
-
+      isMounted.current && setModalVisible(true);
       isMounted.current && setIsLoading(false);
     }
-  }, [user]);
+  }, [user, setModalVisible]);
 
   return {
     user,

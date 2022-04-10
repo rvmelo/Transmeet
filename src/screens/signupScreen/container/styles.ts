@@ -202,7 +202,6 @@ export const ModalTop = styled.View`
 export const ModalBottom = styled.View`
   background: ${({theme}) => theme.colors.gray};
   align-items: center;
-  padding: 0 60px;
 `;
 
 export const ModalTitle = styled.Text`
@@ -221,20 +220,40 @@ export const ModalMessage = styled.Text`
 
 // modal button
 
-export const StyledModalButton = styled.TouchableOpacity.attrs({
+export const StyledBackModalButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
 })`
   background: ${({theme}) => theme.colors.primary};
   border-radius: 20px;
   width: 87px;
-  height: 30px;
+  height: 40px;
   border-radius: 24px;
   align-items: center;
   justify-content: center;
   margin: 25px 0 53px 0;
 `;
 
-export const ModalButtonText = styled.Text`
+export const StyledNextModalButton = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
+  background: ${({theme}) => theme.colors.primary};
+  flex-direction: row;
+  border-radius: 24px;
+  height: 40px;
+  border-radius: 24px;
+  padding: 0 14px 0 39px;
+  align-items: center;
+  margin: 25px 0 53px 0;
+`;
+
+export const ModalBackButtonText = styled.Text`
+  font-size: ${({theme}) => theme.fonts.bodyText.smallText}px;
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
+  color: ${({theme}) => theme.colors.textWhite};
+`;
+
+export const ModalNextButtonText = styled.Text`
+  margin-right: 10px;
   font-size: ${({theme}) => theme.fonts.bodyText.smallText}px;
   font-family: ${({theme}) => theme.fonts.family.semiBold600};
   color: ${({theme}) => theme.colors.textWhite};

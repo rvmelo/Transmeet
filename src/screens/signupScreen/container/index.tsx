@@ -11,14 +11,22 @@ import {
   StyledScroll,
   StyledSpinner,
 } from './styles';
-import {ErrorModal} from './errorModal';
 import {useModal} from '../useModal';
+import {ScreenModal} from '../../../components/screenModal';
+import {ModalContent} from './modalContent';
 
 export const SignUpScreen: React.FC = () => {
   const {modalVisible, setModalVisible} = useModal();
 
-  const {userType, setUserType, onUserSignUp, isLoading, user, setUser} =
-    useSignUp({setModalVisible});
+  const {
+    userType,
+    setUserType,
+    onUserSignUp,
+    isLoading,
+    user,
+    setUser,
+    isError,
+  } = useSignUp({setModalVisible});
 
   const theme = useTheme();
 
@@ -39,10 +47,15 @@ export const SignUpScreen: React.FC = () => {
           />
         </StyledScroll>
       </Container>
-      <ErrorModal
+      <ScreenModal
+        type={isError ? 'error' : 'success'}
         modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-      />
+        setModalVisible={setModalVisible}>
+        <ModalContent
+          type={isError ? 'error' : 'success'}
+          setModalVisible={setModalVisible}
+        />
+      </ScreenModal>
     </>
   );
 };

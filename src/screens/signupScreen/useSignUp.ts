@@ -31,6 +31,7 @@ interface ReturnType {
   setUserType: React.Dispatch<React.SetStateAction<UserTypes>>;
   onUserSignUp: () => Promise<void>;
   isLoading: boolean;
+  isError: boolean;
 }
 
 interface SignUpProps {
@@ -42,6 +43,8 @@ export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
   const [userType, setUserType] = useState<UserTypes>('trans');
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const [isError, setIsError] = useState(false);
 
   const isMounted = useRef<boolean | null>(null);
 
@@ -67,6 +70,7 @@ export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
 
       isMounted.current && setIsLoading(false);
     } catch (err) {
+      isMounted.current && setIsError(true);
       isMounted.current && setModalVisible(true);
       isMounted.current && setIsLoading(false);
     }
@@ -79,5 +83,6 @@ export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
     setUserType,
     onUserSignUp,
     isLoading,
+    isError,
   };
 }

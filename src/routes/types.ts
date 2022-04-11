@@ -6,6 +6,11 @@ export type RegisterStackParamList = {
 };
 
 export type TransTabParamList = {
-  TransHomeScreen: undefined;
+  HomeRoutes: undefined;
   CandidaciesScreen: undefined;
+};
+
+export type HomeStackParamList = {
+  TransHomeScreen: undefined;
+  TransProfileScreen: undefined;
 };

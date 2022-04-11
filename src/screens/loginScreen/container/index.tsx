@@ -14,7 +14,13 @@ import {
   HighlightedText,
   IntroText,
   TouchableInterface,
+  AltAuthView,
+  IconInterface,
 } from './styles';
+
+import {FacebookIcon} from '../../../../assets/svg/facebookIcon';
+import {GoogleIcon} from '../../../../assets/svg/googleIcon';
+import {AppleIcon} from '../../../../assets/svg/appleIcon';
 
 export const LoginScreen: React.FC = () => {
   const introText =
@@ -36,6 +42,18 @@ export const LoginScreen: React.FC = () => {
         </TouchableInterface>
       </BottomText>
       <BottomText>ou entre usando</BottomText>
+
+      <AltAuthView>
+        <IconInterface>
+          <FacebookIcon width={45} height={45} />
+        </IconInterface>
+        <IconInterface>
+          <GoogleIcon width={45} height={45} />
+        </IconInterface>
+        <IconInterface>
+          <AppleIcon width={45} height={45} />
+        </IconInterface>
+      </AltAuthView>
     </Container>
   );
 };

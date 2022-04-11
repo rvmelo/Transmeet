@@ -53,3 +53,13 @@ export const HighlightedText = styled.Text`
 `;
 
 export const TouchableInterface = styled.TouchableWithoutFeedback``;
+
+export const AltAuthView = styled.View`
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+export const IconInterface = styled.TouchableOpacity`
+  padding: 0 25px;
+`;

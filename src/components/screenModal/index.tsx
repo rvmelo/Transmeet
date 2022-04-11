@@ -5,17 +5,19 @@ import {CheckIcon} from '../../../assets/svg/checkIcon';
 import {CloseIcon} from '../../../assets/svg/closeIcon';
 
 import {ModalBackground, ModalTop, ModalWrapper} from './styles';
+import {InfoIcon} from '../../../assets/svg/infoIcon';
 
 interface ScreenModalProps {
   modalVisible: boolean;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  type: 'error' | 'warning' | 'success';
+  type: 'error' | 'warning' | 'success' | 'info';
 }
 
 const iconType = {
   error: <CloseIcon height={90} width={90} />,
   warning: <WarningIcon height={90} width={90} />,
   success: <CheckIcon height={90} width={90} />,
+  info: <InfoIcon height={90} width={90} />,
 };
 
 export const ScreenModal: React.FC<ScreenModalProps> = ({

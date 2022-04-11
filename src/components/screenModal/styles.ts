@@ -8,12 +8,13 @@ export const ModalBackground = styled.View`
 `;
 
 export const ModalWrapper = styled.View`
+  max-width: 334px;
   border-radius: 15px;
   overflow: hidden;
 `;
 
 interface ModalTopProps {
-  type: 'error' | 'warning' | 'success';
+  type: 'error' | 'warning' | 'success' | 'info';
 }
 
 export const ModalTop = styled.View<ModalTopProps>`
@@ -23,6 +24,12 @@ export const ModalTop = styled.View<ModalTopProps>`
     if (type === 'success') {
       return css`
         background: ${theme.colors.success};
+      `;
+    }
+
+    if (type === 'info') {
+      return css`
+        background: ${theme.colors.info};
       `;
     }
 

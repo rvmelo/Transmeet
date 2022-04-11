@@ -3,12 +3,12 @@ import {BackModalButton, NextModalButton} from './modalButtons';
 
 import {ModalBottom, ModalMessage, ModalTitle} from './styles';
 
-interface ErrorModalProps {
+interface ModalProps {
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  type: 'error' | 'success';
+  type?: 'error' | 'success';
 }
 
-export const ModalContent: React.FC<ErrorModalProps> = ({
+export const SignUpContent: React.FC<ModalProps> = ({
   setModalVisible,
   type,
 }) => {
@@ -25,6 +25,19 @@ export const ModalContent: React.FC<ErrorModalProps> = ({
       ) : (
         <NextModalButton onPress={() => setModalVisible(false)} />
       )}
+    </ModalBottom>
+  );
+};
+
+export const InfoContent: React.FC<ModalProps> = ({setModalVisible}) => {
+  return (
+    <ModalBottom>
+      <ModalTitle>Em produção</ModalTitle>
+      <ModalMessage>
+        Estamos trabalhando nesta opção ainda, mas logo ela estará disponível.
+        Aguarde...
+      </ModalMessage>
+      <BackModalButton onPress={() => setModalVisible(false)} />
     </ModalBottom>
   );
 };

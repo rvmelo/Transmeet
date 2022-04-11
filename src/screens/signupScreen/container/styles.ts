@@ -193,15 +193,10 @@ export const ModalWrapper = styled.View`
   overflow: hidden;
 `;
 
-export const ModalTop = styled.View`
-  background: ${({theme}) => theme.colors.error};
-  padding: 30px 0;
-  align-items: center;
-`;
-
 export const ModalBottom = styled.View`
   background: ${({theme}) => theme.colors.gray};
   align-items: center;
+  padding: 0 12px;
 `;
 
 export const ModalTitle = styled.Text`
@@ -213,9 +208,10 @@ export const ModalTitle = styled.Text`
 
 export const ModalMessage = styled.Text`
   margin-top: 7px;
-  font-size: ${({theme}) => theme.fonts.headings.h6}px;
+  font-size: ${({theme}) => theme.fonts.bodyText.mediumBase}px;
   font-family: ${({theme}) => theme.fonts.family.bold700};
   color: ${({theme}) => theme.colors.textGray};
+  text-align: center;
 `;
 
 // modal button

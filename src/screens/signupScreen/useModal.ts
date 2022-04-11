@@ -1,15 +1,20 @@
 import React, {useState} from 'react';
 
 interface ReturnType {
-  modalVisible: boolean;
-  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  signUpModalVisible: boolean;
+  setSignUpModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  infoModalVisible: boolean;
+  setInfoModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function useModal(): ReturnType {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [signUpModalVisible, setSignUpModalVisible] = useState(false);
+  const [infoModalVisible, setInfoModalVisible] = useState(false);
 
   return {
-    modalVisible,
-    setModalVisible,
+    signUpModalVisible,
+    setSignUpModalVisible,
+    infoModalVisible,
+    setInfoModalVisible,
   };
 }

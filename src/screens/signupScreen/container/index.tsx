@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useSignUp} from '../useSignUp';
 import {Header} from './header';
 import {SignUpForm} from './signUpForm';
@@ -12,11 +12,15 @@ import {
   StyledSpinner,
 } from './styles';
 import {useModal} from '../useModal';
-import {ScreenModal} from '../../../components/screenModal';
-import {ModalContent} from './modalContent';
+import {InfoModal, SignUpModal} from './modals';
 
 export const SignUpScreen: React.FC = () => {
-  const {modalVisible, setModalVisible} = useModal();
+  const {
+    signUpModalVisible,
+    setSignUpModalVisible,
+    infoModalVisible,
+    setInfoModalVisible,
+  } = useModal();
 
   const {
     userType,
@@ -26,9 +30,15 @@ export const SignUpScreen: React.FC = () => {
     user,
     setUser,
     isError,
-  } = useSignUp({setModalVisible});
+  } = useSignUp({setModalVisible: setSignUpModalVisible});
 
   const theme = useTheme();
+
+  useEffect(() => {
+    if (userType === 'nTrans') {
+      setInfoModalVisible(true);
+    }
+  }, [userType, setInfoModalVisible]);
 
   return isLoading ? (
     <SpinnerContainer>
@@ -47,15 +57,16 @@ export const SignUpScreen: React.FC = () => {
           />
         </StyledScroll>
       </Container>
-      <ScreenModal
-        type={isError ? 'error' : 'success'}
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}>
-        <ModalContent
-          type={isError ? 'error' : 'success'}
-          setModalVisible={setModalVisible}
-        />
-      </ScreenModal>
+      <SignUpModal
+        signUpModalVisible={signUpModalVisible}
+        setSignUpModalVisible={setSignUpModalVisible}
+        isError={isError}
+      />
+
+      <InfoModal
+        infoModalVisible={infoModalVisible}
+        setInfoModalVisible={setInfoModalVisible}
+      />
     </>
   );
 };

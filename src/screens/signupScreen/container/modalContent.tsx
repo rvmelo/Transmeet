@@ -1,17 +1,31 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {BackModalButton, NextModalButton} from './modalButtons';
 
 import {ModalBottom, ModalMessage, ModalTitle} from './styles';
+
+//  navigation
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RegisterStackParamList} from '../../../routes/types';
 
 interface ModalProps {
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   type?: 'error' | 'success';
 }
 
+type NavigationProps = NativeStackNavigationProp<RegisterStackParamList>;
+
 export const SignUpContent: React.FC<ModalProps> = ({
   setModalVisible,
   type,
 }) => {
+  const navigation = useNavigation<NavigationProps>();
+
+  const onHomeNavigation = useCallback(() => {
+    navigation.navigate('TransBottomNavigator');
+    setModalVisible(false);
+  }, [navigation, setModalVisible]);
+
   return (
     <ModalBottom>
       <ModalTitle>{type === 'error' ? 'ERRO' : 'Concluído'}</ModalTitle>
@@ -23,7 +37,7 @@ export const SignUpContent: React.FC<ModalProps> = ({
       {type === 'error' ? (
         <BackModalButton onPress={() => setModalVisible(false)} />
       ) : (
-        <NextModalButton onPress={() => setModalVisible(false)} />
+        <NextModalButton onPress={onHomeNavigation} />
       )}
     </ModalBottom>
   );

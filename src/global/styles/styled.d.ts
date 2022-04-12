@@ -30,6 +30,7 @@ declare module 'styled-components' {
       textWhite: string;
 
       background: string;
+      backgroundDark: string;
       text: string;
       mediumGray: string;
       lightGray: string;

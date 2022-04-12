@@ -6,6 +6,7 @@ interface ContainerProps {
 }
 
 export const Container = styled.View<ContainerProps>`
+  min-height: 56px;
   max-height: 56px;
   flex: 1;
   width: 100%;

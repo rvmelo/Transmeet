@@ -45,7 +45,8 @@ export const StyledButton = styled.TouchableOpacity.attrs({
 
 export const ButtonText = styled.Text`
   font-size: ${({theme}) => theme.fonts.sizes.lg}px;
-  color: ${({theme}) => theme.colors.primary};
+  color: ${({theme}) => theme.colors.textWhite};
+  font-family: ${({theme}) => theme.fonts.family.bold700};
 `;
 
 // account button
@@ -63,13 +64,14 @@ export const StyledAccountButton = styled.TouchableOpacity.attrs({
   align-items: center;
   justify-content: center;
   border-width: 1px;
-  border-color: ${({theme}) => theme.colors.secondary};
+  border-color: ${({theme}) => theme.colors.textGray};
   margin-bottom: 10px;
 `;
 
 export const AccountButtonText = styled.Text`
   font-size: ${({theme}) => theme.fonts.sizes.lg}px;
-  color: ${({theme}) => theme.colors.text};
+  color: ${({theme}) => theme.colors.textGray};
+  font-family: ${({theme}) => theme.fonts.family.bold700};
 `;
 
 //  slider

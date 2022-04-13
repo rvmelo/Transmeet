@@ -42,7 +42,7 @@ export const StyledText = styled.Text`
 export const SearchContainer = styled.View`
   flex-direction: row;
   align-items: center;
-  padding: 0 12px 0 19px;
+  padding: 5px 12px 5px 19px;
   background: ${({theme}) => theme.colors.textWhite};
   margin-top: 12px;
   margin-bottom: 48px;
@@ -56,11 +56,4 @@ export const StyledTextInput = styled(TextInput)`
   color: ${({theme}) => theme.colors.textGray};
   font-family: ${({theme}) => theme.fonts.family.regular400};
   font-size: ${({theme}) => theme.fonts.bodyText.smallSemiBold}px;
-`;
-
-export const ListContainer = styled.View`
-  flex: 1;
-  background-color: ${({theme}) => theme.colors.background};
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
 `;

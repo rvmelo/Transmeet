@@ -1,11 +1,12 @@
 import React from 'react';
+import {List} from '../../../components/list';
+import {data} from './data';
 
 import {SearchInput} from './searchInput';
 
 import {
   Greetings,
   HeaderContainer,
-  ListContainer,
   StyledLinearGradient,
   StyledText,
   UserInfoContainer,
@@ -23,7 +24,7 @@ export const TransHomeScreen: React.FC = () => {
         <StyledText>Faça sua busca por uma parceria</StyledText>
         <SearchInput />
       </HeaderContainer>
-      <ListContainer />
+      <List data={data} />
     </StyledLinearGradient>
   );
 };

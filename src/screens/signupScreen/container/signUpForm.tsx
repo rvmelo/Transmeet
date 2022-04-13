@@ -2,7 +2,7 @@
 import React from 'react';
 import {FormInput} from '../../../components/formInput';
 import {MaskedFormInput} from '../../../components/maskedInput';
-import {User} from '../useSignUp';
+import {UserFormData} from '../useSignUp';
 
 import {UserTypes} from '../useSignUp';
 
@@ -16,8 +16,8 @@ import {contractTerms} from './data';
 interface SignUpFormProps {
   userType: UserTypes;
   onUserSignUp: () => Promise<void>;
-  user: User;
-  setUser: React.Dispatch<React.SetStateAction<User>>;
+  user: UserFormData;
+  setUser: React.Dispatch<React.SetStateAction<UserFormData>>;
 }
 
 export const SignUpForm: React.FC<SignUpFormProps> = ({
@@ -97,8 +97,8 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
           type="cnpj"
           label="CNPJ"
           placeholder="00.000.000/0001-00"
-          value={user?.cnpj}
-          onChangeText={cnpj => setUser(prev => ({...prev, cnpj}))}
+          value={user?.regNumber}
+          onChangeText={regNumber => setUser(prev => ({...prev, regNumber}))}
           styles={{marginBottom: 20}}
         />
       ) : (
@@ -106,8 +106,8 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
           type="cpf"
           label="CPF"
           placeholder="123.456.789-00"
-          value={user?.cpf}
-          onChangeText={cpf => setUser(prev => ({...prev, cpf}))}
+          value={user?.regNumber}
+          onChangeText={regNumber => setUser(prev => ({...prev, regNumber}))}
           styles={{marginBottom: 20}}
         />
       )}

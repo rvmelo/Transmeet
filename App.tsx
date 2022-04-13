@@ -17,13 +17,19 @@ import {ThemeProvider} from 'styled-components';
 import defaultTheme from './src/global/styles/themes/default';
 import RegisterRoutes from './src/routes/register.routes';
 
+//  redux
+import store from './src/redux/store';
+import {Provider} from 'react-redux';
+
 const App = () => {
   return (
-    <NavigationContainer>
-      <ThemeProvider theme={defaultTheme}>
-        <RegisterRoutes />
-      </ThemeProvider>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <ThemeProvider theme={defaultTheme}>
+          <RegisterRoutes />
+        </ThemeProvider>
+      </NavigationContainer>
+    </Provider>
   );
 };
 

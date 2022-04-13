@@ -1,20 +1,24 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 
-import {States, Genders} from './container/data';
+import {Genders, states, genders} from './container/data';
 
 import {AxiosResponse} from 'axios';
 import {api} from '../../services/api';
 
-export interface User {
+//  redux
+import {User} from '../../global/types/redux';
+import {useAppDispatch} from '../../redux/hooks';
+import {loadUser} from '../../redux/slices/user';
+
+export interface UserFormData {
   name: string;
   email: string;
   ddd: string;
   cellphone: string;
-  state: States;
+  state: string;
   city: string;
   birthDate: string;
-  cpf: string;
-  cnpj: string;
+  regNumber: string;
   gender: Genders;
   description: string;
   password: string;
@@ -25,8 +29,8 @@ export interface User {
 export type UserTypes = 'trans' | 'nTrans' | 'empresa';
 
 interface ReturnType {
-  user: User;
-  setUser: React.Dispatch<React.SetStateAction<User>>;
+  user: UserFormData;
+  setUser: React.Dispatch<React.SetStateAction<UserFormData>>;
   userType: UserTypes;
   setUserType: React.Dispatch<React.SetStateAction<UserTypes>>;
   onUserSignUp: () => Promise<void>;
@@ -39,7 +43,10 @@ interface SignUpProps {
 }
 
 export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
-  const [user, setUser] = useState<User>({} as User);
+  const [user, setUser] = useState<UserFormData>({
+    state: states[0].name,
+    gender: genders[0],
+  } as UserFormData);
   const [userType, setUserType] = useState<UserTypes>('trans');
 
   const [isLoading, setIsLoading] = useState(false);
@@ -47,6 +54,8 @@ export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
   const [isError, setIsError] = useState(false);
 
   const isMounted = useRef<boolean | null>(null);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     isMounted.current = true;
@@ -60,21 +69,37 @@ export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
     try {
       setIsLoading(true);
 
-      const response: AxiosResponse<User> = await api.post('/user', {
-        ...user,
-        address: `${user?.city} - ${user?.state}`,
-        birthday_date: user?.birthDate,
-      });
+      if (user?.password !== user?.passwordRepeat) {
+        throw new Error('Erro ao realizar cadastro');
+      }
 
-      console.log(response?.data);
+      const userData = {
+        name: user?.name,
+        email: user?.email,
+        password: user?.password,
+        regNumber: user?.regNumber,
+        birthDate: user?.birthDate,
+        address: `${user?.city} - ${user?.state}`,
+        gender: user?.gender,
+        description: user?.description,
+        telephone: `(${user?.ddd}) ${user?.cellphone}`,
+        city: user?.city,
+        stateId: 15,
+        typeId: userType === 'trans' ? 1 : 2,
+      };
+
+      const response: AxiosResponse<User> = await api.post('/users', userData);
+
+      dispatch(loadUser({user: response?.data}));
 
       isMounted.current && setIsLoading(false);
+      isMounted.current && setModalVisible(true);
     } catch (err) {
       isMounted.current && setIsError(true);
       isMounted.current && setModalVisible(true);
       isMounted.current && setIsLoading(false);
     }
-  }, [user, setModalVisible]);
+  }, [user, setModalVisible, userType, dispatch]);
 
   return {
     user,

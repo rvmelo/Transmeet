@@ -7,12 +7,11 @@ export const ForgotPasswordText = styled.Text`
   align-self: flex-end;
 `;
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   flex: 1;
   background: ${({theme}) => theme.colors.backgroundDark};
 `;
 export const LoginContainer = styled.View`
-  flex: 2;
   background: ${({theme}) => theme.colors.background};
   align-items: center;
   justify-content: center;
@@ -47,14 +46,16 @@ export const IntroText = styled.Text`
   color: ${({theme}) => theme.colors.textWhite};
   font-family: ${({theme}) => theme.fonts.family.regular400};
   font-size: ${({theme}) => theme.fonts.sizes.lg}px;
-  margin-bottom: 50px;
   text-align: center;
+  margin-top: 45px;
 `;
 
 export const BottomText = styled.Text`
+  background: ${({theme}) => theme.colors.background};
   color: ${({theme}) => theme.colors.textGray};
   font-size: ${({theme}) => theme.fonts.sizes.sm}px;
   margin-bottom: 20px;
+  padding: 0 10px;
 `;
 
 export const HighlightedText = styled.Text`
@@ -67,14 +68,28 @@ export const AltAuthView = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  padding-bottom: 25px;
 `;
 export const IconInterface = styled.TouchableOpacity`
   margin: 0 25px;
 `;
 
 export const LogoContainer = styled.View`
-  flex: 1;
   background: ${({theme}) => theme.colors.backgroundDark};
+  padding-top: 45px;
+  padding-bottom: 45px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+`;
+
+export const AltBottomText = styled.View`
+  width: 100%;
+  align-items: center;
+`;
+export const AltLine = styled.Text`
+  width: 100%;
+  top: 7px;
+  height: 1px;
+  background: ${({theme}) => theme.colors.textGray};
+  font-size: ${({theme}) => theme.fonts.sizes.sm}px;
 `;

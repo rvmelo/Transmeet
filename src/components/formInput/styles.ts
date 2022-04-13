@@ -3,10 +3,10 @@ import styled from 'styled-components/native';
 
 interface ContainerProps {
   marginBottom: number;
+  marginTop: number;
 }
 
 export const Container = styled.View<ContainerProps>`
-  min-height: 56px;
   max-height: 56px;
   flex: 1;
   width: 100%;
@@ -17,6 +17,7 @@ export const Container = styled.View<ContainerProps>`
   border-color: ${({theme}) => theme.colors.textGray};
   border-radius: 5px;
   margin-bottom: ${({marginBottom}) => marginBottom}px;
+  margin-top: ${({marginTop}) => marginTop}px;
 `;
 
 export const StyledTextInput = styled(TextInput)`

@@ -9,6 +9,7 @@ import {useLoginScreen} from '../useLoginScreen';
 
 import {
   BottomText,
+  AltBottomText,
   LoginContainer,
   ForgotPasswordText,
   HighlightedText,
@@ -18,6 +19,7 @@ import {
   IconInterface,
   LogoContainer,
   Container,
+  AltLine,
 } from './styles';
 
 import {FacebookIcon} from '../../../../assets/svg/facebookIcon';
@@ -42,6 +44,7 @@ export const LoginScreen: React.FC = () => {
         <FormInput
           placeholder="Digite seu email"
           label="E-mail"
+          marginTop={40}
           marginBottom={25}
           autoComplete="email"
         />
@@ -59,7 +62,11 @@ export const LoginScreen: React.FC = () => {
             <HighlightedText> Cadaste-se aqui</HighlightedText>
           </TouchableInterface>
         </BottomText>
-        <BottomText>ou entre usando</BottomText>
+
+        <AltBottomText>
+          <AltLine />
+          <BottomText>ou entre usando</BottomText>
+        </AltBottomText>
 
         <AltAuthView>
           <IconInterface onPress={() => undefined}>

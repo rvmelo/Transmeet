@@ -1,3 +1,4 @@
+import {RFValue} from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -5,7 +6,7 @@ export const Container = styled.View`
   background-color: ${({theme}) => theme.colors.background};
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
-  padding: 40px 40px 0 40px;
+  padding: ${RFValue(40)}px ${RFValue(40)}px 0 ${RFValue(40)}px;
 `;
 
 export const ItemContainer = styled.View`
@@ -13,7 +14,7 @@ export const ItemContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 18px;
+  padding: 0 ${RFValue(18)}px;
   border-radius: 12px;
   background: ${({theme}) => theme.colors.textBlack};
   margin-bottom: 20px;
@@ -27,12 +28,12 @@ export const SideBar = styled.View`
 `;
 
 export const InfoContainer = styled.View`
-  margin-left: 16px;
-  max-width: 90px;
+  margin-left: ${RFValue(16)}px;
+  max-width: ${RFValue(140)}px;
 `;
 
 export const ItemName = styled.Text.attrs({
-  numberOfLines: 2,
+  numberOfLines: 1,
   ellipsizeMode: 'tail',
 })`
   color: ${({theme}) => theme.colors.textWhite};
@@ -52,8 +53,8 @@ export const LeftContent = styled.View`
 `;
 
 export const ImageContainer = styled.View`
-  width: 80px;
-  height: 80px;
+  width: ${RFValue(80)}px;
+  height: ${RFValue(80)}px;
   border-radius: 40px;
 `;
 

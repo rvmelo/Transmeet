@@ -1,3 +1,4 @@
+import {RFValue} from 'react-native-responsive-fontsize';
 import styled, {css} from 'styled-components/native';
 
 export const ModalBackground = styled.View`
@@ -8,8 +9,8 @@ export const ModalBackground = styled.View`
 `;
 
 export const ModalWrapper = styled.View`
-  max-width: 334px;
-  border-radius: 15px;
+  max-width: ${RFValue(334)}px;
+  border-radius: ${RFValue(15)}px;
   overflow: hidden;
 `;
 

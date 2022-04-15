@@ -3,10 +3,11 @@ import React from 'react';
 import {Picker} from '@react-native-picker/picker';
 import {UserFormData} from '../useSignUp';
 import {Label, PickerContainer} from './styles';
-import {states, Genders, genders, States} from './data';
+import {states, Genders, genders} from './data';
+import {RFValue} from 'react-native-responsive-fontsize';
 
 interface StatePickerProps {
-  selectedValue: States;
+  selectedValue: string;
   setUser: React.Dispatch<React.SetStateAction<UserFormData>>;
 }
 interface GenderPickerProps {
@@ -19,7 +20,7 @@ export const StatePicker: React.FC<StatePickerProps> = ({
   setUser,
 }) => {
   return (
-    <PickerContainer marginLeft={21} marginRight={0}>
+    <PickerContainer marginLeft={RFValue(20)} marginRight={0}>
       <Label>Estado</Label>
       <Picker
         selectedValue={selectedValue}
@@ -48,7 +49,7 @@ export const GenderPicker: React.FC<GenderPickerProps> = ({
   setUser,
 }) => {
   return (
-    <PickerContainer marginLeft={0} marginRight={22}>
+    <PickerContainer marginLeft={0} marginRight={RFValue(20)}>
       <Label>Gênero</Label>
       <Picker
         selectedValue={selectedValue}

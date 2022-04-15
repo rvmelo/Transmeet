@@ -1,4 +1,5 @@
 import {TextInput} from 'react-native';
+import {RFValue} from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -7,7 +8,7 @@ export const Container = styled.View`
 `;
 
 export const StyledScroll = styled.ScrollView`
-  padding: 0 40px;
+  padding: 0 ${RFValue(40)}px;
 `;
 
 export const InfoText = styled.Text`
@@ -83,8 +84,8 @@ export const SignUpWrapper = styled.View`
 `;
 
 export const InputWrapper = styled.View`
+  width: 100%;
   flex-direction: row;
-  justify-content: space-between;
   margin-bottom: 20px;
 `;
 
@@ -100,7 +101,7 @@ export const PickerContainer = styled.View<PickerContainerProps>`
   border-width: 1px;
   border-color: ${({theme}) => theme.colors.textGray};
   border-radius: 5px;
-  padding: 0 19px 0 16px;
+  padding: 0 ${RFValue(19)}px 0 ${RFValue(16)}px;
   justify-content: center;
   margin-left: ${({marginLeft}) => marginLeft}px;
   margin-right: ${({marginRight}) => marginRight}px;
@@ -134,7 +135,7 @@ export const DescriptionText = styled.Text`
 export const DescriptionInputWrapper = styled.View`
   height: 115px;
   width: 100%;
-  padding: 10px 16px;
+  padding: 10px ${RFValue(16)}px;
   background: ${({theme}) => theme.colors.background};
   border-width: 1px;
   border-color: ${({theme}) => theme.colors.textGray};

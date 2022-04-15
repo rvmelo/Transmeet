@@ -82,6 +82,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
           placeholder="Cidade"
           value={user?.city}
           onChangeText={city => setUser(prev => ({...prev, city}))}
+          labelVerticalPosition={40}
         />
         <StatePicker selectedValue={user?.state} setUser={setUser} />
       </InputWrapper>
@@ -120,7 +121,11 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
       {userType !== 'empresa' && (
         <InputWrapper>
           <GenderPicker selectedValue={user?.gender} setUser={setUser} />
-          <FormInput label="Outro? Qual?" />
+          <FormInput
+            label="Outro? Qual?"
+            labelVerticalPosition={40}
+            labelHorizontalPosition={5}
+          />
         </InputWrapper>
       )}
 

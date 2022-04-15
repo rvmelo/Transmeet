@@ -103,13 +103,16 @@ export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
               typeId: 2,
             };
 
-      const response: AxiosResponse<User> = await api.post('/users', userData);
+      const endpoint = userType === 'empresa' ? '/sponsors' : '/users';
+
+      const response: AxiosResponse<User> = await api.post(endpoint, userData);
 
       dispatch(loadUser({user: response?.data}));
 
       isMounted.current && setIsLoading(false);
       isMounted.current && setModalVisible(true);
     } catch (err) {
+      console.log(err);
       isMounted.current && setIsError(true);
       isMounted.current && setModalVisible(true);
       isMounted.current && setIsLoading(false);

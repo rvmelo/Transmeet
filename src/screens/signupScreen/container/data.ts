@@ -119,3 +119,9 @@ export const contractTerms = {
   nTrans: 'Ao criar a conta, eu afirmo que concordo com os termos.',
   empresa: 'Ao criar a conta da empresa, eu afirmo que concordo com os termos.',
 };
+
+export const companyInfoText =
+  'Outros dados precisarão ser adicionados depois no perfil dentro do aplicativo, quanto mais completo, maiores serão as chances de encontrar alguém compatível a sua oportunidade.';
+
+export const personInfoText =
+  'Outros dados poderão ser adicionados depois no seu perfil dentro do aplicativo, quanto mais completo seu perfil, mais chances de obter uma oportunidade.';

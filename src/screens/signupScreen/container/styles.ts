@@ -10,6 +10,14 @@ export const StyledScroll = styled.ScrollView`
   padding: 0 40px;
 `;
 
+export const InfoText = styled.Text`
+  color: ${({theme}) => theme.colors.textGray};
+  font-family: ${({theme}) => theme.fonts.family.regular400};
+  font-size: ${({theme}) => theme.fonts.bodyText.smallSemiBold}px;
+  margin-bottom: 20px;
+  text-align: center;
+`;
+
 //  loading screen
 
 export const SpinnerContainer = styled.View`
@@ -111,7 +119,9 @@ export const Label = styled.Text`
 
 //  description section
 
-export const DescriptionWrapper = styled.View``;
+export const DescriptionWrapper = styled.View`
+  margin-bottom: 40px;
+`;
 
 export const DescriptionText = styled.Text`
   color: ${({theme}) => theme.colors.textGray};
@@ -138,7 +148,7 @@ export const DescriptionTextInput = styled(TextInput)`
 `;
 
 export const PasswordWrapper = styled.View`
-  margin-top: 60px;
+  margin-top: 40px;
 `;
 
 // radios section

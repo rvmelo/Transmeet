@@ -73,20 +73,35 @@ export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
         throw new Error('Erro ao realizar cadastro');
       }
 
-      const userData = {
-        name: user?.name,
-        email: user?.email,
-        password: user?.password,
-        regNumber: user?.regNumber,
-        birthDate: user?.birthDate,
-        address: `${user?.city} - ${user?.state}`,
-        gender: user?.gender,
-        description: user?.description,
-        telephone: `(${user?.ddd}) ${user?.cellphone}`,
-        city: user?.city,
-        stateId: 15,
-        typeId: userType === 'trans' ? 1 : 2,
-      };
+      const userData =
+        userType !== 'empresa'
+          ? {
+              name: user?.name,
+              email: user?.email,
+              password: user?.password,
+              regNumber: user?.regNumber,
+              birthDate: user?.birthDate,
+              address: `${user?.city} - ${user?.state}`,
+              gender: user?.gender,
+              description: user?.description,
+              telephone: `(${user?.ddd}) ${user?.cellphone}`,
+              city: user?.city,
+              stateId: 15,
+              typeId: 1,
+            }
+          : {
+              name: user?.name,
+              email: user?.email,
+              password: user?.password,
+              regNumber: user?.regNumber,
+              address: `${user?.city} - ${user?.state}`,
+              description: '',
+              telephone: `(${user?.ddd}) ${user?.cellphone}`,
+              city: user?.city,
+              site: user?.site,
+              stateId: 15,
+              typeId: 2,
+            };
 
       const response: AxiosResponse<User> = await api.post('/users', userData);
 

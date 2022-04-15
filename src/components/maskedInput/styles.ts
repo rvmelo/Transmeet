@@ -33,6 +33,7 @@ export const Label = styled.Text`
   padding: 5px;
   color: ${({theme}) => theme.colors.textGray};
   font-size: ${({theme}) => theme.fonts.bodyText.smallSemiBold}px;
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
   position: absolute;
   left: 15px;
   bottom: 40px;

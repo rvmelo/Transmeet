@@ -6,12 +6,14 @@ import {UserFormData} from '../useSignUp';
 
 import {UserTypes} from '../useSignUp';
 
-import {SignUpWrapper, InputWrapper, PasswordWrapper} from './styles';
+import {SignUpWrapper, InputWrapper, InfoText} from './styles';
 import {StatePicker, GenderPicker} from './pickers';
 import {DescriptionSection} from './descriptionSection';
 import {AccountButton} from './accountButton';
 import {RadioSection} from './radioSection';
-import {contractTerms} from './data';
+import {contractTerms, companyInfoText, personInfoText} from './data';
+import {PaperclipIcon} from '../../../../assets/svg/paperClipIcon';
+import {PasswordSection} from './passwordSection';
 
 interface SignUpFormProps {
   userType: UserTypes;
@@ -30,11 +32,13 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
     <SignUpWrapper>
       <FormInput
         label="Nome Social Completo"
+        autoCapitalize="words"
         placeholder="Nome Completo"
         value={user?.name}
         onChangeText={name => setUser(prev => ({...prev, name}))}
         marginBottom={20}
       />
+
       <FormInput
         label="Email"
         placeholder="email@email.com.br"
@@ -49,7 +53,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
           type="custom"
           placeholder="(00)"
           options={{
-            mask: '(99)',
+            mask: '99',
           }}
           value={user?.ddd}
           styles={{width: 86}}
@@ -63,7 +67,6 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
           options={{
             maskType: 'BRL',
             withDDD: false,
-            dddMask: '(99) ',
           }}
           value={user?.cellphone}
           onChangeText={cellphone => setUser(prev => ({...prev, cellphone}))}
@@ -82,15 +85,17 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
         />
         <StatePicker selectedValue={user?.state} setUser={setUser} />
       </InputWrapper>
-      <MaskedFormInput
-        type="datetime"
-        label="Data de Nascimento"
-        placeholder="DD/MM/AAAA"
-        value={user?.birthDate}
-        onChangeText={birthDate => setUser(prev => ({...prev, birthDate}))}
-        styles={{marginBottom: 20}}
-        isCentered
-      />
+      {userType !== 'empresa' && (
+        <MaskedFormInput
+          type="datetime"
+          label="Data de Nascimento"
+          placeholder="DD/MM/AAAA"
+          value={user?.birthDate}
+          onChangeText={birthDate => setUser(prev => ({...prev, birthDate}))}
+          styles={{marginBottom: 20}}
+          isCentered
+        />
+      )}
 
       {userType === 'empresa' ? (
         <MaskedFormInput
@@ -112,9 +117,17 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
         />
       )}
 
+      {userType !== 'empresa' && (
+        <InputWrapper>
+          <GenderPicker selectedValue={user?.gender} setUser={setUser} />
+          <FormInput label="Outro? Qual?" />
+        </InputWrapper>
+      )}
+
       {userType === 'empresa' && (
         <FormInput
           label="Site (opcional)"
+          autoCapitalize="none"
           value={user?.site}
           placeholder="www.empresa.com.br"
           onChangeText={site => setUser(prev => ({...prev, site}))}
@@ -122,31 +135,40 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
         />
       )}
 
-      <InputWrapper>
-        <GenderPicker selectedValue={user?.gender} setUser={setUser} />
-        <FormInput label="Outro? Qual?" />
-      </InputWrapper>
+      {userType === 'empresa' && (
+        <FormInput
+          label="Logo para perfil"
+          leftIcon={<PaperclipIcon width={24} height={24} />}
+          placeholder="Anexar logo da empresa"
+          marginBottom={20}
+          editable={false}
+          selectTextOnFocus={false}
+        />
+      )}
+
       {userType === 'trans' && (
         <DescriptionSection description={user?.description} setUser={setUser} />
       )}
-      <PasswordWrapper>
+
+      {userType !== 'empresa' && (
         <FormInput
-          label="Senha"
-          secureTextEntry
-          value={user?.password}
-          onChangeText={password => setUser(prev => ({...prev, password}))}
+          label="Foto para perfil (opcional)"
+          leftIcon={<PaperclipIcon width={24} height={24} />}
+          placeholder="Anexar foto para perfil"
           marginBottom={20}
+          editable={false}
+          selectTextOnFocus={false}
         />
-        <FormInput
-          label="Repita a senha"
-          secureTextEntry
-          value={user?.passwordRepeat}
-          onChangeText={passwordRepeat =>
-            setUser(prev => ({...prev, passwordRepeat}))
-          }
-          marginBottom={20}
-        />
-      </PasswordWrapper>
+      )}
+
+      <InfoText>
+        {userType === 'empresa' ? companyInfoText : personInfoText}
+      </InfoText>
+      <PasswordSection
+        password={user?.password}
+        passwordRepeat={user?.passwordRepeat}
+        setUser={setUser}
+      />
 
       <RadioSection contractText={contractTerms[userType]} />
       <AccountButton title="Criar Conta" onPress={onUserSignUp} />

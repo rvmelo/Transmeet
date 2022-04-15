@@ -6,6 +6,7 @@ interface ContainerProps {
 }
 
 export const Container = styled.View<ContainerProps>`
+  flex-direction: row;
   max-height: 56px;
   flex: 1;
   width: 100%;
@@ -18,10 +19,16 @@ export const Container = styled.View<ContainerProps>`
   margin-bottom: ${({marginBottom}) => marginBottom}px;
 `;
 
-export const StyledTextInput = styled(TextInput)`
+interface StyledTextInputProps {
+  hasLeftIcon: boolean;
+}
+
+export const StyledTextInput = styled(TextInput)<StyledTextInputProps>`
+  flex: 1;
   color: ${({theme}) => theme.colors.textGray};
   font-family: ${({theme}) => theme.fonts.family.regular400};
   font-size: ${({theme}) => theme.fonts.bodyText.base}px;
+  margin-left: ${({hasLeftIcon}) => (hasLeftIcon ? 12 : 0)}px;
 `;
 
 export const Label = styled.Text`
@@ -33,4 +40,11 @@ export const Label = styled.Text`
   position: absolute;
   left: 15px;
   bottom: 35px;
+`;
+
+export const ContentWrapper = styled.View`
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;

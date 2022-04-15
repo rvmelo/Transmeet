@@ -11,6 +11,7 @@ interface FormInput extends TextInputProps {
 
 export const FormInput: React.FC<FormInput> = ({
   label,
+
   marginBottom = 0,
   ...rest
 }) => {

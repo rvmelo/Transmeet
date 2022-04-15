@@ -1,17 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Picker} from '@react-native-picker/picker';
-import {User} from '../useSignUp';
+import {UserFormData} from '../useSignUp';
 import {Label, PickerContainer} from './styles';
-import {states, Genders, genders, States} from './data';
+import {states, Genders, genders} from './data';
+import {RFValue} from 'react-native-responsive-fontsize';
 
 interface StatePickerProps {
-  selectedValue: States;
-  setUser: React.Dispatch<React.SetStateAction<User>>;
+  selectedValue: string;
+  setUser: React.Dispatch<React.SetStateAction<UserFormData>>;
 }
 interface GenderPickerProps {
   selectedValue: Genders;
-  setUser: React.Dispatch<React.SetStateAction<User>>;
+  setUser: React.Dispatch<React.SetStateAction<UserFormData>>;
 }
 
 export const StatePicker: React.FC<StatePickerProps> = ({
@@ -19,7 +20,7 @@ export const StatePicker: React.FC<StatePickerProps> = ({
   setUser,
 }) => {
   return (
-    <PickerContainer marginLeft={21} marginRight={0}>
+    <PickerContainer marginLeft={RFValue(20)} marginRight={0}>
       <Label>Estado</Label>
       <Picker
         selectedValue={selectedValue}
@@ -32,7 +33,11 @@ export const StatePicker: React.FC<StatePickerProps> = ({
           setUser(prev => ({...prev, state: itemValue}));
         }}>
         {states.map(state => (
-          <Picker.Item key={state} label={state} value={state} />
+          <Picker.Item
+            key={state.typeId}
+            label={state.name}
+            value={state.typeId}
+          />
         ))}
       </Picker>
     </PickerContainer>
@@ -44,7 +49,7 @@ export const GenderPicker: React.FC<GenderPickerProps> = ({
   setUser,
 }) => {
   return (
-    <PickerContainer marginLeft={0} marginRight={22}>
+    <PickerContainer marginLeft={0} marginRight={RFValue(20)}>
       <Label>Gênero</Label>
       <Picker
         selectedValue={selectedValue}

@@ -1,4 +1,5 @@
 import {TextInput} from 'react-native';
+import {RFValue} from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -7,7 +8,15 @@ export const Container = styled.View`
 `;
 
 export const StyledScroll = styled.ScrollView`
-  padding: 0 40px;
+  padding: 0 ${RFValue(40)}px;
+`;
+
+export const InfoText = styled.Text`
+  color: ${({theme}) => theme.colors.textGray};
+  font-family: ${({theme}) => theme.fonts.family.regular400};
+  font-size: ${({theme}) => theme.fonts.bodyText.smallSemiBold}px;
+  margin-bottom: 20px;
+  text-align: center;
 `;
 
 //  loading screen
@@ -75,8 +84,8 @@ export const SignUpWrapper = styled.View`
 `;
 
 export const InputWrapper = styled.View`
+  width: 100%;
   flex-direction: row;
-  justify-content: space-between;
   margin-bottom: 20px;
 `;
 
@@ -92,7 +101,7 @@ export const PickerContainer = styled.View<PickerContainerProps>`
   border-width: 1px;
   border-color: ${({theme}) => theme.colors.textGray};
   border-radius: 5px;
-  padding: 0 19px 0 16px;
+  padding: 0 ${RFValue(19)}px 0 ${RFValue(16)}px;
   justify-content: center;
   margin-left: ${({marginLeft}) => marginLeft}px;
   margin-right: ${({marginRight}) => marginRight}px;
@@ -111,7 +120,9 @@ export const Label = styled.Text`
 
 //  description section
 
-export const DescriptionWrapper = styled.View``;
+export const DescriptionWrapper = styled.View`
+  margin-bottom: 40px;
+`;
 
 export const DescriptionText = styled.Text`
   color: ${({theme}) => theme.colors.textGray};
@@ -124,7 +135,7 @@ export const DescriptionText = styled.Text`
 export const DescriptionInputWrapper = styled.View`
   height: 115px;
   width: 100%;
-  padding: 10px 16px;
+  padding: 10px ${RFValue(16)}px;
   background: ${({theme}) => theme.colors.background};
   border-width: 1px;
   border-color: ${({theme}) => theme.colors.textGray};
@@ -138,7 +149,7 @@ export const DescriptionTextInput = styled(TextInput)`
 `;
 
 export const PasswordWrapper = styled.View`
-  margin-top: 60px;
+  margin-top: 40px;
 `;
 
 // radios section
@@ -193,16 +204,10 @@ export const ModalWrapper = styled.View`
   overflow: hidden;
 `;
 
-export const ModalTop = styled.View`
-  background: ${({theme}) => theme.colors.error};
-  padding: 30px 0;
-  align-items: center;
-`;
-
 export const ModalBottom = styled.View`
   background: ${({theme}) => theme.colors.gray};
   align-items: center;
-  padding: 0 60px;
+  padding: 0 12px;
 `;
 
 export const ModalTitle = styled.Text`
@@ -214,27 +219,48 @@ export const ModalTitle = styled.Text`
 
 export const ModalMessage = styled.Text`
   margin-top: 7px;
-  font-size: ${({theme}) => theme.fonts.headings.h6}px;
+  font-size: ${({theme}) => theme.fonts.bodyText.mediumBase}px;
   font-family: ${({theme}) => theme.fonts.family.bold700};
   color: ${({theme}) => theme.colors.textGray};
+  text-align: center;
 `;
 
 // modal button
 
-export const StyledModalButton = styled.TouchableOpacity.attrs({
+export const StyledBackModalButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
 })`
   background: ${({theme}) => theme.colors.primary};
   border-radius: 20px;
   width: 87px;
-  height: 30px;
+  height: 40px;
   border-radius: 24px;
   align-items: center;
   justify-content: center;
   margin: 25px 0 53px 0;
 `;
 
-export const ModalButtonText = styled.Text`
+export const StyledNextModalButton = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
+  background: ${({theme}) => theme.colors.primary};
+  flex-direction: row;
+  border-radius: 24px;
+  height: 40px;
+  border-radius: 24px;
+  padding: 0 14px 0 39px;
+  align-items: center;
+  margin: 25px 0 53px 0;
+`;
+
+export const ModalBackButtonText = styled.Text`
+  font-size: ${({theme}) => theme.fonts.bodyText.smallText}px;
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
+  color: ${({theme}) => theme.colors.textWhite};
+`;
+
+export const ModalNextButtonText = styled.Text`
+  margin-right: 10px;
   font-size: ${({theme}) => theme.fonts.bodyText.smallText}px;
   font-family: ${({theme}) => theme.fonts.family.semiBold600};
   color: ${({theme}) => theme.colors.textWhite};

@@ -35,6 +35,7 @@ export const MaskedFormInput: React.FC<FormInput> = ({
       <Label>{label}</Label>
       <StyledMaskedInput
         placeholderTextColor={theme.colors.textGray}
+        selectionColor={theme.colors.textGray}
         {...rest}
       />
     </Container>

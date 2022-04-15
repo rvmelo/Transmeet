@@ -29,7 +29,9 @@ export default {
     textWhite: '#FFFFFF',
 
     background: '#F9F9FB',
+
     backgroundDark: '#152536',
+
     text: '#212121',
     mediumGray: '#666666',
     lightGray: '#e0e0e0',

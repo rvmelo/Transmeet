@@ -26,6 +26,7 @@ import {FacebookIcon} from '../../../../assets/svg/facebookIcon';
 import {GoogleIcon} from '../../../../assets/svg/googleIcon';
 import {AppleIcon} from '../../../../assets/svg/appleIcon';
 import {Logo} from '../../../../assets/svg/logo';
+import {Gradient} from '../../../../assets/svg/gradient';
 
 export const LoginScreen: React.FC = () => {
   const introText =
@@ -36,6 +37,7 @@ export const LoginScreen: React.FC = () => {
   return (
     <Container>
       <LogoContainer>
+        <Gradient width={330} height={500} />
         <Logo width={161} height={120} />
         <IntroText>{introText}</IntroText>
       </LogoContainer>
@@ -44,7 +46,6 @@ export const LoginScreen: React.FC = () => {
         <FormInput
           placeholder="Digite seu email"
           label="E-mail"
-          marginTop={40}
           marginBottom={25}
           autoComplete="email"
         />

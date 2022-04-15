@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {SCREEN_HEIGHT} from '../../../constants/dimensions';
 
 export const ForgotPasswordText = styled.Text`
   color: ${({theme}) => theme.colors.textGray};
@@ -12,10 +13,12 @@ export const Container = styled.ScrollView`
   background: ${({theme}) => theme.colors.backgroundDark};
 `;
 export const LoginContainer = styled.View`
+  min-height: ${SCREEN_HEIGHT - 295}px;
   background: ${({theme}) => theme.colors.background};
   align-items: center;
   justify-content: center;
   padding: 0 8%;
+  padding-top: 40px;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
 `;

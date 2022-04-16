@@ -7,11 +7,10 @@ import {SignUpScreen} from '../screens/signupScreen/container';
 
 import {RegisterStackParamList} from './types';
 import {Onboarding} from '../screens/onboarding/container';
-import {TransBottomNavigator} from './bottomNavigator.routes';
 
 const RegisterStack = createNativeStackNavigator<RegisterStackParamList>();
 
-const RegisterRoutes: React.FC = () => (
+export const RegisterRoutes: React.FC = () => (
   <RegisterStack.Navigator initialRouteName="Onboarding">
     <RegisterStack.Screen
       name="Onboarding"
@@ -34,14 +33,5 @@ const RegisterRoutes: React.FC = () => (
         headerShown: false,
       }}
     />
-    <RegisterStack.Screen
-      name="TransBottomNavigator"
-      component={TransBottomNavigator}
-      options={{
-        headerShown: false,
-      }}
-    />
   </RegisterStack.Navigator>
 );
-
-export default RegisterRoutes;

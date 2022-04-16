@@ -9,7 +9,7 @@ import {TransTabParamList} from './types';
 import {CandidaciesScreen} from '../screens/candidaciesScreen/container';
 import {HomeIcon} from '../../assets/svg/homeIcon';
 import {MailIcon} from '../../assets/svg/mailIcon';
-import {HomeRoutes} from './home.routes';
+import {TransHomeRoutes} from './transHome.routes';
 
 const TransTabs = createMaterialBottomTabNavigator<TransTabParamList>();
 
@@ -20,7 +20,7 @@ export function TransBottomNavigator() {
     <TransTabs.Navigator
       labeled={false}
       barStyle={{backgroundColor: theme.colors.background}}
-      initialRouteName="HomeRoutes">
+      initialRouteName="TransHomeRoutes">
       <TransTabs.Screen
         options={{
           tabBarIcon: ({focused}) => (
@@ -33,8 +33,8 @@ export function TransBottomNavigator() {
             />
           ),
         }}
-        name="HomeRoutes"
-        component={HomeRoutes}
+        name="TransHomeRoutes"
+        component={TransHomeRoutes}
       />
       <TransTabs.Screen
         options={{

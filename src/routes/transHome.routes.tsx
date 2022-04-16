@@ -1,13 +1,13 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {HomeStackParamList} from './types';
+import {TransStackParamList} from './types';
 import {TransHomeScreen} from '../screens/transHomeScreen/container';
-import {TransProfileScreen} from '../screens/transProfileScreen/container';
+import {SponsorProfileScreen} from '../screens/sponsorProfileScreen/container/indext';
 
-const HomeStack = createNativeStackNavigator<HomeStackParamList>();
+const HomeStack = createNativeStackNavigator<TransStackParamList>();
 
-export const HomeRoutes: React.FC = () => (
+export const TransHomeRoutes: React.FC = () => (
   <HomeStack.Navigator initialRouteName="TransHomeScreen">
     <HomeStack.Screen
       name="TransHomeScreen"
@@ -17,8 +17,8 @@ export const HomeRoutes: React.FC = () => (
       }}
     />
     <HomeStack.Screen
-      name="TransProfileScreen"
-      component={TransProfileScreen}
+      name="SponsorProfileScreen"
+      component={SponsorProfileScreen}
       options={{
         headerShown: false,
       }}

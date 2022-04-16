@@ -16,11 +16,13 @@ interface InfoModalProps {
 interface SignUpModalProps {
   signUpModalVisible: boolean;
   setSignUpModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  onUserNavigation: () => void;
 }
 
 export const SignUpModal: React.FC<SignUpModalProps> = ({
   signUpModalVisible,
   setSignUpModalVisible,
+  onUserNavigation,
   isError,
 }) => {
   return (
@@ -31,6 +33,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({
       <SignUpContent
         type={isError ? 'error' : 'success'}
         setModalVisible={setSignUpModalVisible}
+        onUserNavigation={onUserNavigation}
       />
     </ScreenModal>
   );

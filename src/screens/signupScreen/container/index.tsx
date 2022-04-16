@@ -30,6 +30,7 @@ export const SignUpScreen: React.FC = () => {
     user,
     setUser,
     isError,
+    onUserNavigation,
   } = useSignUp({setModalVisible: setSignUpModalVisible});
 
   const theme = useTheme();
@@ -60,6 +61,7 @@ export const SignUpScreen: React.FC = () => {
       <SignUpModal
         signUpModalVisible={signUpModalVisible}
         setSignUpModalVisible={setSignUpModalVisible}
+        onUserNavigation={onUserNavigation}
         isError={isError}
       />
 

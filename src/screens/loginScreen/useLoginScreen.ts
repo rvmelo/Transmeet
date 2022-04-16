@@ -1,5 +1,8 @@
-import {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {AxiosResponse} from 'axios';
+
+//  async storage
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //  navigation
 import {useNavigation} from '@react-navigation/native';
@@ -13,6 +16,7 @@ import {api} from '../../services/api';
 import {User} from '../../global/types/redux';
 import {useAppDispatch} from '../../redux/hooks';
 import {loadUser} from '../../redux/slices/user';
+import {userToken} from '../../constants/storage';
 
 type NavigationProps = NativeStackNavigationProp<RegisterStackParamList>;
 
@@ -63,7 +67,11 @@ export function useLoginScreen(): ReturnType {
 
       isMounted?.current && setIsLoading(false);
 
-      const {account} = response?.data;
+      const {account, access_token} = response?.data;
+
+      const {id} = account || {};
+
+      await AsyncStorage.setItem(userToken(id), access_token);
 
       dispatch(loadUser({user: account}));
     } catch (err) {

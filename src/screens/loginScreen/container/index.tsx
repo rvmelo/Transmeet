@@ -82,6 +82,7 @@ export const LoginScreen: React.FC = () => {
           marginBottom={15}
           leftIcon={<LockIcon height={24} width={24} />}
           rightIcon={<EyeOffIcon height={24} width={24} />}
+          onSubmitEditing={onUserLogin}
         />
         <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
         <AccountButton title="Fazer Login" onPress={onUserLogin} />

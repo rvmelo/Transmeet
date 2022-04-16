@@ -112,8 +112,6 @@ export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
 
       loadedUser.current = response?.data;
 
-      // dispatch(loadUser({user: response?.data}));
-
       isMounted.current && setIsLoading(false);
       isMounted.current && setModalVisible(true);
     } catch (err) {

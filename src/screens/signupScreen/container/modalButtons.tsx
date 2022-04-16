@@ -9,7 +9,7 @@ import {
 } from './styles';
 
 interface ModalButtonProps {
-  onPress: () => void;
+  onPress: (() => void) | undefined;
 }
 
 export const BackModalButton: React.FC<ModalButtonProps> = ({onPress}) => {

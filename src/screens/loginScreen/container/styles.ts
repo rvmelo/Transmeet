@@ -96,3 +96,16 @@ export const AltLine = styled.Text`
   background: ${({theme}) => theme.colors.textGray};
   font-size: ${({theme}) => theme.fonts.sizes.sm}px;
 `;
+
+// loading screen
+
+export const LoadingContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: ${({theme}) => theme.colors.background};
+`;
+
+export const StyledSpinner = styled.ActivityIndicator.attrs({
+  size: 'large',
+})``;

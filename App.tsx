@@ -15,7 +15,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {ThemeProvider} from 'styled-components';
 
 import defaultTheme from './src/global/styles/themes/default';
-import RegisterRoutes from './src/routes/register.routes';
+import {Routes} from './src/routes';
 
 //  redux
 import store from './src/redux/store';
@@ -26,7 +26,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <ThemeProvider theme={defaultTheme}>
-          <RegisterRoutes />
+          <Routes />
         </ThemeProvider>
       </NavigationContainer>
     </Provider>

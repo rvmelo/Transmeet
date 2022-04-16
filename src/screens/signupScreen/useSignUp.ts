@@ -36,6 +36,7 @@ interface ReturnType {
   onUserSignUp: () => Promise<void>;
   isLoading: boolean;
   isError: boolean;
+  onUserNavigation: () => void;
 }
 
 interface SignUpProps {
@@ -54,6 +55,8 @@ export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
   const [isError, setIsError] = useState(false);
 
   const isMounted = useRef<boolean | null>(null);
+
+  const loadedUser = useRef<User>({} as User);
 
   const dispatch = useAppDispatch();
 
@@ -107,17 +110,21 @@ export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
 
       const response: AxiosResponse<User> = await api.post(endpoint, userData);
 
-      dispatch(loadUser({user: response?.data}));
+      loadedUser.current = response?.data;
 
       isMounted.current && setIsLoading(false);
       isMounted.current && setModalVisible(true);
     } catch (err) {
-      console.log(err);
       isMounted.current && setIsError(true);
       isMounted.current && setModalVisible(true);
       isMounted.current && setIsLoading(false);
     }
-  }, [user, setModalVisible, userType, dispatch]);
+  }, [user, setModalVisible, userType]);
+
+  const onUserNavigation = useCallback(() => {
+    isMounted.current && setModalVisible(false);
+    dispatch(loadUser({user: {...loadedUser?.current}}));
+  }, [dispatch, setModalVisible]);
 
   return {
     user,
@@ -127,5 +134,6 @@ export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
     onUserSignUp,
     isLoading,
     isError,
+    onUserNavigation,
   };
 }

@@ -2,15 +2,24 @@ export type RegisterStackParamList = {
   LoginScreen: undefined;
   SignUpScreen: undefined;
   Onboarding: undefined;
-  TransBottomNavigator: undefined;
 };
 
 export type TransTabParamList = {
-  HomeRoutes: undefined;
+  TransHomeRoutes: undefined;
   CandidaciesScreen: undefined;
 };
 
-export type HomeStackParamList = {
+export type TransStackParamList = {
   TransHomeScreen: undefined;
+  SponsorProfileScreen: undefined;
+};
+
+export type SponsorTabParamList = {
+  SponsorHomeRoutes: undefined;
+  CandidatesScreen: undefined;
+};
+
+export type SponsorStackParamList = {
+  SponsorHomeScreen: undefined;
   TransProfileScreen: undefined;
 };

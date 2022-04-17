@@ -1,11 +1,12 @@
 import React, {useCallback} from 'react';
 import {FlatList, ListRenderItem} from 'react-native';
+import {User} from '../../global/types/redux';
 import {ListItem} from './listItem';
 
 import {Container} from './styles';
 
 interface ListProps {
-  data: {name: string}[];
+  data: User[];
 }
 
 export const List: React.FC<ListProps> = ({data}) => {

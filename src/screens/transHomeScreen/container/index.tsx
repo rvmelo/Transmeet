@@ -3,7 +3,7 @@ import {RFValue} from 'react-native-responsive-fontsize';
 import {MenuIcon} from '../../../../assets/svg/menuIcon';
 import {List} from '../../../components/list';
 import {useAppSelector} from '../../../redux/hooks';
-import {data} from './data';
+import {useHome} from '../useHome';
 
 import {SearchInput} from './searchInput';
 
@@ -11,7 +11,7 @@ import {
   Greetings,
   HeaderContainer,
   MenuIconContainer,
-  StyledLinearGradient,
+  Container,
   StyledText,
   UserInfoContainer,
   UserName,
@@ -20,8 +20,10 @@ import {
 export const TransHomeScreen: React.FC = () => {
   const {user} = useAppSelector(store => store.userReducer);
 
+  const {searchValue, setSearchValue, onCompanySearch, sponsorList} = useHome();
+
   return (
-    <StyledLinearGradient>
+    <Container>
       <HeaderContainer>
         <MenuIconContainer>
           <MenuIcon height={RFValue(24)} width={RFValue(24)} />
@@ -31,9 +33,13 @@ export const TransHomeScreen: React.FC = () => {
           <UserName>{user?.name?.split(' ')[0]}!</UserName>
         </UserInfoContainer>
         <StyledText>Faça sua busca por uma parceria</StyledText>
-        <SearchInput />
+        <SearchInput
+          onChangeText={value => setSearchValue(value)}
+          value={searchValue}
+          onSubmitEditing={onCompanySearch}
+        />
       </HeaderContainer>
-      <List data={data} />
-    </StyledLinearGradient>
+      <List data={sponsorList} />
+    </Container>
   );
 };

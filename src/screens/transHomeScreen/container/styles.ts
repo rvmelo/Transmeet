@@ -5,19 +5,13 @@ import {RFValue} from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
   flex: 1;
-  justify-content: center;
-  align-items: center;
 `;
 
-export const StyledLinearGradient = styled(LinearGradient).attrs({
+export const HeaderContainer = styled(LinearGradient).attrs({
   colors: ['#BB4981', '#1F478B'],
 })`
-  flex: 1;
-`;
-
-export const HeaderContainer = styled.View`
   padding: 0 ${RFValue(40)}px;
-  margin-top: ${RFValue(80)}px;
+  padding-top: ${RFValue(80)}px;
 `;
 
 export const MenuIconContainer = styled.View`
@@ -30,7 +24,7 @@ export const MenuIconContainer = styled.View`
 
   position: absolute;
   right: ${RFValue(30)}px;
-  top: ${RFValue(-20)}px;
+  top: ${RFValue(50)}px;
 `;
 
 export const UserInfoContainer = styled.View``;

@@ -5,14 +5,33 @@ import {ListItem} from './listItem';
 
 import {Container} from './styles';
 
+//  navigation
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {TransStackParamList} from '../../routes/types';
+
+type NavigationProps = NativeStackNavigationProp<TransStackParamList>;
+
 interface ListProps {
   data: User[];
 }
 
 export const List: React.FC<ListProps> = ({data}) => {
-  const renderItem: ListRenderItem<{name: string}> = useCallback(({item}) => {
-    return <ListItem itemName={item?.name} />;
-  }, []);
+  const navigation = useNavigation<NavigationProps>();
+
+  const renderItem: ListRenderItem<User> = useCallback(
+    ({item}) => {
+      return (
+        <ListItem
+          itemName={item?.name}
+          onPress={() =>
+            navigation.navigate('SponsorProfileScreen', {user: item})
+          }
+        />
+      );
+    },
+    [navigation],
+  );
 
   return (
     <Container>

@@ -9,6 +9,8 @@ export const Container = styled.View`
   padding: ${RFValue(40)}px ${RFValue(40)}px 0 ${RFValue(40)}px;
 `;
 
+export const TouchableInterface = styled.TouchableWithoutFeedback``;
+
 export const ItemContainer = styled.View`
   height: 109px;
   flex-direction: row;

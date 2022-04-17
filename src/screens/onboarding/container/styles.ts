@@ -21,6 +21,7 @@ export const BottomWrapper = styled.View`
 
 interface ButtonProps {
   isTransparent: boolean;
+  outLine: boolean;
 }
 
 // slider button
@@ -33,8 +34,11 @@ export const SliderButtonWrapper = styled.View`
 export const StyledButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
 })<ButtonProps>`
-  background: ${({theme, isTransparent}) =>
-    !isTransparent ? theme.colors.secondary : 'transparent'};
+  background: ${({theme, isTransparent, outLine}) =>
+    !isTransparent && !outLine ? theme.colors.primary : 'transparent'};
+  border: ${({outLine}) => (!outLine ? '0px' : '1px')};
+  border-color: ${({theme, outLine}) =>
+    outLine ? theme.colors.textGray : 'transparent'}; }
   padding: 8px 20px;
   border-radius: 20px;
   max-width: 100px;
@@ -43,9 +47,14 @@ export const StyledButton = styled.TouchableOpacity.attrs({
   justify-content: center;
 `;
 
-export const ButtonText = styled.Text`
+interface TextProps {
+  outLine: boolean;
+}
+
+export const ButtonText = styled.Text<TextProps>`
   font-size: ${({theme}) => theme.fonts.sizes.lg}px;
-  color: ${({theme}) => theme.colors.textWhite};
+  color: ${({theme, outLine}) =>
+    !outLine ? theme.colors.textWhite : theme.colors.textGray}
   font-family: ${({theme}) => theme.fonts.family.bold700};
 `;
 

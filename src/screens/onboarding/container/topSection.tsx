@@ -10,7 +10,7 @@ interface TopSectionProps {
 export const TopSection: React.FC<TopSectionProps> = ({onNavigation}) => {
   return (
     <TopWrapper>
-      <SliderButton title="Pular" onPress={onNavigation} />
+      <SliderButton title="Pular" onPress={onNavigation} outLine />
     </TopWrapper>
   );
 };

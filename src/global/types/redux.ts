@@ -10,6 +10,7 @@ export interface User {
   description: string;
   telephone: string;
   city: string;
+  site: string;
   stateId: number;
   typeId: number; // 1 -> user 2 -> sponsor
 }

@@ -12,6 +12,7 @@ export const Container = styled.ScrollView`
   flex: 1;
   background: ${({theme}) => theme.colors.backgroundDark};
 `;
+
 export const LoginContainer = styled.View`
   min-height: ${SCREEN_HEIGHT - 295}px;
   background: ${({theme}) => theme.colors.background};

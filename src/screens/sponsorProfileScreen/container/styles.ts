@@ -8,7 +8,7 @@ export const HeaderContainer = styled(LinearGradient).attrs({
   colors: ['#1F478B', '#BB4981'],
 })`
   width: 100%;
-  padding-top: ${RFValue(60)}px;
+  padding-top: ${RFValue(50)}px;
 `;
 
 export const HeaderContent = styled.View`
@@ -30,6 +30,8 @@ export const TopHeaderContainer = styled.View`
   align-items: center;
   margin-bottom: 12px;
 `;
+
+export const BackButtonInterface = styled.TouchableWithoutFeedback``;
 
 export const BackButtonWrapper = styled.View`
   flex-direction: row;

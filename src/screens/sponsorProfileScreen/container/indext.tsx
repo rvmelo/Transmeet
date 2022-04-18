@@ -1,8 +1,6 @@
 import React from 'react';
 
 import {
-  BackButtonText,
-  BackButtonWrapper,
   CompanyName,
   Container,
   ContentWrapper,
@@ -20,14 +18,14 @@ import {
 
 // navigation
 import {useRoute} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 //  redux
 import {User} from '../../../global/types/redux';
 
-import {ArrowLeftIcon} from '../../../../assets/svg/arrowLeft';
-
 import {description} from './data';
 import {Menu} from '../../../components/menu';
+import {BackButton} from './backButton';
 
 interface RouteParams {
   user: User;
@@ -38,15 +36,14 @@ export const SponsorProfileScreen: React.FC = () => {
 
   const {user} = route?.params as RouteParams;
 
+  const navigation = useNavigation();
+
   return (
     <Container>
       <HeaderContainer>
         <HeaderContent>
           <TopHeaderContainer>
-            <BackButtonWrapper>
-              <ArrowLeftIcon width={8} height={16} />
-              <BackButtonText>voltar</BackButtonText>
-            </BackButtonWrapper>
+            <BackButton onPress={() => navigation.goBack()} />
             <Menu isAbsolutePosition={false} />
           </TopHeaderContainer>
           <CompanyName>{user?.name}</CompanyName>

@@ -14,19 +14,6 @@ export const HeaderContainer = styled(LinearGradient).attrs({
   padding-top: ${RFValue(80)}px;
 `;
 
-export const MenuIconContainer = styled.View`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  justify-content: center;
-  align-items: center;
-  background: ${({theme}) => theme.colors.secondary};
-
-  position: absolute;
-  right: ${RFValue(30)}px;
-  top: ${RFValue(50)}px;
-`;
-
 export const UserInfoContainer = styled.View``;
 
 export const Greetings = styled.Text`

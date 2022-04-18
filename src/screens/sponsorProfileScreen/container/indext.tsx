@@ -24,10 +24,10 @@ import {useRoute} from '@react-navigation/native';
 //  redux
 import {User} from '../../../global/types/redux';
 
-//  icons
-import {MenuIcon} from '../../../../assets/svg/menuIcon';
-import {description} from './data';
 import {ArrowLeftIcon} from '../../../../assets/svg/arrowLeft';
+
+import {description} from './data';
+import {Menu} from '../../../components/menu';
 
 interface RouteParams {
   user: User;
@@ -45,9 +45,9 @@ export const SponsorProfileScreen: React.FC = () => {
           <TopHeaderContainer>
             <BackButtonWrapper>
               <ArrowLeftIcon width={8} height={16} />
-              <BackButtonText>Voltar</BackButtonText>
+              <BackButtonText>voltar</BackButtonText>
             </BackButtonWrapper>
-            <MenuIcon height={24} width={24} />
+            <Menu isAbsolutePosition={false} />
           </TopHeaderContainer>
           <CompanyName>{user?.name}</CompanyName>
         </HeaderContent>

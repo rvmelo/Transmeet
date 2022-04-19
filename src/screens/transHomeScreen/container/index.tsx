@@ -18,7 +18,13 @@ import {
 export const TransHomeScreen: React.FC = () => {
   const {user} = useAppSelector(store => store.userReducer);
 
-  const {searchValue, setSearchValue, onCompanySearch, sponsorList} = useHome();
+  const {
+    searchValue,
+    setSearchValue,
+    onCompanySearch,
+    sponsorList,
+    renderSponsor,
+  } = useHome();
 
   return (
     <Container>
@@ -35,7 +41,7 @@ export const TransHomeScreen: React.FC = () => {
           onSubmitEditing={onCompanySearch}
         />
       </HeaderContainer>
-      <List data={sponsorList} />
+      <List data={sponsorList} renderItem={renderSponsor} />
     </Container>
   );
 };

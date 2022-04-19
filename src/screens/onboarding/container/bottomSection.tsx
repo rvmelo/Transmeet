@@ -58,6 +58,7 @@ export const BottomSection: React.FC<BottomSectionProps> = ({
           onPress={
             scrollIndex === slideAmount - 1 ? onNavigation : onScrollForward
           }
+          isTransparent={scrollIndex === slideAmount - 1}
         />
       </SliderButtonWrapper>
     </BottomWrapper>

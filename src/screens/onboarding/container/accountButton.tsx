@@ -15,7 +15,9 @@ export const AccountButton: React.FC<AccountButtonProps> = ({
 }) => {
   return (
     <StyledAccountButton onPress={onPress} isTransparent={isTransparent}>
-      <AccountButtonText>{title}</AccountButtonText>
+      <AccountButtonText isTransparent={isTransparent}>
+        {title}
+      </AccountButtonText>
     </StyledAccountButton>
   );
 };

@@ -1,18 +1,22 @@
 export const introData = [
   {
-    uri: 'https://conteudo.imguol.com.br/c/entretenimento/57/2019/09/12/gears-of-war-1568302979379_v2_1x1.jpg',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.',
+    src: require('../../../../assets/png/onboarding1.png'),
+    title: 'Somos a sua ponte para uma educação de qualidade',
+    text: 'Acreditamos que a educação é feita para qualquer pessoa, então criamos através do nosso app e plataforma, pontes para uma educação mais inclusiva.',
   },
   {
-    uri: 'https://sm.ign.com/ign_br/review/g/gears-tact/gears-tactics-review_67zk.jpg',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.',
+    src: require('../../../../assets/png/onboarding2.png'),
+    title: 'Combine com quem faz a diferença!',
+    text: 'Encontre empresas dispostas a patrocinar seus estudos em diversas áreas do conhecimento. Escolheu, combinou, estudou...Simples assim!',
   },
   {
-    uri: 'https://compass-ssl.xbox.com/assets/a2/c7/a2c721c9-aba4-4925-8026-c6c72b74dc16.jpg?n=Gears-5_GLP-Page-Hero-1084_2020_1920x1080_04.jpg',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.',
+    src: require('../../../../assets/png/onboarding3.png'),
+    title: 'Das pequenas as grandes empresas para o mundo!',
+    text: 'Além de mostrar para o mundo e fazer a diferença, você ajuda a capacitar pessoas para o mercado de trabalho... Faça parte e seja uma empresa Transfriendly.',
   },
   {
-    uri: 'https://assets.nuuvem.com/image/upload/t_screenshot_full/v1/products/5c4b41602a1c6e1edeb03eb2/screenshots/wcv90rtqyzir1ubtqdf0.jpg',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.',
+    src: require('../../../../assets/png/registro-login.png'),
+    title: 'Tranforme, transmita e faça a diferença!',
+    text: 'Faça seu login ou se registre para começar a fazer parte desta transformação na educação!',
   },
 ];

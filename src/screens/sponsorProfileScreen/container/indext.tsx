@@ -26,6 +26,8 @@ import {User} from '../../../global/types/redux';
 import {description} from './data';
 import {Menu} from '../../../components/menu';
 import {BackButton} from './backButton';
+import {SuccessModal, WarningModal} from './modals';
+import {useModals} from '../useModals';
 
 interface RouteParams {
   user: User;
@@ -38,27 +40,49 @@ export const SponsorProfileScreen: React.FC = () => {
 
   const navigation = useNavigation();
 
+  const {
+    successModalVisible,
+    setSuccessModalVisible,
+    warningModalVisible,
+    setWarningModalVisible,
+    onConfirm,
+    onGoBackHome,
+  } = useModals();
+
   return (
-    <Container>
-      <HeaderContainer>
-        <HeaderContent>
-          <TopHeaderContainer>
-            <BackButton onPress={() => navigation.goBack()} />
-            <Menu isAbsolutePosition={false} />
-          </TopHeaderContainer>
-          <CompanyName>{user?.name}</CompanyName>
-        </HeaderContent>
-        <WhiteBar />
-      </HeaderContainer>
-      <ContentWrapper>
-        <Title>Empresa</Title>
-        <Description>{description}</Description>
-        <SiteFieldText>Site da empresa:</SiteFieldText>
-        <Site>{user?.site}</Site>
-        <SponsorButton>
-          <SponsorButtonText>Tentar Patrocínio</SponsorButtonText>
-        </SponsorButton>
-      </ContentWrapper>
-    </Container>
+    <>
+      <Container>
+        <HeaderContainer>
+          <HeaderContent>
+            <TopHeaderContainer>
+              <BackButton onPress={() => navigation.goBack()} />
+              <Menu isAbsolutePosition={false} />
+            </TopHeaderContainer>
+            <CompanyName>{user?.name}</CompanyName>
+          </HeaderContent>
+          <WhiteBar />
+        </HeaderContainer>
+        <ContentWrapper>
+          <Title>Empresa</Title>
+          <Description>{description}</Description>
+          <SiteFieldText>Site da empresa:</SiteFieldText>
+          <Site>{user?.site}</Site>
+          <SponsorButton onPress={() => setWarningModalVisible(true)}>
+            <SponsorButtonText>Tentar Patrocínio</SponsorButtonText>
+          </SponsorButton>
+        </ContentWrapper>
+      </Container>
+      <SuccessModal
+        modalVisible={successModalVisible}
+        setModalVisible={setSuccessModalVisible}
+        onGoBack={onGoBackHome}
+      />
+      <WarningModal
+        modalVisible={warningModalVisible}
+        setModalVisible={setWarningModalVisible}
+        onGoBack={() => setWarningModalVisible(false)}
+        onConfirm={onConfirm}
+      />
+    </>
   );
 };

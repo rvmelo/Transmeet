@@ -21,6 +21,7 @@ import {useRoute} from '@react-navigation/native';
 
 //  redux
 import {User} from '../../../global/types/redux';
+import {useAppSelector} from '../../../redux/hooks';
 
 import {description} from './data';
 import {Menu} from '../../../components/menu';
@@ -29,13 +30,14 @@ import {useModals} from '../useModals';
 import {BackButton} from '../../../components/backButton';
 
 interface RouteParams {
-  user: User;
+  sponsor: User;
 }
 
 export const SponsorProfileScreen: React.FC = () => {
   const route = useRoute();
 
-  const {user} = route?.params as RouteParams;
+  const {sponsor} = route?.params as RouteParams;
+  const {user} = useAppSelector(store => store.userReducer);
 
   const {
     successModalVisible,
@@ -55,7 +57,7 @@ export const SponsorProfileScreen: React.FC = () => {
               <BackButton />
               <Menu isAbsolutePosition={false} />
             </TopHeaderContainer>
-            <CompanyName>{user?.name}</CompanyName>
+            <CompanyName>{sponsor?.name}</CompanyName>
           </HeaderContent>
           <WhiteBar />
         </HeaderContainer>
@@ -63,7 +65,7 @@ export const SponsorProfileScreen: React.FC = () => {
           <Title>Empresa</Title>
           <Description>{description}</Description>
           <SiteFieldText>Site da empresa:</SiteFieldText>
-          <Site>{user?.site}</Site>
+          <Site>{sponsor?.site}</Site>
           <SponsorButton onPress={() => setWarningModalVisible(true)}>
             <SponsorButtonText>Tentar Patrocínio</SponsorButtonText>
           </SponsorButton>
@@ -78,7 +80,7 @@ export const SponsorProfileScreen: React.FC = () => {
         modalVisible={warningModalVisible}
         setModalVisible={setWarningModalVisible}
         onGoBack={() => setWarningModalVisible(false)}
-        onConfirm={onConfirm}
+        onConfirm={() => onConfirm({idSponsor: sponsor?.id, idUser: user?.id})}
       />
     </>
   );

@@ -25,7 +25,7 @@ export const List: React.FC<ListProps> = ({data}) => {
         <ListItem
           itemName={item?.name}
           onPress={() =>
-            navigation.navigate('SponsorProfileScreen', {user: item})
+            navigation.navigate('SponsorProfileScreen', {sponsor: item})
           }
         />
       );

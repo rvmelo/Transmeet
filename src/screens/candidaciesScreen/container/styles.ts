@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {RFValue} from 'react-native-responsive-fontsize';
 import LinearGradient from 'react-native-linear-gradient';
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
   background: ${({theme}) => theme.colors.secondary};
 `;
 

@@ -13,7 +13,7 @@ export type TransTabParamList = {
 
 export type TransStackParamList = {
   TransHomeScreen: undefined;
-  SponsorProfileScreen: {user: User};
+  SponsorProfileScreen: {sponsor: User};
 };
 
 export type SponsorTabParamList = {

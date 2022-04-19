@@ -36,8 +36,9 @@ export function useCandidacy(): ReturnType {
       const response2 = await api.get(`/match/${response?.data[0]?.id}`);
 
       console.log('second response: ', response2?.data);
-    } catch {
+    } catch (err) {
       // return void
+      console.log(err);
     }
   }, [user?.id]);
 

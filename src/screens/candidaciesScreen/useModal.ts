@@ -6,7 +6,7 @@ interface ReturnType {
 }
 
 export function useModal(): ReturnType {
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
 
   return {
     modalVisible,

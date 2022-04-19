@@ -5,10 +5,11 @@ import {RFValue} from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
   flex: 1;
+  background: ${({theme}) => theme.colors.secondary};
 `;
 
 export const HeaderContainer = styled(LinearGradient).attrs({
-  colors: ['#BB4981', '#1F478B'],
+  colors: ['#1F478B', '#BB4981'],
 })`
   padding: 0 ${RFValue(40)}px;
   padding-top: ${RFValue(80)}px;

@@ -18,16 +18,15 @@ import {
 
 // navigation
 import {useRoute} from '@react-navigation/native';
-import {useNavigation} from '@react-navigation/native';
 
 //  redux
 import {User} from '../../../global/types/redux';
 
 import {description} from './data';
 import {Menu} from '../../../components/menu';
-import {BackButton} from './backButton';
 import {SuccessModal, WarningModal} from './modals';
 import {useModals} from '../useModals';
+import {BackButton} from '../../../components/backButton';
 
 interface RouteParams {
   user: User;
@@ -37,8 +36,6 @@ export const SponsorProfileScreen: React.FC = () => {
   const route = useRoute();
 
   const {user} = route?.params as RouteParams;
-
-  const navigation = useNavigation();
 
   const {
     successModalVisible,
@@ -55,7 +52,7 @@ export const SponsorProfileScreen: React.FC = () => {
         <HeaderContainer>
           <HeaderContent>
             <TopHeaderContainer>
-              <BackButton onPress={() => navigation.goBack()} />
+              <BackButton />
               <Menu isAbsolutePosition={false} />
             </TopHeaderContainer>
             <CompanyName>{user?.name}</CompanyName>

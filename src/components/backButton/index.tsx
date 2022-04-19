@@ -1,15 +1,14 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {ArrowLeftIcon} from '../../../../assets/svg/arrowLeft';
+import {ArrowLeftIcon} from '../../../assets/svg/arrowLeft';
 
 import {BackButtonInterface, BackButtonText, BackButtonWrapper} from './styles';
 
-interface BackButtonProps {
-  onPress: () => void;
-}
+export const BackButton: React.FC = () => {
+  const navigation = useNavigation();
 
-export const BackButton: React.FC<BackButtonProps> = ({onPress}) => {
   return (
-    <BackButtonInterface onPress={onPress}>
+    <BackButtonInterface onPress={() => navigation.goBack()}>
       <BackButtonWrapper>
         <ArrowLeftIcon width={8} height={16} />
         <BackButtonText>voltar</BackButtonText>

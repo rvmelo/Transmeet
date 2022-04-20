@@ -1,26 +1,29 @@
 import styled from 'styled-components/native';
-import {SCREEN_WIDTH} from '../../../constants/dimensions';
+import {SCREEN_WIDTH, SCREEN_HEIGHT} from '../../../constants/dimensions';
 
-export const Container = styled.View`
+export const Container = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+  showsHorizontalScrollIndicator: false,
+})`
   flex: 1;
   background: ${({theme}) => theme.colors.background};
 `;
 
 export const TopWrapper = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: flex-end;
-  padding-right: 20px;
+  position: absolute;
+  align-self: flex-end;
+  padding: 30px 30px;
+  z-index: 1;
 `;
 
 export const BottomWrapper = styled.View`
-  flex: 1;
-  padding: 0 30px;
+  padding: 30px 30px;
   justify-content: space-around;
 `;
 
 interface ButtonProps {
   isTransparent: boolean;
+  outLine: boolean;
 }
 
 // slider button
@@ -33,9 +36,11 @@ export const SliderButtonWrapper = styled.View`
 export const StyledButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
 })<ButtonProps>`
-  background: ${({theme, isTransparent}) =>
-    !isTransparent ? theme.colors.secondary : 'transparent'};
-  padding: 8px 20px;
+  background: ${({theme, isTransparent, outLine}) =>
+    !isTransparent && !outLine ? theme.colors.primary : 'transparent'};
+  border: ${({outLine}) => (!outLine ? '0px' : '1px')};
+  border-color: ${({theme, outLine}) =>
+    outLine ? theme.colors.textGray : 'transparent'}; }
   border-radius: 20px;
   max-width: 100px;
   max-height: 40px;
@@ -43,19 +48,31 @@ export const StyledButton = styled.TouchableOpacity.attrs({
   justify-content: center;
 `;
 
-export const ButtonText = styled.Text`
+interface TextProps {
+  outLine: boolean;
+}
+
+export const ButtonText = styled.Text<TextProps>`
   font-size: ${({theme}) => theme.fonts.sizes.lg}px;
-  color: ${({theme}) => theme.colors.textWhite};
+  color: ${({theme, outLine}) =>
+    !outLine ? theme.colors.textWhite : theme.colors.textGray}
   font-family: ${({theme}) => theme.fonts.family.bold700};
+  padding: 10px 20px;
 `;
 
 // account button
 
-export const AccountButtonWrapper = styled.View``;
+export const AccountButtonWrapper = styled.View`
+  padding-bottom: 40px;
+`;
+
+interface AccountButtonProps {
+  isTransparent: boolean;
+}
 
 export const StyledAccountButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
-})<ButtonProps>`
+})<AccountButtonProps>`
   background: ${({theme, isTransparent}) =>
     !isTransparent ? theme.colors.secondary : 'transparent'};
   border-radius: 20px;
@@ -64,13 +81,15 @@ export const StyledAccountButton = styled.TouchableOpacity.attrs({
   align-items: center;
   justify-content: center;
   border-width: 1px;
-  border-color: ${({theme}) => theme.colors.textGray};
+  border-color: ${({theme, isTransparent}) =>
+    !isTransparent ? theme.colors.secondary : theme.colors.textGray};
   margin-bottom: 10px;
 `;
 
-export const AccountButtonText = styled.Text`
+export const AccountButtonText = styled.Text<AccountButtonProps>`
   font-size: ${({theme}) => theme.fonts.sizes.lg}px;
-  color: ${({theme}) => theme.colors.textGray};
+  color: ${({theme, isTransparent}) =>
+    !isTransparent ? theme.colors.textWhite : theme.colors.textGray};
   font-family: ${({theme}) => theme.fonts.family.bold700};
 `;
 
@@ -80,7 +99,6 @@ interface ScrollWrapperProps {
 }
 
 export const ScrollWrapper = styled.View<ScrollWrapperProps>`
-  margin-top: ${({isLastIndex}) => (isLastIndex ? SCREEN_WIDTH * 0.13 : 0)}px;
   align-items: center;
 `;
 
@@ -98,16 +116,25 @@ export const SliderContent = styled.View`
 `;
 
 export const StyledImage = styled.Image`
-  width: ${SCREEN_WIDTH / 2}px;
-  height: ${SCREEN_WIDTH / 2}px;
+  max-width: ${SCREEN_WIDTH}px;
+  max-height: ${SCREEN_HEIGHT / 1.3}px;
 `;
 
 export const IntroText = styled.Text`
   font-size: ${({theme}) => theme.fonts.sizes.lg}px;
-  color: ${({theme}) => theme.colors.text};
-  margin-top: 20px;
-  background: ${({theme}) => theme.colors.lightGray};
+  color: ${({theme}) => theme.colors.textGray};
+  text-align: center;
+  line-height: 25px;
   margin: 20px;
+  margin-bottom: 40px;
+`;
+
+export const TitleText = styled.Text`
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
+  font-size: ${({theme}) => theme.fonts.sizes.xl}px;
+  color: ${({theme}) => theme.colors.textGray};
+  text-align: center;
+  margin-top: 20px;
 `;
 
 //  scroll indicator
@@ -124,10 +151,10 @@ interface ScrollDotProps {
 export const ScrollDot = styled.View<ScrollDotProps>`
   width: 10px;
   height: 10px;
-  margin: 0 5px;
+  margin: 0 12px;
   border-width: 1px;
   border-radius: 5px;
-  border-color: ${({theme}) => theme.colors.mediumGray};
+  border-color: ${({theme}) => theme.colors.secondary};
   background: ${({theme, isActive}) =>
-    isActive ? theme.colors.mediumGray : 'transparent'};
+    isActive ? theme.colors.secondary : 'transparent'};
 `;

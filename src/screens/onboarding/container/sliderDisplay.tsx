@@ -1,20 +1,22 @@
 import React from 'react';
 
-import {IntroText, SliderContent, StyledImage} from './styles';
+import {TitleText, IntroText, SliderContent, StyledImage} from './styles';
 
 interface SliderDisplayProps {
-  uri: string;
+  src: number;
   text: string;
+  title: string;
 }
 
-export const SliderDisplay: React.FC<SliderDisplayProps> = ({uri, text}) => {
+export const SliderDisplay: React.FC<SliderDisplayProps> = ({
+  src,
+  text,
+  title,
+}) => {
   return (
-    <SliderContent key={uri}>
-      <StyledImage
-        source={{
-          uri: uri,
-        }}
-      />
+    <SliderContent key={src}>
+      <StyledImage source={src} />
+      <TitleText>{title}</TitleText>
       <IntroText>{text}</IntroText>
     </SliderContent>
   );

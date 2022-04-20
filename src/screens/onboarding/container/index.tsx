@@ -25,7 +25,12 @@ export const Onboarding: React.FC = () => {
       <ScrollWrapper isLastIndex={scrollIndex === slideAmount - 1}>
         <StyledScroll ref={scrollRef}>
           {introData.map(data => (
-            <SliderDisplay key={data.uri} uri={data.uri} text={data.text} />
+            <SliderDisplay
+              key={data.src}
+              src={data.src}
+              text={data.text}
+              title={data.title}
+            />
           ))}
         </StyledScroll>
         <ScrollIndicator scrollIndex={scrollIndex} />

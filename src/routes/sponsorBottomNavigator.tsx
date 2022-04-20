@@ -6,9 +6,7 @@ import {useTheme} from 'styled-components';
 import {SponsorTabParamList} from './types';
 
 // screens
-import {CandidaciesScreen} from '../screens/candidaciesScreen/container';
 import {HomeIcon} from '../../assets/svg/homeIcon';
-import {MailIcon} from '../../assets/svg/mailIcon';
 import {SponsorHomeRoutes} from './sponsorHome.routes';
 
 const SponsorTabs = createMaterialBottomTabNavigator<SponsorTabParamList>();
@@ -35,21 +33,6 @@ export function SponsorBottomNavigator() {
         }}
         name="SponsorHomeRoutes"
         component={SponsorHomeRoutes}
-      />
-      <SponsorTabs.Screen
-        options={{
-          tabBarIcon: ({focused}) => (
-            <MailIcon
-              height={24}
-              width={24}
-              color={
-                focused ? theme.colors.primaryDark : theme.colors.textGrayLight
-              }
-            />
-          ),
-        }}
-        name="CandidatesScreen"
-        component={CandidaciesScreen}
       />
     </SponsorTabs.Navigator>
   );

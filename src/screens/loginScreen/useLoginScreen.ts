@@ -63,8 +63,6 @@ export function useLoginScreen(): ReturnType {
         password,
       });
 
-      console.log(response?.data);
-
       isMounted?.current && setIsLoading(false);
 
       const {account, access_token} = response?.data;
@@ -72,6 +70,8 @@ export function useLoginScreen(): ReturnType {
       const {id} = account || {};
 
       await AsyncStorage.setItem(userToken(id), access_token);
+
+      api.defaults.headers.common.Authorization = `Bearer ${access_token}`;
 
       dispatch(loadUser({user: account}));
     } catch (err) {

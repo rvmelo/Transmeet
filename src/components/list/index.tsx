@@ -1,18 +1,15 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {FlatList, ListRenderItem} from 'react-native';
-import {ListItem} from './listItem';
+import {User} from '../../global/types/redux';
 
 import {Container} from './styles';
 
 interface ListProps {
-  data: {name: string}[];
+  data: User[];
+  renderItem: ListRenderItem<User>;
 }
 
-export const List: React.FC<ListProps> = ({data}) => {
-  const renderItem: ListRenderItem<{name: string}> = useCallback(({item}) => {
-    return <ListItem itemName={item?.name} />;
-  }, []);
-
+export const List: React.FC<ListProps> = ({data, renderItem}) => {
   return (
     <Container>
       <FlatList

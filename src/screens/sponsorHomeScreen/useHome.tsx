@@ -66,13 +66,18 @@ export function useHome(): ReturnType {
 
       if (accept === null) {
         statusValue.current = 'warning';
+        console.log(item);
       }
 
       return (
         <ListItem
           status={statusValue.current}
           itemName={name}
-          onPress={() => navigation.navigate('TransProfileScreen')}
+          onPress={() =>
+            navigation.navigate('TransProfileScreen', {
+              transUser: item.accounts_accountsTomatch_idUser,
+            })
+          }
         />
       );
     },

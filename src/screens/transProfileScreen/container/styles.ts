@@ -55,14 +55,13 @@ export const DetailedInfo = styled.View`
   align-items: flex-start;
 `;
 
-export const Contact = styled.View``;
+export const Contact = styled.View`
+  padding: ${RFValue(20)}px 0;
+`;
 export const Gender = styled.View`
   padding: ${RFValue(20)}px 0;
 `;
 export const About = styled.View`
-  padding: ${RFValue(20)}px 0;
-`;
-export const Education = styled.View`
   padding: ${RFValue(20)}px 0;
 `;
 export const SocialMedia = styled.View`

@@ -22,6 +22,8 @@ export const SponsorHomeScreen: React.FC = () => {
   const {transUsers, onLoadTransUserData, isRefreshing, renderTransUsers} =
     useHome();
 
+  const amout = transUsers.length;
+
   return (
     <Container>
       <HeaderContainer>
@@ -31,7 +33,7 @@ export const SponsorHomeScreen: React.FC = () => {
           <SponsorName>{user?.name}!</SponsorName>
         </SponsorInfo>
         <CandidaciesInfo>
-          <InfoText>Você possui 6 perfis para analisar</InfoText>
+          <InfoText>Você possui {amout} perfis para analisar</InfoText>
         </CandidaciesInfo>
       </HeaderContainer>
 

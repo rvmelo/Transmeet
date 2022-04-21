@@ -8,9 +8,17 @@ import {CandidacyList} from '../../../components/list';
 import {useCandidacy} from '../useCandidacy';
 import {useModal} from '../useModal';
 import {CandidacyModal} from './modals';
+import {LogOffModal} from '../../../components/logOffModal';
 
 export const CandidaciesScreen: React.FC = () => {
-  const {modalVisible, setModalVisible, modalType, setModalType} = useModal();
+  const {
+    modalVisible,
+    setModalVisible,
+    signOutModalVisible,
+    setSignOutModalVisible,
+    modalType,
+    setModalType,
+  } = useModal();
   const {candidacies, renderCandidacy, isRefreshing, onLoadCandidacies} =
     useCandidacy({
       setModalType,
@@ -23,7 +31,10 @@ export const CandidaciesScreen: React.FC = () => {
         <HeaderContainer>
           <TopHeaderContainer>
             <BackButton />
-            <Menu isAbsolutePosition={false} />
+            <Menu
+              onPress={() => setSignOutModalVisible(true)}
+              isAbsolutePosition={false}
+            />
           </TopHeaderContainer>
           <Title>Candidaturas</Title>
         </HeaderContainer>
@@ -38,6 +49,10 @@ export const CandidaciesScreen: React.FC = () => {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         type={modalType}
+      />
+      <LogOffModal
+        modalVisible={signOutModalVisible}
+        setModalVisible={setSignOutModalVisible}
       />
     </>
   );

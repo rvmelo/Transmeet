@@ -109,3 +109,59 @@ export const SponsorButtonText = styled.Text`
   font-family: ${({theme}) => theme.fonts.family.bold700};
   font-size: ${({theme}) => theme.fonts.bodyText.base}px;
 `;
+
+export const ModalView = styled.View`
+  padding: ${RFValue(25)}px ${RFValue(12)}px;
+  background: ${({theme}) => theme.colors.background}
+  align-items: center;
+`;
+export const ModalTitle = styled.Text`
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
+  font-size: ${({theme}) => theme.fonts.bodyText.regular};
+  color: ${({theme}) => theme.colors.textGray};
+  padding-bottom: ${RFValue(12)}px;
+`;
+export const ModalDescription = styled.Text`
+  font-family: ${({theme}) => theme.fonts.family.regular400};
+  font-size: ${({theme}) => theme.fonts.bodyText.smallText}px;
+  color: ${({theme}) => theme.colors.textGray};
+  text-align: center;
+`;
+export const ModalDescriptionBold = styled.Text`
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
+  font-size: ${({theme}) => theme.fonts.bodyText.smallText}px;
+  color: ${({theme}) => theme.colors.textGray};
+`;
+
+export const ModalButtonsView = styled.View`
+  width: 100%;
+  padding-top: ${RFValue(25)}px;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
+interface ModalButtonProps {
+  color?: string;
+}
+
+export const ModalButton = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})<ModalButtonProps>`
+  padding: ${RFValue(9)}px ${RFValue(24)}px;
+  background: ${({theme, color}) => (color ? color : theme.colors.secondary)};
+  border: ${({theme, color}) =>
+    color === 'transparent' ? theme.colors.textGray : color};
+  border-radius: ${RFValue(24)}px;
+  align-items: center;
+  justify-content: center;
+`;
+
+interface ModalButtonTextProps {
+  color?: string;
+}
+
+export const ModalButtonText = styled.Text<ModalButtonTextProps>`
+  color: ${({theme, color}) => (color ? color : theme.colors.textWhite)};
+  font-family: ${({theme}) => theme.fonts.family.bold700};
+  font-size: ${({theme}) => theme.fonts.bodyText.mediumBase}px;
+`;

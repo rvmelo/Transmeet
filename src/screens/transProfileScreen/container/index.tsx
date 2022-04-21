@@ -1,8 +1,10 @@
 import React from 'react';
 
+import {useModals} from '../useModals';
 import {BackButton} from '../../../components/backButton';
 import {Menu} from '../../../components/menu';
 import {SponsorDeclineButton} from './sponsorButton';
+import {SuccessModal, WarningModal} from './modals';
 
 import {
   Container,
@@ -26,6 +28,17 @@ import {
 } from './styles';
 
 export const TransProfileScreen: React.FC = () => {
+  const {
+    successModalVisible,
+    setSuccessModalVisible,
+    warningModalVisible,
+    setWarningModalVisible,
+    onConfirmWarning,
+    onGoBackWarning,
+    onConfirmSuccess,
+    onGoBackHome,
+  } = useModals();
+
   return (
     <Container>
       <HeaderContainer>
@@ -64,7 +77,7 @@ export const TransProfileScreen: React.FC = () => {
           </Gender>
           <About>
             <BoldBodyText>Sobre:</BoldBodyText>
-            <BodyText>Lorem Ipsum</BodyText>
+            <BodyText>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</BodyText>
           </About>
           <Education>
             <BoldBodyText>Escolaridade</BoldBodyText>
@@ -81,11 +94,26 @@ export const TransProfileScreen: React.FC = () => {
           <SponsorDeclineButton
             title="Dispensar"
             isDecline
-            onPress={() => null}
+            onPress={onGoBackHome}
           />
-          <SponsorDeclineButton title="Combinar" onPress={() => null} />
+          <SponsorDeclineButton
+            title="Combinar"
+            onPress={() => setWarningModalVisible(true)}
+          />
         </ButtonsSection>
       </ContentWrapper>
+      <WarningModal
+        modalVisible={warningModalVisible}
+        setModalVisible={setWarningModalVisible}
+        onGoBack={onGoBackWarning}
+        onConfirm={onConfirmWarning}
+      />
+      <SuccessModal
+        modalVisible={successModalVisible}
+        setModalVisible={setSuccessModalVisible}
+        onGoBack={onGoBackHome}
+        onConfirm={onConfirmSuccess}
+      />
     </Container>
   );
 };

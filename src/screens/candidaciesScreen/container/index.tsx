@@ -4,15 +4,18 @@ import {Container, HeaderContainer, Title, TopHeaderContainer} from './styles';
 
 import {Menu} from '../../../components/menu';
 import {BackButton} from '../../../components/backButton';
-import {List} from '../../../components/list';
+import {CandidacyList} from '../../../components/list';
 import {useCandidacy} from '../useCandidacy';
 import {useModal} from '../useModal';
 import {CandidacyModal} from './modals';
 
 export const CandidaciesScreen: React.FC = () => {
-  const {} = useCandidacy();
-
-  const {modalVisible, setModalVisible} = useModal();
+  const {modalVisible, setModalVisible, modalType, setModalType} = useModal();
+  const {candidacies, renderCandidacy, isRefreshing, onLoadCandidacies} =
+    useCandidacy({
+      setModalType,
+      setModalVisible,
+    });
 
   return (
     <>
@@ -24,12 +27,17 @@ export const CandidaciesScreen: React.FC = () => {
           </TopHeaderContainer>
           <Title>Candidaturas</Title>
         </HeaderContainer>
-        <List data={[]} />
+        <CandidacyList
+          data={candidacies}
+          renderItem={renderCandidacy}
+          refreshing={isRefreshing}
+          onRefresh={onLoadCandidacies}
+        />
       </Container>
       <CandidacyModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
-        type="error"
+        type={modalType}
       />
     </>
   );

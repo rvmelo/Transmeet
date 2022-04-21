@@ -1,34 +1,5 @@
-import styled from 'styled-components/native';
 import {RFValue} from 'react-native-responsive-fontsize';
-import LinearGradient from 'react-native-linear-gradient';
-
-export const Container = styled.View`
-  flex: 1;
-  background: ${({theme}) => theme.colors.secondary};
-`;
-
-export const Title = styled.Text`
-  color: ${({theme}) => theme.colors.textWhite};
-  font-family: ${({theme}) => theme.fonts.family.bold700};
-  font-size: ${({theme}) => theme.fonts.headings.h4}px;
-  align-self: center;
-`;
-
-export const HeaderContainer = styled(LinearGradient).attrs({
-  colors: ['#1F478B', '#BB4981'],
-})`
-  width: 100%;
-  padding: ${RFValue(50)}px ${RFValue(40)}px ${RFValue(17)}px;
-`;
-
-export const TopHeaderContainer = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-`;
-
-// modals
+import styled, {css} from 'styled-components/native';
 
 export const ModalContentWrapper = styled.View`
   padding: ${RFValue(21)}px ${RFValue(12)}px ${RFValue(30)}px;
@@ -54,18 +25,41 @@ export const ModalMessage = styled.Text`
   text-align: center;
 `;
 
+interface ModalButtonProps {
+  color?: string;
+}
+
 export const ModalButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
-})`
-  padding: ${RFValue(9)}px ${RFValue(24)}px;
-  background: ${({theme}) => theme.colors.secondary};
+})<ModalButtonProps>`
+  width: ${RFValue(87)}px;
+  background: ${({theme, color}) => (color ? color : theme.colors.secondary)};
   border-radius: ${RFValue(24)}px;
+  padding: ${RFValue(9)}px 0;
   align-items: center;
   justify-content: center;
+
+  ${({theme, color}) =>
+    color &&
+    css`
+      border-width: 1px;
+      border-color: ${theme.colors.textGray};
+    `}
 `;
 
-export const ModalButtonText = styled.Text`
-  color: ${({theme}) => theme.colors.textWhite};
+export const ModalButtonContainer = styled.View`
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0 ${RFValue(47)}px;
+`;
+
+interface ModalButtonTextProps {
+  color?: string;
+}
+
+export const ModalButtonText = styled.Text<ModalButtonTextProps>`
+  color: ${({theme, color}) => (color ? color : theme.colors.textWhite)};
   font-family: ${({theme}) => theme.fonts.family.bold700};
   font-size: ${({theme}) => theme.fonts.bodyText.mediumBase}px;
 `;

@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTheme} from 'styled-components';
 
 import {
   DetailText,
@@ -15,14 +16,28 @@ import {
 interface ListItemProps {
   itemName: string;
   onPress: () => void;
+  status?: 'success' | 'error' | 'warning' | 'background';
 }
 
-export const ListItem: React.FC<ListItemProps> = ({itemName, onPress}) => {
+export const ListItem: React.FC<ListItemProps> = ({
+  itemName,
+  onPress,
+  status = 'background',
+}) => {
+  const theme = useTheme();
+
+  const statusColor = {
+    success: theme.colors.success,
+    warning: theme.colors.warning,
+    error: theme.colors.error,
+    background: theme.colors.background,
+  };
+
   return (
     <TouchableInterface onPress={onPress}>
       <ItemContainer>
         <LeftContent>
-          <SideBar />
+          <SideBar color={statusColor[status]} />
           <InfoContainer>
             <ItemName>{itemName}</ItemName>
             <DetailText>+ Detalhes</DetailText>

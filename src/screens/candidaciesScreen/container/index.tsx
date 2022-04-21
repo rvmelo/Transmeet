@@ -11,10 +11,11 @@ import {CandidacyModal} from './modals';
 
 export const CandidaciesScreen: React.FC = () => {
   const {modalVisible, setModalVisible, modalType, setModalType} = useModal();
-  const {candidacies, renderCandidacy} = useCandidacy({
-    setModalType,
-    setModalVisible,
-  });
+  const {candidacies, renderCandidacy, isRefreshing, onLoadCandidacies} =
+    useCandidacy({
+      setModalType,
+      setModalVisible,
+    });
 
   return (
     <>
@@ -26,7 +27,12 @@ export const CandidaciesScreen: React.FC = () => {
           </TopHeaderContainer>
           <Title>Candidaturas</Title>
         </HeaderContainer>
-        <CandidacyList data={candidacies} renderItem={renderCandidacy} />
+        <CandidacyList
+          data={candidacies}
+          renderItem={renderCandidacy}
+          refreshing={isRefreshing}
+          onRefresh={onLoadCandidacies}
+        />
       </Container>
       <CandidacyModal
         modalVisible={modalVisible}

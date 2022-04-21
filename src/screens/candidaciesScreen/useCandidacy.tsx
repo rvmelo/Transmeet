@@ -19,6 +19,8 @@ interface ReturnType {
   candidacies: CandidacyData[];
   setCandidacies: React.Dispatch<React.SetStateAction<CandidacyData[]>>;
   renderCandidacy: ListRenderItem<CandidacyData>;
+  isRefreshing: boolean;
+  onLoadCandidacies: () => Promise<void>;
 }
 
 export function useCandidacy({
@@ -26,6 +28,8 @@ export function useCandidacy({
   setModalType,
 }: CandidacyProps): ReturnType {
   const [candidacies, setCandidacies] = useState<CandidacyData[]>([]);
+
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const {user} = useAppSelector(store => store.userReducer);
 
@@ -43,15 +47,19 @@ export function useCandidacy({
 
   const onLoadCandidacies = useCallback(async () => {
     try {
+      setIsRefreshing(true);
+
       const response: AxiosResponse<CandidacyData[]> = await api.get(
         `/match/users/${user?.id}`,
       );
 
       isMounted.current && setCandidacies(response?.data);
+      isMounted.current && setIsRefreshing(false);
     } catch (err) {
       // return void
+      isMounted.current && setIsRefreshing(false);
     }
-  }, [user?.id]);
+  }, [user?.id, setIsRefreshing]);
 
   const renderCandidacy: ListRenderItem<CandidacyData> = useCallback(
     ({item}) => {
@@ -87,5 +95,7 @@ export function useCandidacy({
     candidacies,
     setCandidacies,
     renderCandidacy,
+    isRefreshing,
+    onLoadCandidacies,
   };
 }

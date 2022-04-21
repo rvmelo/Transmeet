@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, ListRenderItem} from 'react-native';
+import {FlatList, FlatListProps, ListRenderItem} from 'react-native';
 import {User} from '../../global/types/redux';
 
 import {Container} from './styles';
@@ -10,7 +10,7 @@ interface ListProps {
   renderItem: ListRenderItem<User>;
 }
 
-interface CandidacyListProps {
+interface CandidacyListProps extends FlatListProps<CandidacyData> {
   data: CandidacyData[];
   renderItem: ListRenderItem<CandidacyData>;
 }
@@ -31,6 +31,7 @@ export const List: React.FC<ListProps> = ({data, renderItem}) => {
 export const CandidacyList: React.FC<CandidacyListProps> = ({
   data,
   renderItem,
+  ...rest
 }) => {
   return (
     <Container>
@@ -39,6 +40,7 @@ export const CandidacyList: React.FC<CandidacyListProps> = ({
         data={data}
         renderItem={renderItem}
         showsVerticalScrollIndicator={false}
+        {...rest}
       />
     </Container>
   );

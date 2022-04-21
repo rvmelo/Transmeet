@@ -1,5 +1,7 @@
 import React from 'react';
+
 import {useAppSelector} from '../../../redux/hooks';
+
 import {Menu} from '../../../components/menu';
 import {List} from '../../../components/list';
 
@@ -22,7 +24,9 @@ export const SponsorHomeScreen: React.FC = () => {
         <Menu isAbsolutePosition top={50} right={30} />
         <SponsorInfo>
           <Greetings>Boas vindas</Greetings>
+
           <SponsorName>{user?.name}!</SponsorName>
+          
         </SponsorInfo>
         <CandidaciesInfo>
           <InfoText>Você possui 6 perfis para analisar</InfoText>

@@ -117,7 +117,7 @@ export const ModalView = styled.View`
 `;
 export const ModalTitle = styled.Text`
   font-family: ${({theme}) => theme.fonts.family.semiBold600};
-  font-size: ${({theme}) => theme.fonts.bodyText.regular};
+  font-size: ${({theme}) => theme.fonts.bodyText.regular}px;
   color: ${({theme}) => theme.colors.textGray};
   padding-bottom: ${RFValue(12)}px;
 `;

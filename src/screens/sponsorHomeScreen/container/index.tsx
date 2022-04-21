@@ -3,7 +3,9 @@ import React from 'react';
 import {useAppSelector} from '../../../redux/hooks';
 
 import {Menu} from '../../../components/menu';
-import {List} from '../../../components/list';
+import {TransUserList} from '../../../components/list';
+
+import {useHome} from '../useHome';
 
 import {
   Container,
@@ -17,6 +19,8 @@ import {
 
 export const SponsorHomeScreen: React.FC = () => {
   const {user} = useAppSelector(store => store.userReducer);
+  const {transUsers, onLoadTransUserData, isRefreshing, renderTransUsers} =
+    useHome();
 
   return (
     <Container>
@@ -24,16 +28,19 @@ export const SponsorHomeScreen: React.FC = () => {
         <Menu isAbsolutePosition top={50} right={30} />
         <SponsorInfo>
           <Greetings>Boas vindas</Greetings>
-
           <SponsorName>{user?.name}!</SponsorName>
-          
         </SponsorInfo>
         <CandidaciesInfo>
           <InfoText>Você possui 6 perfis para analisar</InfoText>
         </CandidaciesInfo>
       </HeaderContainer>
 
-      <List data={[]} renderItem={() => null} />
+      <TransUserList
+        data={transUsers}
+        renderItem={renderTransUsers}
+        refreshing={isRefreshing}
+        onRefresh={onLoadTransUserData}
+      />
     </Container>
   );
 };

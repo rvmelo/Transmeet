@@ -16,7 +16,7 @@ import {api} from '../../services/api';
 import {User} from '../../global/types/redux';
 import {useAppDispatch} from '../../redux/hooks';
 import {loadUser} from '../../redux/slices/user';
-import {userToken} from '../../constants/storage';
+import {userKey, userToken} from '../../constants/storage';
 
 type NavigationProps = NativeStackNavigationProp<RegisterStackParamList>;
 
@@ -67,9 +67,10 @@ export function useLoginScreen(): ReturnType {
 
       const {account, access_token} = response?.data;
 
-      const {id} = account || {};
-
-      await AsyncStorage.setItem(userToken(id), access_token);
+      await AsyncStorage.multiSet([
+        [userToken, access_token],
+        [userKey, JSON.stringify(account)],
+      ]);
 
       api.defaults.headers.common.Authorization = `Bearer ${access_token}`;
 

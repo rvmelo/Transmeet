@@ -22,11 +22,15 @@ export const ItemContainer = styled.View`
   margin-bottom: 20px;
 `;
 
-export const SideBar = styled.View`
+interface SideBarProps {
+  color?: string;
+}
+
+export const SideBar = styled.View<SideBarProps>`
   width: 14px;
   height: 77px;
   border-radius: 10px;
-  background: ${({theme}) => theme.colors.textWhite};
+  background: ${({color}) => color};
 `;
 
 export const InfoContainer = styled.View`

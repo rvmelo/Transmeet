@@ -8,7 +8,7 @@ import {SponsorHomeScreen} from '../screens/sponsorHomeScreen/container';
 const HomeStack = createNativeStackNavigator<SponsorStackParamList>();
 
 export const SponsorHomeRoutes: React.FC = () => (
-  <HomeStack.Navigator initialRouteName="SponsorHomeScreen">
+  <HomeStack.Navigator initialRouteName="TransProfileScreen">
     <HomeStack.Screen
       name="SponsorHomeScreen"
       component={SponsorHomeScreen}

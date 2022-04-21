@@ -3,6 +3,7 @@ import {RFValue} from 'react-native-responsive-fontsize';
 import LinearGradient from 'react-native-linear-gradient';
 
 export const Container = styled.View`
+  flex: 1;
   background: ${({theme}) => theme.colors.secondary};
 `;
 

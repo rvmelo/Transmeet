@@ -40,7 +40,6 @@ export function useModals(): ReturnType {
   const onConfirmWarning = useCallback(
     async ({itemData}: ConfirmationProps) => {
       try {
-        console.log('match id: ', itemData.id);
         await api.patch(`/match/${itemData.id}`, {response: true});
         setWarningModalVisible(false);
         setSuccessModalVisible(true);

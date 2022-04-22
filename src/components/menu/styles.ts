@@ -23,3 +23,5 @@ export const MenuIconContainer = styled.View<MenuIconContainerProps>`
       top: ${RFValue(top)}px;
     `}
 `;
+
+export const TouchableInterface = styled.TouchableWithoutFeedback``;

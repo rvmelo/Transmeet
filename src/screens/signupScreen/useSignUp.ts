@@ -5,10 +5,15 @@ import {Genders, states, genders} from './container/data';
 import {AxiosResponse} from 'axios';
 import {api} from '../../services/api';
 
+//  navigation
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RegisterStackParamList} from '../../routes/types';
+
 //  redux
 import {User} from '../../global/types/redux';
-import {useAppDispatch} from '../../redux/hooks';
-import {loadUser} from '../../redux/slices/user';
+
+type NavigationProps = NativeStackNavigationProp<RegisterStackParamList>;
 
 export interface UserFormData {
   name: string;
@@ -58,7 +63,7 @@ export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
 
   const loadedUser = useRef<User>({} as User);
 
-  const dispatch = useAppDispatch();
+  const navigation = useNavigation<NavigationProps>();
 
   useEffect(() => {
     isMounted.current = true;
@@ -123,8 +128,8 @@ export function useSignUp({setModalVisible}: SignUpProps): ReturnType {
 
   const onUserNavigation = useCallback(() => {
     isMounted.current && setModalVisible(false);
-    dispatch(loadUser({user: {...loadedUser?.current}}));
-  }, [dispatch, setModalVisible]);
+    navigation.navigate('LoginScreen');
+  }, [setModalVisible, navigation]);
 
   return {
     user,

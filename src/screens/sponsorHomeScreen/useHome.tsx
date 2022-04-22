@@ -47,7 +47,7 @@ export function useHome(): ReturnType {
       const response: AxiosResponse<TransUserData[]> = await api.get(
         `/match/sponsors/${user?.id}`,
       );
-      console.log(response?.data);
+
       isMounted.current && setTransUsers(response?.data);
       isMounted.current && setIsRefreshing(false);
     } catch (err) {
@@ -66,7 +66,6 @@ export function useHome(): ReturnType {
 
       if (accept === null) {
         statusValue.current = 'warning';
-        console.log(item);
       }
 
       return (
@@ -76,6 +75,7 @@ export function useHome(): ReturnType {
           onPress={() =>
             navigation.navigate('TransProfileScreen', {
               transUser: item.accounts_accountsTomatch_idUser,
+              id: item,
             })
           }
         />

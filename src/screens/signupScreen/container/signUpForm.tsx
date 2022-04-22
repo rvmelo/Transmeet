@@ -31,9 +31,13 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({
   return (
     <SignUpWrapper>
       <FormInput
-        label="Nome Social Completo"
+        label={
+          userType !== 'empresa'
+            ? 'Nome Social Completo'
+            : 'Nome da Empresa/Instituição'
+        }
         autoCapitalize="words"
-        placeholder="Nome Completo"
+        placeholder={userType !== 'empresa' ? 'Nome completo' : 'Escreva aqui'}
         value={user?.name}
         onChangeText={name => setUser(prev => ({...prev, name}))}
         marginBottom={20}

@@ -2,9 +2,9 @@ import React from 'react';
 import {List} from '../../../components/list';
 import {LogOffModal} from '../../../components/logOffModal';
 import {Menu} from '../../../components/menu';
+import {useModal} from '../../../hooks/useModal';
 import {useAppSelector} from '../../../redux/hooks';
 import {useHome} from '../useHome';
-import {useModal} from '../useModal';
 
 import {SearchInput} from './searchInput';
 

@@ -26,7 +26,10 @@ import {
   About,
   SocialMedia,
   ButtonsSection,
+  LinkText,
 } from './styles';
+import {useModal} from '../../../hooks/useModal';
+import {LogOffModal} from '../../../components/logOffModal';
 
 interface RouteParams {
   id: number;
@@ -51,77 +54,85 @@ export const TransProfileScreen: React.FC = () => {
     onDecline,
   } = useModals();
 
-  return (
-    <Container>
-      <HeaderContainer>
-        <HeaderContent>
-          <TopHeaderContainer>
-            <BackButton />
-            <Menu />
-          </TopHeaderContainer>
-          <Title>Candidato</Title>
-        </HeaderContent>
-      </HeaderContainer>
-      <ContentWrapper>
-        <BasicInfo>
-          <Image source={require('../../../../assets/png/ioasys.png')} />
-          <Name>{transUser.name}</Name>
-        </BasicInfo>
-        <DetailedInfo>
-          <Contact>
-            <BoldBodyText>
-              Local: <BodyText>{transUser.city}</BodyText>
-            </BoldBodyText>
-            <BoldBodyText>
-              Contato: <BodyText>{transUser.telephone}</BodyText>
-            </BoldBodyText>
-            <BoldBodyText>
-              E-mail: <BodyText>{transUser.email}</BodyText>
-            </BoldBodyText>
-          </Contact>
-          <Gender>
-            <BoldBodyText>
-              Gênero: <BodyText>{transUser.gender}</BodyText>
-            </BoldBodyText>
-            <BoldBodyText>
-              Deficiência: <BodyText>Não Possui</BodyText>
-            </BoldBodyText>
-          </Gender>
-          <About>
-            <BoldBodyText>Sobre:</BoldBodyText>
-            <BodyText>{transUser.description}</BodyText>
-          </About>
-          <SocialMedia>
-            <BoldBodyText>Redes Sociais</BoldBodyText>
-            <BodyText>linkedin.com/in/{socialMedia}</BodyText>
-            <BodyText>instagram.com/{socialMedia}</BodyText>
-          </SocialMedia>
-        </DetailedInfo>
+  const {modalVisible, setModalVisible} = useModal();
 
-        <ButtonsSection>
-          <SponsorDeclineButton
-            title="Dispensar"
-            isDecline
-            onPress={() => onDecline({matchId: id})}
-          />
-          <SponsorDeclineButton
-            title="Combinar"
-            onPress={() => setWarningModalVisible(true)}
-          />
-        </ButtonsSection>
-      </ContentWrapper>
-      <WarningModal
-        modalVisible={warningModalVisible}
-        setModalVisible={setWarningModalVisible}
-        onGoBack={onGoBackWarning}
-        onConfirm={() => onConfirmWarning({matchId: id})}
+  return (
+    <>
+      <Container>
+        <HeaderContainer>
+          <HeaderContent>
+            <TopHeaderContainer>
+              <BackButton />
+              <Menu onPress={() => setModalVisible(true)} />
+            </TopHeaderContainer>
+            <Title>Candidato</Title>
+          </HeaderContent>
+        </HeaderContainer>
+        <ContentWrapper>
+          <BasicInfo>
+            <Image source={require('../../../../assets/png/ioasys.png')} />
+            <Name>{transUser.name}</Name>
+          </BasicInfo>
+          <DetailedInfo>
+            <Contact>
+              <BoldBodyText>
+                Local: <BodyText>{transUser.city}</BodyText>
+              </BoldBodyText>
+              <BoldBodyText>
+                Contato: <BodyText>{transUser.telephone}</BodyText>
+              </BoldBodyText>
+              <BoldBodyText>
+                E-mail: <BodyText>{transUser.email}</BodyText>
+              </BoldBodyText>
+            </Contact>
+            <Gender>
+              <BoldBodyText>
+                Gênero: <BodyText>{transUser.gender}</BodyText>
+              </BoldBodyText>
+              <BoldBodyText>
+                Deficiência: <BodyText>Não Possui</BodyText>
+              </BoldBodyText>
+            </Gender>
+            <About>
+              <BoldBodyText>Sobre:</BoldBodyText>
+              <BodyText>{transUser.description}</BodyText>
+            </About>
+            <SocialMedia>
+              <BoldBodyText>Redes Sociais</BoldBodyText>
+              <LinkText>linkedin.com/in/{socialMedia}</LinkText>
+              <LinkText>instagram.com/{socialMedia}</LinkText>
+            </SocialMedia>
+          </DetailedInfo>
+
+          <ButtonsSection>
+            <SponsorDeclineButton
+              title="Dispensar"
+              isDecline
+              onPress={() => onDecline({matchId: id})}
+            />
+            <SponsorDeclineButton
+              title="Combinar"
+              onPress={() => setWarningModalVisible(true)}
+            />
+          </ButtonsSection>
+        </ContentWrapper>
+        <WarningModal
+          modalVisible={warningModalVisible}
+          setModalVisible={setWarningModalVisible}
+          onGoBack={onGoBackWarning}
+          onConfirm={() => onConfirmWarning({matchId: id})}
+        />
+        <SuccessModal
+          modalVisible={successModalVisible}
+          setModalVisible={setSuccessModalVisible}
+          onGoBack={onGoBackHome}
+          onConfirm={onConfirmSuccess}
+        />
+      </Container>
+      <LogOffModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
       />
-      <SuccessModal
-        modalVisible={successModalVisible}
-        setModalVisible={setSuccessModalVisible}
-        onGoBack={onGoBackHome}
-        onConfirm={onConfirmSuccess}
-      />
-    </Container>
+    </>
   );
 };

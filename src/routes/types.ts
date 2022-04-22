@@ -1,5 +1,7 @@
 import {User} from '../global/types/redux';
 
+import {TransUserData} from '../components/list/types';
+
 export type RegisterStackParamList = {
   LoginScreen: undefined;
   SignUpScreen: undefined;
@@ -23,5 +25,5 @@ export type SponsorTabParamList = {
 
 export type SponsorStackParamList = {
   SponsorHomeScreen: undefined;
-  TransProfileScreen: undefined;
+  TransProfileScreen: {transUser: User; id: TransUserData};
 };

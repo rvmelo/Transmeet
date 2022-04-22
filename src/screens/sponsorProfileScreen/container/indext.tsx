@@ -28,6 +28,8 @@ import {Menu} from '../../../components/menu';
 import {SuccessModal, WarningModal} from './modals';
 import {useModals} from '../useModals';
 import {BackButton} from '../../../components/backButton';
+import {useModal} from '../../../hooks/useModal';
+import {LogOffModal} from '../../../components/logOffModal';
 
 interface RouteParams {
   sponsor: User;
@@ -48,6 +50,8 @@ export const SponsorProfileScreen: React.FC = () => {
     onGoBackHome,
   } = useModals();
 
+  const {modalVisible, setModalVisible} = useModal();
+
   return (
     <>
       <Container>
@@ -55,7 +59,10 @@ export const SponsorProfileScreen: React.FC = () => {
           <HeaderContent>
             <TopHeaderContainer>
               <BackButton />
-              <Menu isAbsolutePosition={false} />
+              <Menu
+                onPress={() => setModalVisible(true)}
+                isAbsolutePosition={false}
+              />
             </TopHeaderContainer>
             <CompanyName>{sponsor?.name}</CompanyName>
           </HeaderContent>
@@ -81,6 +88,10 @@ export const SponsorProfileScreen: React.FC = () => {
         setModalVisible={setWarningModalVisible}
         onGoBack={() => setWarningModalVisible(false)}
         onConfirm={() => onConfirm({idSponsor: sponsor?.id, idUser: user?.id})}
+      />
+      <LogOffModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
       />
     </>
   );

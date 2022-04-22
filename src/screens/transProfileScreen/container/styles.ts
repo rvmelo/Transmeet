@@ -82,6 +82,13 @@ export const BodyText = styled.Text`
   line-height: 15px;
 `;
 
+export const LinkText = styled.Text`
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
+  font-size: ${({theme}) => theme.fonts.bodyText.smallText}px;
+  color: ${({theme}) => theme.colors.secondary};
+  line-height: 15px;
+`;
+
 export const ButtonsSection = styled.View`
   flex-direction: row;
   justify-content: space-between;

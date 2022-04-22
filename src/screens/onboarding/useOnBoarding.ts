@@ -20,7 +20,6 @@ interface ReturnType {
 type NavigationProps = NativeStackNavigationProp<RegisterStackParamList>;
 
 export function useOnBoarding(): ReturnType {
-  const [scrollMultiplyFactor, setScrollMultiplyFactor] = useState(1);
   const [scrollIndex, setScrollIndex] = useState(0);
   const scrollRef = useRef<ScrollView | null>();
 
@@ -34,7 +33,7 @@ export function useOnBoarding(): ReturnType {
 
   const onScrollForward = useCallback(() => {
     scrollRef?.current?.scrollTo({
-      x: SCREEN_WIDTH * scrollMultiplyFactor,
+      x: SCREEN_WIDTH * (scrollIndex + 1),
       y: 0,
       animated: true,
     });
@@ -42,17 +41,11 @@ export function useOnBoarding(): ReturnType {
     if (scrollIndex < slideAmount - 1) {
       setScrollIndex(prev => prev + 1);
     }
-
-    if (scrollMultiplyFactor >= slideAmount - 1) {
-      return;
-    }
-
-    setScrollMultiplyFactor(prev => prev + 1);
-  }, [scrollMultiplyFactor, scrollIndex, slideAmount]);
+  }, [scrollIndex, slideAmount]);
 
   const onScrollBackward = useCallback(() => {
     scrollRef?.current?.scrollTo({
-      x: SCREEN_WIDTH * (scrollMultiplyFactor - 1),
+      x: SCREEN_WIDTH * (scrollIndex - 1),
       y: 0,
       animated: true,
     });
@@ -60,13 +53,7 @@ export function useOnBoarding(): ReturnType {
     if (scrollIndex > 0) {
       setScrollIndex(prev => prev - 1);
     }
-
-    if (scrollMultiplyFactor <= 1) {
-      return;
-    }
-
-    setScrollMultiplyFactor(prev => prev - 1);
-  }, [scrollMultiplyFactor, scrollIndex]);
+  }, [scrollIndex]);
 
   return {
     scrollRef,

@@ -75,7 +75,7 @@ export function useHome(): ReturnType {
           onPress={() =>
             navigation.navigate('TransProfileScreen', {
               transUser: item.accounts_accountsTomatch_idUser,
-              id: item,
+              itemData: item,
             })
           }
         />

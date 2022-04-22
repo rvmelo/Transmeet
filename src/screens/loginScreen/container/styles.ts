@@ -110,3 +110,42 @@ export const LoadingContainer = styled.View`
 export const StyledSpinner = styled.ActivityIndicator.attrs({
   size: 'large',
 })``;
+
+export const ModalBottom = styled.View`
+  background: ${({theme}) => theme.colors.gray};
+  align-items: center;
+  padding: 0 12px;
+`;
+
+export const ModalTitle = styled.Text`
+  margin-top: 26px;
+  font-size: ${({theme}) => theme.fonts.headings.h5}px;
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
+  color: ${({theme}) => theme.colors.textGray};
+`;
+
+export const ModalMessage = styled.Text`
+  margin-top: 7px;
+  font-size: ${({theme}) => theme.fonts.bodyText.mediumBase}px;
+  font-family: ${({theme}) => theme.fonts.family.bold700};
+  color: ${({theme}) => theme.colors.textGray};
+  text-align: center;
+`;
+
+export const ModalButton = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
+  background: ${({theme}) => theme.colors.primary};
+  border-radius: 20px;
+  width: 87px;
+  height: 40px;
+  border-radius: 24px;
+  align-items: center;
+  justify-content: center;
+  margin: 25px 0 53px 0;
+`;
+export const ModalButtonText = styled.Text`
+  font-size: ${({theme}) => theme.fonts.bodyText.smallText}px;
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
+  color: ${({theme}) => theme.colors.textWhite};
+`;

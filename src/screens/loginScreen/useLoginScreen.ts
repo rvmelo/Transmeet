@@ -33,6 +33,8 @@ interface ReturnType {
   password: string;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   isLoading: boolean;
+  modalVisible: boolean;
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function useLoginScreen(): ReturnType {
@@ -41,6 +43,8 @@ export function useLoginScreen(): ReturnType {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -59,8 +63,8 @@ export function useLoginScreen(): ReturnType {
       setIsLoading(true);
 
       const response: AxiosResponse<APIResponse> = await api.post('/login', {
-        email,
-        password,
+        email: email?.trim(),
+        password: password?.trim(),
       });
 
       isMounted?.current && setIsLoading(false);
@@ -78,6 +82,7 @@ export function useLoginScreen(): ReturnType {
     } catch (err) {
       // return void
       isMounted?.current && setIsLoading(false);
+      isMounted?.current && setModalVisible(true);
     }
   }, [email, password, dispatch]);
 
@@ -93,5 +98,7 @@ export function useLoginScreen(): ReturnType {
     password,
     setPassword,
     isLoading,
+    modalVisible,
+    setModalVisible,
   };
 }

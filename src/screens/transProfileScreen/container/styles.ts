@@ -82,10 +82,18 @@ export const BodyText = styled.Text`
   line-height: 15px;
 `;
 
+export const LinkText = styled.Text`
+  font-family: ${({theme}) => theme.fonts.family.semiBold600};
+  font-size: ${({theme}) => theme.fonts.bodyText.smallText}px;
+  color: ${({theme}) => theme.colors.secondary};
+  line-height: 15px;
+`;
+
 export const ButtonsSection = styled.View`
   flex-direction: row;
   justify-content: space-between;
   padding: ${RFValue(20)}px 0;
+  align-self: center;
 `;
 
 interface SponsorDeclineButtonProps {
@@ -101,6 +109,7 @@ export const SponsorButton = styled.TouchableOpacity.attrs({
     isDecline ? theme.colors.error : theme.colors.success};
   border-radius: ${RFValue(24)}px;
   align-items: center;
+  margin: 0 ${RFValue(10)}px;
 `;
 
 export const SponsorButtonText = styled.Text`
@@ -146,11 +155,12 @@ interface ModalButtonProps {
 export const ModalButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
 })<ModalButtonProps>`
-  padding: ${RFValue(9)}px ${RFValue(24)}px;
+  min-width: ${RFValue(87)}px;
   background: ${({theme, color}) => (color ? color : theme.colors.secondary)};
   border: ${({theme, color}) =>
     color === 'transparent' ? theme.colors.textGray : color};
   border-radius: ${RFValue(24)}px;
+  padding: ${RFValue(9)}px ${RFValue(10)}px;
   align-items: center;
   justify-content: center;
 `;

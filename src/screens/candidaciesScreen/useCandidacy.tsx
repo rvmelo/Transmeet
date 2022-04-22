@@ -35,8 +35,6 @@ export function useCandidacy({
 
   const isMounted = useRef<boolean | null>(null);
 
-  const statusValue = useRef<CandidacyStatus>('warning');
-
   useEffect(() => {
     isMounted.current = true;
 
@@ -67,19 +65,19 @@ export function useCandidacy({
 
       const {name} = accounts_accountsTomatch_idSponsor || {};
 
-      statusValue.current = accept === false ? 'error' : 'success';
+      let status: CandidacyStatus = accept === false ? 'error' : 'success';
 
       if (accept === null) {
-        statusValue.current = 'warning';
+        status = 'warning';
       }
 
       return (
         <ListItem
-          status={statusValue.current}
+          status={status}
           itemName={name}
           onPress={() => {
             setModalVisible(true);
-            setModalType(statusValue?.current);
+            setModalType(status);
           }}
         />
       );

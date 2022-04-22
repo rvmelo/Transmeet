@@ -12,6 +12,7 @@ import {
   BottomWrapper,
   SliderButtonWrapper,
 } from './styles';
+import {ScrollIndicator} from './scrollIndicator';
 
 interface BottomSectionProps {
   onScrollBackward: () => void;
@@ -47,6 +48,8 @@ export const BottomSection: React.FC<BottomSectionProps> = ({
           />
         </AccountButtonWrapper>
       )}
+      <ScrollIndicator scrollIndex={scrollIndex} />
+
       <SliderButtonWrapper>
         <SliderButton
           title="Voltar"

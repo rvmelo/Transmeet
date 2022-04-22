@@ -55,14 +55,13 @@ export const DetailedInfo = styled.View`
   align-items: flex-start;
 `;
 
-export const Contact = styled.View``;
+export const Contact = styled.View`
+  padding: ${RFValue(20)}px 0;
+`;
 export const Gender = styled.View`
   padding: ${RFValue(20)}px 0;
 `;
 export const About = styled.View`
-  padding: ${RFValue(20)}px 0;
-`;
-export const Education = styled.View`
   padding: ${RFValue(20)}px 0;
 `;
 export const SocialMedia = styled.View`
@@ -117,7 +116,7 @@ export const ModalView = styled.View`
 `;
 export const ModalTitle = styled.Text`
   font-family: ${({theme}) => theme.fonts.family.semiBold600};
-  font-size: ${({theme}) => theme.fonts.bodyText.regular};
+  font-size: ${({theme}) => theme.fonts.bodyText.regular}px;
   color: ${({theme}) => theme.colors.textGray};
   padding-bottom: ${RFValue(12)}px;
 `;

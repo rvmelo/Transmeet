@@ -5,6 +5,8 @@ import {BackButton} from '../../../components/backButton';
 import {Menu} from '../../../components/menu';
 import {SponsorDeclineButton} from './sponsorButton';
 import {SuccessModal, WarningModal} from './modals';
+import {User} from '../../../global/types/redux';
+import {useRoute} from '@react-navigation/native';
 
 import {
   Container,
@@ -22,12 +24,21 @@ import {
   Contact,
   Gender,
   About,
-  Education,
   SocialMedia,
   ButtonsSection,
 } from './styles';
 
+interface RouteParams {
+  id: number;
+  transUser: User;
+}
+
 export const TransProfileScreen: React.FC = () => {
+  const route = useRoute();
+  const {transUser, id} = route?.params as RouteParams;
+
+  let socialMedia = transUser.name.replace(' ', '_');
+
   const {
     successModalVisible,
     setSuccessModalVisible,
@@ -37,6 +48,7 @@ export const TransProfileScreen: React.FC = () => {
     onGoBackWarning,
     onConfirmSuccess,
     onGoBackHome,
+    onDecline,
   } = useModals();
 
   return (
@@ -53,23 +65,23 @@ export const TransProfileScreen: React.FC = () => {
       <ContentWrapper>
         <BasicInfo>
           <Image source={require('../../../../assets/png/ioasys.png')} />
-          <Name>Ioasys</Name>
+          <Name>{transUser.name}</Name>
         </BasicInfo>
         <DetailedInfo>
           <Contact>
             <BoldBodyText>
-              Local: <BodyText>São Paulo</BodyText>
+              Local: <BodyText>{transUser.city}</BodyText>
             </BoldBodyText>
             <BoldBodyText>
-              Contato: <BodyText>(12) 9.1234-5678</BodyText>
+              Contato: <BodyText>{transUser.telephone}</BodyText>
             </BoldBodyText>
             <BoldBodyText>
-              E-mail: <BodyText>paloma@mail.com.br</BodyText>
+              E-mail: <BodyText>{transUser.email}</BodyText>
             </BoldBodyText>
           </Contact>
           <Gender>
             <BoldBodyText>
-              Gênero: <BodyText>Mulher Trans / Preta</BodyText>
+              Gênero: <BodyText>{transUser.gender}</BodyText>
             </BoldBodyText>
             <BoldBodyText>
               Deficiência: <BodyText>Não Possui</BodyText>
@@ -77,16 +89,12 @@ export const TransProfileScreen: React.FC = () => {
           </Gender>
           <About>
             <BoldBodyText>Sobre:</BoldBodyText>
-            <BodyText>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</BodyText>
+            <BodyText>{transUser.description}</BodyText>
           </About>
-          <Education>
-            <BoldBodyText>Escolaridade</BoldBodyText>
-            <BodyText>Lorem Ipsum</BodyText>
-          </Education>
           <SocialMedia>
             <BoldBodyText>Redes Sociais</BoldBodyText>
-            <BodyText>linkedin.com/in/palomabernardi</BodyText>
-            <BodyText>instagram.com/palomabernardi</BodyText>
+            <BodyText>linkedin.com/in/{socialMedia}</BodyText>
+            <BodyText>instagram.com/{socialMedia}</BodyText>
           </SocialMedia>
         </DetailedInfo>
 
@@ -94,7 +102,7 @@ export const TransProfileScreen: React.FC = () => {
           <SponsorDeclineButton
             title="Dispensar"
             isDecline
-            onPress={onGoBackHome}
+            onPress={() => onDecline({matchId: id})}
           />
           <SponsorDeclineButton
             title="Combinar"
@@ -106,7 +114,7 @@ export const TransProfileScreen: React.FC = () => {
         modalVisible={warningModalVisible}
         setModalVisible={setWarningModalVisible}
         onGoBack={onGoBackWarning}
-        onConfirm={onConfirmWarning}
+        onConfirm={() => onConfirmWarning({matchId: id})}
       />
       <SuccessModal
         modalVisible={successModalVisible}

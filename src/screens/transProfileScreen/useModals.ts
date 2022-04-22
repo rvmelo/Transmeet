@@ -2,22 +2,22 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 
 //  navigation
 import {useNavigation} from '@react-navigation/native';
-// import {api} from '../../services/api';
+import {api} from '../../services/api';
 
-// interface ConfirmationProps {
-//   idSponsor: number | undefined;
-//   idUser: number | undefined;
-// }
+interface ConfirmationProps {
+  matchId: number;
+}
 
 interface ReturnType {
   warningModalVisible: boolean;
   setWarningModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   successModalVisible: boolean;
   setSuccessModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  onConfirmWarning: () => void;
+  onConfirmWarning: (value: ConfirmationProps) => Promise<void>;
   onGoBackWarning: () => void;
   onConfirmSuccess: () => void;
   onGoBackHome: () => void;
+  onDecline: (value: ConfirmationProps) => Promise<void>;
 }
 
 export function useModals(): ReturnType {
@@ -36,9 +36,19 @@ export function useModals(): ReturnType {
     };
   }, []);
 
-  const onConfirmWarning = useCallback(() => {
-    setWarningModalVisible(false);
-    setSuccessModalVisible(true);
+  // const onConfirmWarning = useCallback(() => {
+  //   setWarningModalVisible(false);
+  //   setSuccessModalVisible(true);
+  // }, []);
+
+  const onConfirmWarning = useCallback(async ({matchId}: ConfirmationProps) => {
+    try {
+      await api.patch(`/match/${matchId.id}`, {response: true});
+      setWarningModalVisible(false);
+      setSuccessModalVisible(true);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   const onGoBackWarning = useCallback(() => {
@@ -54,6 +64,18 @@ export function useModals(): ReturnType {
     navigation.goBack();
   }, [navigation]);
 
+  const onDecline = useCallback(
+    async ({matchId}: ConfirmationProps) => {
+      try {
+        await api.patch(`/match/${matchId.id}`, {response: false});
+        navigation.goBack();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [navigation],
+  );
+
   return {
     warningModalVisible,
     setWarningModalVisible,
@@ -63,5 +85,6 @@ export function useModals(): ReturnType {
     onGoBackWarning,
     onConfirmSuccess,
     onGoBackHome,
+    onDecline,
   };
 }

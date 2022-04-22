@@ -1,5 +1,6 @@
+import {RFValue} from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
-import {SCREEN_WIDTH, SCREEN_HEIGHT} from '../../../constants/dimensions';
+import {SCREEN_WIDTH} from '../../../constants/dimensions';
 
 export const Container = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
@@ -12,12 +13,12 @@ export const Container = styled.ScrollView.attrs({
 export const TopWrapper = styled.View`
   position: absolute;
   align-self: flex-end;
-  padding: 30px 30px;
+  padding: ${RFValue(30)}px ${RFValue(30)}px;
   z-index: 1;
 `;
 
 export const BottomWrapper = styled.View`
-  padding: 30px 30px;
+  padding: 0px 30px 30px;
   justify-content: space-around;
 `;
 
@@ -63,7 +64,7 @@ export const ButtonText = styled.Text<TextProps>`
 // account button
 
 export const AccountButtonWrapper = styled.View`
-  padding-bottom: 40px;
+  padding-bottom: ${RFValue(20)}px;
 `;
 
 interface AccountButtonProps {
@@ -99,7 +100,9 @@ interface ScrollWrapperProps {
 }
 
 export const ScrollWrapper = styled.View<ScrollWrapperProps>`
-  align-items: center;
+  max-width: ${SCREEN_WIDTH}px;
+  max-height: ${SCREEN_WIDTH}px;
+  margin-bottom: ${RFValue(15)}px;
 `;
 
 export const StyledScroll = styled.ScrollView.attrs({
@@ -117,7 +120,7 @@ export const SliderContent = styled.View`
 
 export const StyledImage = styled.Image`
   max-width: ${SCREEN_WIDTH}px;
-  max-height: ${SCREEN_HEIGHT / 1.3}px;
+  max-height: ${SCREEN_WIDTH}px;
 `;
 
 export const IntroText = styled.Text`
@@ -125,8 +128,7 @@ export const IntroText = styled.Text`
   color: ${({theme}) => theme.colors.textGray};
   text-align: center;
   line-height: 25px;
-  margin: 20px;
-  margin-bottom: 40px;
+  margin: ${RFValue(20)}px;
 `;
 
 export const TitleText = styled.Text`
@@ -134,14 +136,14 @@ export const TitleText = styled.Text`
   font-size: ${({theme}) => theme.fonts.sizes.xl}px;
   color: ${({theme}) => theme.colors.textGray};
   text-align: center;
-  margin-top: 20px;
 `;
 
 //  scroll indicator
 
 export const ScrollIndicatorWrapper = styled.View`
   flex-direction: row;
-  margin-bottom: 5px;
+  margin-bottom: ${RFValue(20)}px;
+  align-self: center;
 `;
 
 interface ScrollDotProps {

@@ -3,10 +3,15 @@ import {useOnBoarding} from '../useOnBoarding';
 import {introData} from './introData';
 import {SliderDisplay} from './sliderDisplay';
 
-import {Container, ScrollWrapper, StyledScroll} from './styles';
+import {
+  Container,
+  IntroText,
+  ScrollWrapper,
+  StyledScroll,
+  TitleText,
+} from './styles';
 import {BottomSection} from './bottomSection';
 import {TopSection} from './topSection';
-import {ScrollIndicator} from './scrollIndicator';
 
 export const Onboarding: React.FC = () => {
   const {
@@ -25,16 +30,13 @@ export const Onboarding: React.FC = () => {
       <ScrollWrapper isLastIndex={scrollIndex === slideAmount - 1}>
         <StyledScroll ref={scrollRef}>
           {introData.map(data => (
-            <SliderDisplay
-              key={data.src}
-              src={data.src}
-              text={data.text}
-              title={data.title}
-            />
+            <SliderDisplay key={data.src} src={data.src} />
           ))}
         </StyledScroll>
-        <ScrollIndicator scrollIndex={scrollIndex} />
       </ScrollWrapper>
+
+      <TitleText>{introData[scrollIndex].title}</TitleText>
+      <IntroText>{introData[scrollIndex].text}</IntroText>
 
       <BottomSection
         onScrollBackward={onScrollBackward}

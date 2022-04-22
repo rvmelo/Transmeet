@@ -30,15 +30,16 @@ import {
 } from './styles';
 import {useModal} from '../../../hooks/useModal';
 import {LogOffModal} from '../../../components/logOffModal';
+import {TransUserData} from '../../../components/list/types';
 
 interface RouteParams {
-  id: number;
+  itemData: TransUserData;
   transUser: User;
 }
 
 export const TransProfileScreen: React.FC = () => {
   const route = useRoute();
-  const {transUser, id} = route?.params as RouteParams;
+  const {transUser, itemData} = route?.params as RouteParams;
 
   let socialMedia = transUser.name.replace(' ', '_');
 
@@ -108,7 +109,7 @@ export const TransProfileScreen: React.FC = () => {
             <SponsorDeclineButton
               title="Dispensar"
               isDecline
-              onPress={() => onDecline({matchId: id})}
+              onPress={() => onDecline({itemData})}
             />
             <SponsorDeclineButton
               title="Combinar"
@@ -120,7 +121,7 @@ export const TransProfileScreen: React.FC = () => {
           modalVisible={warningModalVisible}
           setModalVisible={setWarningModalVisible}
           onGoBack={onGoBackWarning}
-          onConfirm={() => onConfirmWarning({matchId: id})}
+          onConfirm={() => onConfirmWarning({itemData})}
         />
         <SuccessModal
           modalVisible={successModalVisible}

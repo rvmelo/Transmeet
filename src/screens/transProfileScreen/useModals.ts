@@ -3,9 +3,10 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 //  navigation
 import {useNavigation} from '@react-navigation/native';
 import {api} from '../../services/api';
+import {TransUserData} from '../../components/list/types';
 
 interface ConfirmationProps {
-  matchId: number;
+  itemData: TransUserData;
 }
 
 interface ReturnType {
@@ -36,20 +37,19 @@ export function useModals(): ReturnType {
     };
   }, []);
 
-  // const onConfirmWarning = useCallback(() => {
-  //   setWarningModalVisible(false);
-  //   setSuccessModalVisible(true);
-  // }, []);
-
-  const onConfirmWarning = useCallback(async ({matchId}: ConfirmationProps) => {
-    try {
-      await api.patch(`/match/${matchId.id}`, {response: true});
-      setWarningModalVisible(false);
-      setSuccessModalVisible(true);
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  const onConfirmWarning = useCallback(
+    async ({itemData}: ConfirmationProps) => {
+      try {
+        console.log('match id: ', itemData.id);
+        await api.patch(`/match/${itemData.id}`, {response: true});
+        setWarningModalVisible(false);
+        setSuccessModalVisible(true);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [],
+  );
 
   const onGoBackWarning = useCallback(() => {
     setWarningModalVisible(false);
@@ -65,9 +65,9 @@ export function useModals(): ReturnType {
   }, [navigation]);
 
   const onDecline = useCallback(
-    async ({matchId}: ConfirmationProps) => {
+    async ({itemData}: ConfirmationProps) => {
       try {
-        await api.patch(`/match/${matchId.id}`, {response: false});
+        await api.patch(`/match/${itemData.id}`, {response: false});
         navigation.goBack();
       } catch (error) {
         console.log(error);

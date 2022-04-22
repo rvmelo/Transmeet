@@ -25,5 +25,5 @@ export type SponsorTabParamList = {
 
 export type SponsorStackParamList = {
   SponsorHomeScreen: undefined;
-  TransProfileScreen: {transUser: User; id: TransUserData};
+  TransProfileScreen: {transUser: User; itemData: TransUserData};
 };
